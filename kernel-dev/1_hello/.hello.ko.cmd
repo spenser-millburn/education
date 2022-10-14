@@ -1,0 +1,1 @@
+cmd_/home/smillburn/career/udemy/kernel-dev/day1/examples/1_hello/hello.ko := ld -r  -m elf_x86_64  --build-id=sha1  -T scripts/module.lds -o /home/smillburn/career/udemy/kernel-dev/day1/examples/1_hello/hello.ko /home/smillburn/career/udemy/kernel-dev/day1/examples/1_hello/hello.o /home/smillburn/career/udemy/kernel-dev/day1/examples/1_hello/hello.mod.o;  true

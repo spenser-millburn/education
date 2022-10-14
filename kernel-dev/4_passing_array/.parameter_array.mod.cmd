@@ -1,0 +1,1 @@
+cmd_/home/smillburn/career/udemy/kernel-dev/day2/4_passing_array/parameter_array.mod := { echo  /home/smillburn/career/udemy/kernel-dev/day2/4_passing_array/parameter_array.o;  echo; } > /home/smillburn/career/udemy/kernel-dev/day2/4_passing_array/parameter_array.mod

@@ -1,0 +1,9 @@
+COMPILER ERRORS
+===============
+{error}   [VARIABLE IS UNDECLARED] - a variable has not been declared
+{warning} [IMPLICIT DECLARATION OF A FUNCTION] - function is not declared, needs function prototype or header reference
+{warning} [CONTROL REACHES END OF NON VOID FUNCTION] - return value missing
+{warning} [UNUSED VARIABLE] - variable not being used, remove it
+{error}   [UNDEFINED REFERENCE] - function has not been defined. May need to include header. 
+{error}   [CONFLICTING TYPES] - multiple definitions of a function prototype have been found. 
+

@@ -1,0 +1,1 @@
+cmd_/home/smillburn/career/udemy/kernel-dev/day1/examples/2_hello_makefile/Module.symvers := sed 's/\.ko$$/\.o/' /home/smillburn/career/udemy/kernel-dev/day1/examples/2_hello_makefile/modules.order | scripts/mod/modpost -m -a  -o /home/smillburn/career/udemy/kernel-dev/day1/examples/2_hello_makefile/Module.symvers -e -i Module.symvers   -T -

@@ -1,0 +1,1 @@
+cmd_/home/smillburn/career/udemy/kernel-dev/day2/3_passing_parameters/Module.symvers := sed 's/\.ko$$/\.o/' /home/smillburn/career/udemy/kernel-dev/day2/3_passing_parameters/modules.order | scripts/mod/modpost -m -a  -o /home/smillburn/career/udemy/kernel-dev/day2/3_passing_parameters/Module.symvers -e -i Module.symvers   -T -

@@ -1,0 +1,48 @@
+LENGTH FUNCTIONS
+=================
+strlen(str) - get the length of the string as an int
+sizeof() - get the size of a string as an int
+
+COPY FUNCTIONS
+==============
+#include<string>
+strcpy(dest,source) - copy a string to an existing string (equiv to using an assignment operator)
+strncpy(dest,src,substr_chars) - copy a substring of [0:substr_chars] to an existing string 
+strcat(string_to_cat_to_end,base_string) - concatenate string_to_cat_to_end to the end of  base_string.
+strcat(string_to_cat_to_end,base_string,substring_chars) - concatenate string_to_cat_to_end to the end of  base_string.
+
+SEARCH FUNCTIONS
+=================
+strchr(str_to_be_searched,char_target) - searches the string for a target_char starting at the beginning, returns a pointer to the first position in the string where the target_char is found. 
+strchr(str_to_be_searched,str_target) - searches the string for a target string starting at the beginning, returns a pointer to the first position in the string where the target_string is found. 
+
+TOKENIZING FUNCTIONS
+====================
+strtok(str_to_be_tokenized, str_delimeters) - returns tokens (list?) from a delimeter. Eg break sentence into words. 
+
+ANALYZING STRINGS
+=================
+islower() - tests for lowercase letter 
+isupper() - tests for uppercase letter
+isalpha() - tests for alphanumerical
+isalnum() - tests for number
+iscntrl() - tests for control
+isprint() - tests for printing character including space
+isdigit() - tests for decimal digit 0-9
+isxdigit() - tests for hex digit
+isblank() - tests for blank character
+isspace() - tests for whitespace character
+ispunct() - tests for punctuation
+
+TRANSFORMING STRINGS
+====================
+toupper() - converts from lowercase to uppercase
+tolower() - converts from uppercase to lowercase
+
+CONVERTING STRINGS
+==================
+atof() - converts string to double
+atoi() - converts string to int
+atol() - converts string to long
+atoll() - convert string to long long
+

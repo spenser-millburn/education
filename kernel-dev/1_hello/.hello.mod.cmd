@@ -1,0 +1,1 @@
+cmd_/home/smillburn/career/udemy/kernel-dev/day1/examples/1_hello/hello.mod := { echo  /home/smillburn/career/udemy/kernel-dev/day1/examples/1_hello/hello.o;  echo; } > /home/smillburn/career/udemy/kernel-dev/day1/examples/1_hello/hello.mod

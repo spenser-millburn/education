@@ -1,0 +1,1 @@
+cmd_/home/smillburn/career/udemy/kernel-dev/day2/3_passing_parameters/arguments.mod := { echo  /home/smillburn/career/udemy/kernel-dev/day2/3_passing_parameters/arguments.o;  echo; } > /home/smillburn/career/udemy/kernel-dev/day2/3_passing_parameters/arguments.mod

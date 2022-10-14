@@ -1,0 +1,21 @@
+READING FROM A FILE
+===================
+fgetc(file_pointer) - returns a character from a text file that has been opened for reading
+getc(file_pointer) - same as fgetc(file_pointer) but can be implemented as a macro
+rewind(file_pointer) - return to the start of the file. 
+fgets(*string_output,int_n_chars_to_read, file_pointer) - reads a string to sting_output 
+fscanf(file_pointer,char_pointer_format, ...) - get formatted input from a file. 
+
+WRITING TO A FILE
+=================
+fputc(int ch, file_pointer) - writes a character ch to file pointed to by file_pointer
+fputs(int str, file_pointer) - writes a string str to file pointed to by file_pointer
+fprintf(file_pointer, format_str, ...) - writes a formatted string to the file
+
+FILE POSITIONING
+================
+ftell(file_pointer) - returns a long integer value that specifies the current position of the file.
+fgetpos(file_pointer, fpos_t_pointer_position) - stores the current position and file state information for the file in position and returns 0 if the operation is successful. returns nonzero integer for failure. 
+fsetpos(file_pointer, fpos_t_pointer_position) - sets the position in the file. Used with fgetpos();
+fseek(file_pointer, long_offset_from_ftell, int_origin) - go to any position in the file.
+

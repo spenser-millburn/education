@@ -1,0 +1,1 @@
+cmd_/home/smillburn/career/udemy/kernel-dev/day1/examples/2_hello_makefile/linux.o := ld  -m elf_x86_64    -r -o /home/smillburn/career/udemy/kernel-dev/day1/examples/2_hello_makefile/linux.o /home/smillburn/career/udemy/kernel-dev/day1/examples/2_hello_makefile/hello.o

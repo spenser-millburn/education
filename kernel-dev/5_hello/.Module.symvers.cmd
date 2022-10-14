@@ -1,0 +1,1 @@
+cmd_/home/smillburn/career/udemy/kernel-dev/day1/examples/5_hello/Module.symvers := sed 's/\.ko$$/\.o/' /home/smillburn/career/udemy/kernel-dev/day1/examples/5_hello/modules.order | scripts/mod/modpost -m -a  -o /home/smillburn/career/udemy/kernel-dev/day1/examples/5_hello/Module.symvers -e -i Module.symvers   -T -
