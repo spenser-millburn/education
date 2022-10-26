@@ -12,6 +12,7 @@ bool is_palindrome(const std::string& s)
 {
     std::deque<char> d;
 
+
     // add all the string characters that are alpha to the back of the deque in uppercase
     for(char c : s)
         if(std::isalpha(c))
@@ -46,5 +47,6 @@ int main()
         std::cout << std::setw(8) << std::left << is_palindrome(s)  << s << std::endl;
     }
     std::cout << std::endl;
+    std::cout<<"CHALLENGE COMPLETED" << std::endl;
     return 0;
 }
