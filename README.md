@@ -4,7 +4,7 @@
 **[[spensermnews@gmail.com]]**
 - Become a Probability & Statistics Master
 
-**[[spenser.millburn@alertinnovation.com]]**
+**[[spenser.millburn@ai.com]]**
 - Become a Linear Algebra Master
 - Become a Differential Equations Master
 - MATLAB Master Class: Go from Beginner to Expert in MATLAB
@@ -18,7 +18,7 @@
 - Ultimate Rust Crash Course
 - Clojure - from beginner to advanced
 
-**[[spenser.millburn@alertinnovation.com]]**
+**[[spenser.millburn@ai.com]]**
 - Statistics for Data Analysis Using Python
 - CMake, Tests and Tooling for C/C++ Projects [2022 Edition]
 
@@ -29,7 +29,7 @@
 - The Complete JavaScript Course 2023: From Zero to Expert!
 - Beginning C++ Programming - From Beginner to Beyond
 
-**[[spenser.millburn@owllabs.com]]**
+**[[spenser.millburn@ol.com]]**
 - Software Architecture & Technology of Large-Scale Systems 
 - Docker Mastery: with Kubernetes +Swarm from a Docker Captain
 - Modern React with Redux
@@ -50,7 +50,7 @@
 - Applied Control Systems 1: autonomous cars: Math + PID + MPC
 - Applied Control Systems 2: autonomous cars (360 tracking)
 
-**[[spenser.millburn@alertinnovation.com]]**
+**[[spenser.millburn@ai.com]]**
 - Applied Control Systems 3: UAV drone (3D Dynamics & control)
 
 ## Physics
