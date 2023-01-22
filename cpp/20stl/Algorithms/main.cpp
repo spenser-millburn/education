@@ -82,7 +82,7 @@ void replace_test() {
     std::cout << "\n========================" << std::endl;
 
      std::vector<int> vec {1,2,3,4,5,1,2,1};
-     for (auto i: vec) {
+    for (auto i: vec) {
          std::cout << i << " ";
      }
      std::cout << std::endl;
@@ -121,7 +121,7 @@ int main() {
     find_test();
 //    count_test();
 //    count_if_test();
-//    replace_test();
+   // replace_test();
 //    all_of_test();
 //    string_transform_test();
 

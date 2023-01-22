@@ -22,7 +22,7 @@
 - Statistics for Data Analysis Using Python
 - CMake, Tests and Tooling for C/C++ Projects [2022 Edition]
 
-**[[spensernz@gmail.com]]**
+**[[Aereadnos@live.com]]**
 - Learn Linux Kernel Programming
 - Learn JIRA with real-world examples (+Confluence bonus)
 - Mastering Visual Studio Code
