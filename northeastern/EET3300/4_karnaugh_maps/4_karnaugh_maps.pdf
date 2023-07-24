@@ -1,0 +1,4576 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<<
+/Type /Pages
+/Count 1
+/Kids [ 3 0 R ]
+>>
+endobj
+2 0 obj
+<<
+/Producer (PyPDF2)
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Resources <<
+/ProcSets [ /PDF /Text /ImageB /ImageC /ImageI ]
+/ExtGState <<
+/G0 96 0 R
+/G1 95 0 R
+>>
+/Font <<
+/F0 90 0 R
+/F1 85 0 R
+/F2 84 0 R
+/F3 79 0 R
+/F4 72 0 R
+/F5 60 0 R
+/F6 23 0 R
+/F7 18 0 R
+>>
+>>
+/MediaBox [ 0 0 735.12 5782.0801 ]
+/Contents 17 0 R
+/Parent 1 0 R
+/ArtBox [ 0 0 735.12 5782.0801 ]
+>>
+endobj
+4 0 obj
+<<
+/D [ 0 /XYZ 0 5763 null ]
+/S /GoTo
+>>
+endobj
+5 0 obj
+<<
+/First 6 0 R
+/Count 5
+/Last 14 0 R
+>>
+endobj
+6 0 obj
+<<
+/A 4 0 R
+/Title (Chapter\0404\040\055\040Karnaugh\040Maps)
+/Parent 5 0 R
+/Next 8 0 R
+>>
+endobj
+7 0 obj
+<<
+/D [ 0 /XYZ 0 5700 null ]
+/S /GoTo
+>>
+endobj
+8 0 obj
+<<
+/A 7 0 R
+/Title (şÿ\042\031\000\040\000T\000h\000r\000e\000e\000\040\000V\000a\000r\000i\000a\000b\000l\000e\000\040\000K\000\055\000M\000a\000p\000s)
+/Prev 6 0 R
+/Parent 5 0 R
+/Next 10 0 R
+>>
+endobj
+9 0 obj
+<<
+/D [ 0 /XYZ 0 3573 null ]
+/S /GoTo
+>>
+endobj
+10 0 obj
+<<
+/A 9 0 R
+/Title (şÿ\042\031\000\040\000F\000o\000u\000r\000\040\000V\000a\000r\000i\000a\000b\000l\000e\000\040\000K\000\055\000M\000a\000p\000s)
+/Prev 8 0 R
+/Parent 5 0 R
+/Next 12 0 R
+>>
+endobj
+11 0 obj
+<<
+/D [ 0 /XYZ 0 1968 null ]
+/S /GoTo
+>>
+endobj
+12 0 obj
+<<
+/A 11 0 R
+/Title (şÿ\042\031\000\040\000P\000r\000i\000m\000e\000\040\000I\000m\000p\000l\000i\000c\000a\000n\000t\000\040\000T\000a\000b\000l\000e\000s)
+/Prev 10 0 R
+/Parent 5 0 R
+/Next 14 0 R
+>>
+endobj
+13 0 obj
+<<
+/D [ 0 /XYZ 0 859 null ]
+/S /GoTo
+>>
+endobj
+14 0 obj
+<<
+/A 13 0 R
+/Title (şÿ\042\031\000\040\000T\000h\000e\000r\000e\000f\000o\000r\000e\000\054\000\040\000t\000h\000e\000\040\000m\000i\000n\000i\000m\000u\000m\000\040\000S\000O\000P\000\040\000e\000x\000p\000r\000e\000s\000s\000i\000o\000n\000\040\000f\000o\000r\000\040\000t\000h\000i\000s\000\040\000w\000o\000u\000l\000d\000\040\000b\000e\000\012\000A\000\012\0402\000\012\000C\000\012\000E\000\012\000\053\000\012\000A\000\012\0402\000\012\000B\000\012\000C\000\012\0402\000\012\000D\000\012\000\053\000\012\000A\000\012\000B\000\012\000D\000\012\000E\000\012\0402\000\012\000A\0402\000C\000E\000\053\000A\0402\000B\000C\0402\000D\000\053\000A\000B\000D\000E\0402)
+/Prev 12 0 R
+/Parent 5 0 R
+>>
+endobj
+15 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/Names <<
+/EmbeddedFiles <<
+/Names [ (4\137karnaugh\137maps\056ipynb) <<
+/Type /Filespec
+/F (4\137karnaugh\137maps\056ipynb)
+/EF <<
+/F 16 0 R
+>>
+>> ]
+>>
+>>
+/Outlines 5 0 R
+>>
+endobj
+16 0 obj
+<<
+/Type /EmbeddedFile
+/Length 81349
+>>
+stream
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "0b915f05-7881-4d09-98fa-db0b6aee648d",
+   "metadata": {
+    "jupyter": {
+     "source_hidden": true
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "from IPython.display import Markdown\n",
+    "import ttg\n",
+    "import pandas as pd\n",
+    "import numpy as np \n",
+    "def tt(args_list,exprs = None):\n",
+    "    df =  (ttg.Truths(args_list,exprs).as_pandas())[::-1]\n",
+    "    df = df.reset_index(drop = True)\n",
+    "    return df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "38df3a5f-9825-4afb-9ff9-afbb9866bea2",
+   "metadata": {
+    "jupyter": {
+     "source_hidden": true
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "from BooleanAlgebra import Solver\n",
+    "from BooleanAlgebra import KarnaughMap as kmap"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "47812abf-c301-441b-87fc-0abd4031f496",
+   "metadata": {},
+   "source": [
+    "# Chapter 4 -  Karnaugh Maps\n",
+    "-----\n",
+    "\n",
+    "## Three Variable K-Maps\n",
+    "\n",
+    "-----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4fa70f1e-fd8e-4273-9ae7-2542968037ff",
+   "metadata": {},
+   "source": [
+    "### 1. Use a k-map to find a minimum SOP expression for : $F(A, B, C) = Î£m(0, 1, 3, 4, 6)$"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "b0f3361c-6433-4112-909f-2fa9b00cddf1",
+   "metadata": {
+    "jupyter": {
+     "source_hidden": true
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/markdown": [
+       "### Truth Table"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Markdown object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>A</th>\n",
+       "      <th>B</th>\n",
+       "      <th>C</th>\n",
+       "      <th>F</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   A  B  C  F\n",
+       "0  0  0  0  1\n",
+       "1  0  0  1  1\n",
+       "2  0  1  0  0\n",
+       "3  0  1  1  1\n",
+       "4  1  0  0  1\n",
+       "5  1  0  1  0\n",
+       "6  1  1  0  1\n",
+       "7  1  1  1  0"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/markdown": [
+       "### KMAP"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Markdown object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'</th>\n",
+       "      <th>C</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         0  1\n",
+       "        C'  C\n",
+       "00 A'B'  1  1\n",
+       "01 A'B   0  1\n",
+       "11 AB    1  0\n",
+       "10 AB'   1  0"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/markdown": [
+       "### KMAP Legend"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Markdown object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'</th>\n",
+       "      <th>C</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>2</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>6</td>\n",
+       "      <td>7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>4</td>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         0  1\n",
+       "        C'  C\n",
+       "00 A'B'  0  1\n",
+       "01 A'B   2  3\n",
+       "11 AB    6  7\n",
+       "10 AB'   4  5"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "Solver(num_vars = 3, fn = [1,1,0,1,1,0,1,0],show_legend=False).display()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5f445abc-f07c-4be4-a68d-392727e2119d",
+   "metadata": {},
+   "source": [
+    "### Minimum SOP form\n",
+    "To find the minimum SOP expression, first group all adjacent 1s:\n",
+    "\n",
+    "GROUPS: $[0,1],[1,3],[6,4] = A'B' + A'C + AC'$\n",
+    "\n",
+    "ğ´â€²ğµâ€²+ğ´â€²ğ¶+ğ´ğ¶â€²                                                                                                                                                                       \n",
+    "= ğ´â€²(ğµâ€²+ğ¶) + ğ´ğ¶â€²   (Distributive law)                                                                                                                                              \n",
+    "-----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "75ec67b8-4ec8-411e-b8b5-6ee5aa57f633",
+   "metadata": {},
+   "source": [
+    "### 3. Identify all of the implicants contained in $F(A, B, C) = A âŠ• B + Bâ€²Câ€².$"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "53ad114c-610f-49a5-8e1f-c44768d48146",
+   "metadata": {
+    "jupyter": {
+     "source_hidden": true
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/markdown": [
+       "### Truth Table"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Markdown object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>A</th>\n",
+       "      <th>B</th>\n",
+       "      <th>C</th>\n",
+       "      <th>F</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   A  B  C  F\n",
+       "0  0  0  0  1\n",
+       "1  0  0  1  1\n",
+       "2  0  1  0  1\n",
+       "3  0  1  1  1\n",
+       "4  1  0  0  1\n",
+       "5  1  0  1  1\n",
+       "6  1  1  0  1\n",
+       "7  1  1  1  1"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/markdown": [
+       "### KMAP"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Markdown object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'</th>\n",
+       "      <th>C</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         0  1\n",
+       "        C'  C\n",
+       "00 A'B'  1  1\n",
+       "01 A'B   1  1\n",
+       "11 AB    1  1\n",
+       "10 AB'   1  1"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/markdown": [
+       "### KMAP Legend"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Markdown object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'</th>\n",
+       "      <th>C</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>2</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>6</td>\n",
+       "      <td>7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>4</td>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         0  1\n",
+       "        C'  C\n",
+       "00 A'B'  0  1\n",
+       "01 A'B   2  3\n",
+       "11 AB    6  7\n",
+       "10 AB'   4  5"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "Solver(num_vars = 3, expression= [\"((a and not b) or (not a and b)) or (not b and not c)\"]).display()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2925558d-e259-4722-a9d4-e1f989855d33",
+   "metadata": {},
+   "source": [
+    "IMPLICANTS = $\\textbf{groups_of_one}([0],[2],[3],[4],[5]),\\textbf{groups_of_two}([0,2],[2,3],[0,4],[4,5])$\n",
+    "\n",
+    "PRIME IMPLICANTS = $[0,2],[2,3],[0,4],[4,5] = A'C' + A'B + B'C +AB'$\n",
+    "\n",
+    "ESSENTIAL PRIME IMPLICANTS= $[0,2],[2,3],[4,5] = A'C' + A'B +AB'$\n",
+    "\n",
+    "\n",
+    "------"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ee71582a-a0af-40ed-a8af-0f74ea707f93",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "### 5. $F(A, B, C) = Aâ€²C + ABâ€²$ and $G(A, B, C) = (Aâ€² + Câ€²)(Bâ€² + C)(A + C)$ are equivalent expressions. Use a k-map to determine which term(s) must be donâ€™t cares."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "e0983046-6fc0-45dc-a9c3-9236d87ad759",
+   "metadata": {
+    "jupyter": {
+     "source_hidden": true
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "F(A, B, C) = Aâ€²C + AB\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'</th>\n",
+       "      <th>C</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         0  1\n",
+       "        C'  C\n",
+       "00 A'B'  0  1\n",
+       "01 A'B   0  1\n",
+       "11 AB    0  0\n",
+       "10 AB'   1  1"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'</th>\n",
+       "      <th>C</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>2</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>6</td>\n",
+       "      <td>7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>4</td>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         0  1\n",
+       "        C'  C\n",
+       "00 A'B'  0  1\n",
+       "01 A'B   2  3\n",
+       "11 AB    6  7\n",
+       "10 AB'   4  5"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "print (\"F(A, B, C) = Aâ€²C + AB\")\n",
+    "print(Solver(num_vars = 3, expression= [\"(not A and C ) or (A and not B)\"]).kmap)\n",
+    "Solver(num_vars = 3, expression= [\"(not A and C ) or (A and not B)\"],show_legend = True).kmap"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "a9a0a2f0-9e84-48fa-a755-202dc501301e",
+   "metadata": {
+    "jupyter": {
+     "source_hidden": true
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(ğ´â€²+ğ¶â€²)(ğµâ€²+ğ¶)(ğ´+ğ¶)\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'</th>\n",
+       "      <th>C</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         0  1\n",
+       "        C'  C\n",
+       "00 A'B'  0  1\n",
+       "01 A'B   0  1\n",
+       "11 AB    0  0\n",
+       "10 AB'   1  0"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'</th>\n",
+       "      <th>C</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>2</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>6</td>\n",
+       "      <td>7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>4</td>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         0  1\n",
+       "        C'  C\n",
+       "00 A'B'  0  1\n",
+       "01 A'B   2  3\n",
+       "11 AB    6  7\n",
+       "10 AB'   4  5"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "print (\"(ğ´â€²+ğ¶â€²)(ğµâ€²+ğ¶)(ğ´+ğ¶)\")\n",
+    "print(Solver(num_vars = 3, expression= [\"(not A or not C) and (not B or C) and (A or C)\"]).kmap)\n",
+    "Solver(num_vars = 3, expression= [\"(not A or not C) and (not B or C) and (A or C)\"],show_legend = True).kmap"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5e970cc4-ce10-4630-8b8b-7bb59cada179",
+   "metadata": {},
+   "source": [
+    "Therefore, since minterm 5 is the only one that is not shared, it must be a don't care. \n",
+    "\n",
+    "----\n",
+    "\n",
+    "## Four Variable K-Maps\n",
+    "\n",
+    "----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4c6f54ff-ab71-40c1-a8b6-da17bcd3d547",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "### 1. Use a k-map to find a minimum SOP expression for $F (A, B, C, D) = Î M (0, 3, 4, 8, 9, 10, 14)$"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "57749ae8-96a3-4e3a-9005-37d771b1215c",
+   "metadata": {
+    "jupyter": {
+     "source_hidden": true
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'D'</th>\n",
+       "      <th>C'D</th>\n",
+       "      <th>CD</th>\n",
+       "      <th>CD'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          00  01 11  10\n",
+       "        C'D' C'D CD CD'\n",
+       "00 A'B'    1   0  1   0\n",
+       "01 A'B     1   0  0   0\n",
+       "11 AB      0   0  0   0\n",
+       "10 AB'     1   0  1   0"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'D'</th>\n",
+       "      <th>C'D</th>\n",
+       "      <th>CD</th>\n",
+       "      <th>CD'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>4</td>\n",
+       "      <td>5</td>\n",
+       "      <td>7</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>12</td>\n",
+       "      <td>13</td>\n",
+       "      <td>15</td>\n",
+       "      <td>14</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>8</td>\n",
+       "      <td>9</td>\n",
+       "      <td>11</td>\n",
+       "      <td>10</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          00  01  11  10\n",
+       "        C'D' C'D  CD CD'\n",
+       "00 A'B'    0   1   3   2\n",
+       "01 A'B     4   5   7   6\n",
+       "11 AB     12  13  15  14\n",
+       "10 AB'     8   9  11  10"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "display(Solver(num_vars = 4, fn = [1,0,0,1,1,0,0,0,1,0,0,1,0,0,0,0],show_legend = False).kmap)\n",
+    "display(Solver(num_vars = 4, fn = [1,0,0,1,1,0,0,0,1,0,0,1,0,0,0,0],show_legend = True).kmap)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0fde7be3-d3a2-4087-b46f-891b18e90569",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "group ones to find F\n",
+    "\n",
+    "#### Prime Implicants $ = [0,4],[8,0],[11,3]$\n",
+    "\n",
+    "Minimum SOP:\n",
+    "\n",
+    "$ F = A'C'D' + B'C'D' + B'CD$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8c06b8fa-79a7-4daa-b302-ea727e936f94",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "-----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "88f13f30-3b0d-4c52-918f-9a94feeb684e",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "### 3. Use a k-map to find a minimum POS expression for $F (A, B, C, D) = Î£m(1, 3, 4, 5, 6, 12, 14, 15)$"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "c3f16dd9-48ab-4a55-ad90-2334ed30d170",
+   "metadata": {
+    "jupyter": {
+     "source_hidden": true
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'D'</th>\n",
+       "      <th>C'D</th>\n",
+       "      <th>CD</th>\n",
+       "      <th>CD'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          00  01 11  10\n",
+       "        C'D' C'D CD CD'\n",
+       "00 A'B'    0   1  1   0\n",
+       "01 A'B     1   1  0   1\n",
+       "11 AB      1   0  1   1\n",
+       "10 AB'     0   0  0   0"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'D'</th>\n",
+       "      <th>C'D</th>\n",
+       "      <th>CD</th>\n",
+       "      <th>CD'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>4</td>\n",
+       "      <td>5</td>\n",
+       "      <td>7</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>12</td>\n",
+       "      <td>13</td>\n",
+       "      <td>15</td>\n",
+       "      <td>14</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>8</td>\n",
+       "      <td>9</td>\n",
+       "      <td>11</td>\n",
+       "      <td>10</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          00  01  11  10\n",
+       "        C'D' C'D  CD CD'\n",
+       "00 A'B'    0   1   3   2\n",
+       "01 A'B     4   5   7   6\n",
+       "11 AB     12  13  15  14\n",
+       "10 AB'     8   9  11  10"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "display(Solver(num_vars = 4, fn = [0,1,0,1,1,1,1,0,0,0,0,0,1,0,1,1],show_legend = False).kmap)\n",
+    "display(Solver(num_vars = 4, fn = [0,1,0,1,1,1,1,0,0,0,0,0,1,0,1,1],show_legend = True).kmap)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a1f60542-a9e9-4b85-be27-5da8d2d54329",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "group zeros to find F'\n",
+    "\n",
+    "#### Prime Implicants $= [8,9,11,10],[9,13],[7],[0,2,8,10]$\n",
+    "\n",
+    "$ F' = AB' + AC'D + A'BCD + B'D'$\n",
+    "\n",
+    "Solve for F to find POS using demorgans law \n",
+    "\n",
+    "$F'' = (AB' + AC'D + A'BCD + B'D')$\n",
+    "\n",
+    "$F'' = (A' + B)(A + C' + D')(A + B'+ C' +D')(B + D)$\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "edb80ded-eb18-4169-865a-5f780b6ebe74",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "-----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "91d25dfa-3130-44c5-a30f-420fcd4e39eb",
+   "metadata": {},
+   "source": [
+    "\n",
+    "### 4. A sensor is capable of determining whether or not a car is speeding (driving faster than the speed limit) or driving dangerously (driving 10 m.p.h. or more above the speed limit). \n",
+    "\n",
+    "### The sensor receives the codes given in table 4.6, where AB corresponds to the speed limit and CD corresponds to the speed of the vehicle. Use a k-map to solve for F (as either minimum SOP or minimum POS), which indicates if the car is speeding.\n",
+    "\n",
+    "$ $\n",
+    "\n",
+    "|AB |Speed Limit |CD |Carâ€™s Speed\n",
+    "|----|---------|-|-------------|\n",
+    "|00 | 45 m.p.h.|00| < 45 m.p.h.|\n",
+    "|01 |55 m.p.h. |01| 46â€“55 m.p.h.|\n",
+    "|10 |65 m.p.h. |10| 56â€“65 m.p.h.|\n",
+    "|11 | unused   |11| 66â€“75 m.p.h.|\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 97,
+   "id": "60714bab-3db9-4b46-8ec8-db8aa004102e",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'D'</th>\n",
+       "      <th>C'D</th>\n",
+       "      <th>CD</th>\n",
+       "      <th>CD'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>x</td>\n",
+       "      <td>x</td>\n",
+       "      <td>x</td>\n",
+       "      <td>x</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          00  01 11  10\n",
+       "        C'D' C'D CD CD'\n",
+       "00 A'B'    0   1  1   1\n",
+       "01 A'B     0   0  1   1\n",
+       "11 AB      x   x  x   x\n",
+       "10 AB'     0   0  1   0"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'D'</th>\n",
+       "      <th>C'D</th>\n",
+       "      <th>CD</th>\n",
+       "      <th>CD'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>4</td>\n",
+       "      <td>5</td>\n",
+       "      <td>7</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>12</td>\n",
+       "      <td>13</td>\n",
+       "      <td>15</td>\n",
+       "      <td>14</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>8</td>\n",
+       "      <td>9</td>\n",
+       "      <td>11</td>\n",
+       "      <td>10</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          00  01  11  10\n",
+       "        C'D' C'D  CD CD'\n",
+       "00 A'B'    0   1   3   2\n",
+       "01 A'B     4   5   7   6\n",
+       "11 AB     12  13  15  14\n",
+       "10 AB'     8   9  11  10"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "display(Solver(num_vars = 4,fn = [0,1,1,1,0,0,1,1,0,0,0,1,'x','x','x','x'] ).kmap)\n",
+    "display(Solver(num_vars = 4,fn = [0,1,1,1,0,0,1,1,0,0,0,1,'x','x','x','x'],show_legend = True ).kmap)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f8a354d8-c158-4c7a-b07f-3b9312e018e6",
+   "metadata": {},
+   "source": [
+    "From KMAP: \n",
+    "\n",
+    "$F  = [3,2,7,6],[3,7,11,15],[1,3,2] = A'C + CD + A'B'$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d2286e79-f836-4e31-83e6-52b5f3e8dbe9",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "-----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "28fc4149-4664-4f6e-850e-0c18a9ed34f4",
+   "metadata": {},
+   "source": [
+    "## Prime Implicant Tables"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "af05fff8-f3b7-4813-9e90-96eb48fa3a62",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "-----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d109248a-f743-4b24-beaf-25587f11f6a4",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "### 1. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 98,
+   "id": "62754ee0-47e8-4981-84b0-7faf09e9227a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from BooleanAlgebra import Solver, KarnaughMap, PiTable"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 99,
+   "id": "1b6900ba-6e04-4e50-a50d-c04f8f4a3c79",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'D'</th>\n",
+       "      <th>C'D</th>\n",
+       "      <th>CD</th>\n",
+       "      <th>CD'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          00  01 11  10\n",
+       "        C'D' C'D CD CD'\n",
+       "00 A'B'    0   0  0   1\n",
+       "01 A'B     0   1  1   1\n",
+       "11 AB      0   0  0   1\n",
+       "10 AB'     0   0  0   1"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>C'D'</th>\n",
+       "      <th>C'D</th>\n",
+       "      <th>CD</th>\n",
+       "      <th>CD'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>00</th>\n",
+       "      <th>A'B'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>01</th>\n",
+       "      <th>A'B</th>\n",
+       "      <td>4</td>\n",
+       "      <td>5</td>\n",
+       "      <td>7</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <th>AB</th>\n",
+       "      <td>12</td>\n",
+       "      <td>13</td>\n",
+       "      <td>15</td>\n",
+       "      <td>14</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <th>AB'</th>\n",
+       "      <td>8</td>\n",
+       "      <td>9</td>\n",
+       "      <td>11</td>\n",
+       "      <td>10</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          00  01  11  10\n",
+       "        C'D' C'D  CD CD'\n",
+       "00 A'B'    0   1   3   2\n",
+       "01 A'B     4   5   7   6\n",
+       "11 AB     12  13  15  14\n",
+       "10 AB'     8   9  11  10"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "display(Solver(num_vars = 4,fn = [0,0,1,0,0,1,1,1,0,0,1,0,0,0,1,0] ).kmap)\n",
+    "display(Solver(num_vars = 4,fn = [0,0,1,0,0,1,1,1,0,0,1,0,0,0,1,0],show_legend = True ).kmap)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 100,
+   "id": "14eb852e-1cbe-4435-8719-fe6c6ba2d857",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>2</th>\n",
+       "      <th>5</th>\n",
+       "      <th>6</th>\n",
+       "      <th>7</th>\n",
+       "      <th>10</th>\n",
+       "      <th>14</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>[5,7]</th>\n",
+       "      <th>A'BD</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[10,14,6,2]</th>\n",
+       "      <th>CD'</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                 2  5  6  7  10 14\n",
+       "[5,7]       A'BD  0  1  0  1  0  0\n",
+       "[10,14,6,2] CD'   1  0  1  0  1  1"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": [
+       "PI Table"
+      ]
+     },
+     "execution_count": 100,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "PiTable([(\"[5,7]\", \"A'BD\"), (\"[10,14,6,2]\", \"CD'\")], [2, 5, 6, 7, 10, 14])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b7779ce6-f26e-41d7-89ab-af76c916b93b",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "#### Therefore the minimum SOP expression is $A'BD+ CD'$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c291bf47-b91d-4c4f-914d-503d549acfe0",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "-----"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 101,
+   "id": "56340a25-070b-45bf-8102-f4d4175fa31a",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "### 3. se a PI table to find a minimum SOP expression for $F (A, B, C, D, E) = Î£m(5, 10, 11, 15, 26, 30) + Î£d(7, 13, 31)$"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 102,
+   "id": "46a732a8-9a72-47d1-9d1e-58efcdc55528",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>D'E'</th>\n",
+       "      <th>D'E</th>\n",
+       "      <th>DE</th>\n",
+       "      <th>DE'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>000</th>\n",
+       "      <th>A'B'C'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>001</th>\n",
+       "      <th>A'B'C</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>x</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>011</th>\n",
+       "      <th>A'BC</th>\n",
+       "      <td>0</td>\n",
+       "      <td>x</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>010</th>\n",
+       "      <th>A'BC'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>110</th>\n",
+       "      <th>ABC'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>111</th>\n",
+       "      <th>ABC</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>x</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>101</th>\n",
+       "      <th>AB'C</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>100</th>\n",
+       "      <th>AB'C'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "             00  01 11  10\n",
+       "           D'E' D'E DE DE'\n",
+       "000 A'B'C'    0   0  0   0\n",
+       "001 A'B'C     0   1  x   0\n",
+       "011 A'BC      0   x  1   0\n",
+       "010 A'BC'     0   0  1   1\n",
+       "110 ABC'      0   0  0   1\n",
+       "111 ABC       0   0  x   1\n",
+       "101 AB'C      0   0  0   0\n",
+       "100 AB'C'     0   0  0   0"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>D'E'</th>\n",
+       "      <th>D'E</th>\n",
+       "      <th>DE</th>\n",
+       "      <th>DE'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>000</th>\n",
+       "      <th>A'B'C'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>001</th>\n",
+       "      <th>A'B'C</th>\n",
+       "      <td>4</td>\n",
+       "      <td>5</td>\n",
+       "      <td>7</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>011</th>\n",
+       "      <th>A'BC</th>\n",
+       "      <td>12</td>\n",
+       "      <td>13</td>\n",
+       "      <td>15</td>\n",
+       "      <td>14</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>010</th>\n",
+       "      <th>A'BC'</th>\n",
+       "      <td>8</td>\n",
+       "      <td>9</td>\n",
+       "      <td>11</td>\n",
+       "      <td>10</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>110</th>\n",
+       "      <th>ABC'</th>\n",
+       "      <td>24</td>\n",
+       "      <td>25</td>\n",
+       "      <td>27</td>\n",
+       "      <td>26</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>111</th>\n",
+       "      <th>ABC</th>\n",
+       "      <td>28</td>\n",
+       "      <td>29</td>\n",
+       "      <td>31</td>\n",
+       "      <td>30</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>101</th>\n",
+       "      <th>AB'C</th>\n",
+       "      <td>20</td>\n",
+       "      <td>21</td>\n",
+       "      <td>23</td>\n",
+       "      <td>22</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>100</th>\n",
+       "      <th>AB'C'</th>\n",
+       "      <td>16</td>\n",
+       "      <td>17</td>\n",
+       "      <td>19</td>\n",
+       "      <td>18</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "             00  01  11  10\n",
+       "           D'E' D'E  DE DE'\n",
+       "000 A'B'C'    0   1   3   2\n",
+       "001 A'B'C     4   5   7   6\n",
+       "011 A'BC     12  13  15  14\n",
+       "010 A'BC'     8   9  11  10\n",
+       "110 ABC'     24  25  27  26\n",
+       "111 ABC      28  29  31  30\n",
+       "101 AB'C     20  21  23  22\n",
+       "100 AB'C'    16  17  19  18"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>5</th>\n",
+       "      <th>10</th>\n",
+       "      <th>11</th>\n",
+       "      <th>15</th>\n",
+       "      <th>26</th>\n",
+       "      <th>30</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>[5,7,13,15]</th>\n",
+       "      <th>A'CE</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[11,10]</th>\n",
+       "      <th>A'BC'D</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[15,11]</th>\n",
+       "      <th>A'BDE</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[26,30]</th>\n",
+       "      <th>ABDE'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[31,30]</th>\n",
+       "      <th>ABCD</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[5]</th>\n",
+       "      <th>A'B'CD'E</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                     5  10 11 15 26 30\n",
+       "[5,7,13,15] A'CE      1  0  0  1  0  0\n",
+       "[11,10]     A'BC'D    0  1  1  0  0  0\n",
+       "[15,11]     A'BDE     0  0  1  1  0  0\n",
+       "[26,30]     ABDE'     0  0  0  0  1  1\n",
+       "[31,30]     ABCD      0  0  0  0  0  1\n",
+       "[5]         A'B'CD'E  1  0  0  0  0  0"
+      ]
+     },
+     "execution_count": 102,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "display(Solver(num_vars = 5,fn = [0,0,0,0,0,1,0,'x',0,0,1,1,0,'x',0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,'x'], show_legend =False).kmap)\n",
+    "display(Solver(num_vars = 5,fn = [0,0,0,0,0,1,0,'x',0,0,1,1,0,'x',0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,'x'], show_legend =True ).kmap)\n",
+    "PiTable([(\"[5,7,13,15]\", \"A'CE\"),(\"[11,10]\", \"A'BC'D\"), (\"[15,11]\", \"A'BDE\"),(\"[26,30]\",\"ABDE'\"),(\"[31,30]\",\"ABCD\"),(\"[5]\",\"A'B'CD'E\")], [5,7,10,11,13,15,26,30,31]).pt.loc[:,[5,10,11,15,26,30]]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f95e88dc-304d-45cd-81a5-65734ff0c306",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "Therefore, the minimum SOP expression for this would be $A'CE + A'BC'D + ABDE'$\n",
+    "-----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9d55960c-f2c3-4d3c-9495-8484b25bd71b",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "-----"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6edb0277-cf04-4ecb-9607-a311bb48a7fa",
+   "metadata": {
+    "tags": []
+   },
+   "source": [
+    "### 5. Identify the essential PIs by using a PI table for Î M (1, 2, 3, 4, 5, 12, 13, 15, 16, 17, 20, 28, 29)Î D(6, 14, 18, 19, 22, 30)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 103,
+   "id": "b6fe571f-3e65-4a7d-b0e6-81026fc1a83e",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>D'E'</th>\n",
+       "      <th>D'E</th>\n",
+       "      <th>DE</th>\n",
+       "      <th>DE'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>000</th>\n",
+       "      <th>A'B'C'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>001</th>\n",
+       "      <th>A'B'C</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>x</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>011</th>\n",
+       "      <th>A'BC</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>x</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>010</th>\n",
+       "      <th>A'BC'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>110</th>\n",
+       "      <th>ABC'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>111</th>\n",
+       "      <th>ABC</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>x</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>101</th>\n",
+       "      <th>AB'C</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>x</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>100</th>\n",
+       "      <th>AB'C'</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>x</td>\n",
+       "      <td>x</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "             00  01 11  10\n",
+       "           D'E' D'E DE DE'\n",
+       "000 A'B'C'    0   1  1   1\n",
+       "001 A'B'C     1   1  0   x\n",
+       "011 A'BC      1   1  1   x\n",
+       "010 A'BC'     0   0  0   0\n",
+       "110 ABC'      0   0  0   0\n",
+       "111 ABC       1   1  0   x\n",
+       "101 AB'C      1   0  0   x\n",
+       "100 AB'C'     1   1  x   x"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>00</th>\n",
+       "      <th>01</th>\n",
+       "      <th>11</th>\n",
+       "      <th>10</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>D'E'</th>\n",
+       "      <th>D'E</th>\n",
+       "      <th>DE</th>\n",
+       "      <th>DE'</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>000</th>\n",
+       "      <th>A'B'C'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>001</th>\n",
+       "      <th>A'B'C</th>\n",
+       "      <td>4</td>\n",
+       "      <td>5</td>\n",
+       "      <td>7</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>011</th>\n",
+       "      <th>A'BC</th>\n",
+       "      <td>12</td>\n",
+       "      <td>13</td>\n",
+       "      <td>15</td>\n",
+       "      <td>14</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>010</th>\n",
+       "      <th>A'BC'</th>\n",
+       "      <td>8</td>\n",
+       "      <td>9</td>\n",
+       "      <td>11</td>\n",
+       "      <td>10</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>110</th>\n",
+       "      <th>ABC'</th>\n",
+       "      <td>24</td>\n",
+       "      <td>25</td>\n",
+       "      <td>27</td>\n",
+       "      <td>26</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>111</th>\n",
+       "      <th>ABC</th>\n",
+       "      <td>28</td>\n",
+       "      <td>29</td>\n",
+       "      <td>31</td>\n",
+       "      <td>30</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>101</th>\n",
+       "      <th>AB'C</th>\n",
+       "      <td>20</td>\n",
+       "      <td>21</td>\n",
+       "      <td>23</td>\n",
+       "      <td>22</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>100</th>\n",
+       "      <th>AB'C'</th>\n",
+       "      <td>16</td>\n",
+       "      <td>17</td>\n",
+       "      <td>19</td>\n",
+       "      <td>18</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "             00  01  11  10\n",
+       "           D'E' D'E  DE DE'\n",
+       "000 A'B'C'    0   1   3   2\n",
+       "001 A'B'C     4   5   7   6\n",
+       "011 A'BC     12  13  15  14\n",
+       "010 A'BC'     8   9  11  10\n",
+       "110 ABC'     24  25  27  26\n",
+       "111 ABC      28  29  31  30\n",
+       "101 AB'C     20  21  23  22\n",
+       "100 AB'C'    16  17  19  18"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/plain": []
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# display(Solver(num_vars = 5,fn = [0,1,1,1,1,1,'x',0,0,0,0,0,1,1,'x',1,1,1,'x','x',1,0,'x',0,0,0,0,0,1,1,'x',0], show_legend =False).truthtable)\n",
+    "display(Solver(num_vars = 5,fn = [0,1,1,1,1,1,'x',0,0,0,0,0,1,1,'x',1,1,1,'x','x',1,0,'x',0,0,0,0,0,1,1,'x',0], show_legend =False).kmap)\n",
+    "display(Solver(num_vars = 5,fn = [0,1,1,1,1,1,'x',0,0,0,0,0,1,1,'x',1,1,1,'x','x',1,0,'x',0,0,0,0,0,1,1,'x',0], show_legend =True).kmap)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 104,
+   "id": "e80b287c-9ea6-436b-8e15-71276de2cadf",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "table = PiTable(\n",
+    "    [\n",
+    "        (\"[4,5,12,13]\", \"A'CD'\"),#\n",
+    "        (\"[12,13,28,29]\", \"BCD'\"),#\n",
+    "        (\"[12,13,15,14]\", \"A'BC\"),#\n",
+    "        (\"[2,3,18,19]\", \"B'C'D\"),#\n",
+    "        (\"[1,3,17,19]\", \"B'C'E\"),#\n",
+    "        (\"[16,18,20,22]\", \"AB'E'\"),#\n",
+    "    ],\n",
+    "    [1,2,3,4,5,6,12,13,14,15,16,17,18,19,20,22,28,29,30],\n",
+    ").pt.loc[:, [1, 2, 3, 4, 5, 12, 13, 15, 16, 17, 20, 28, 29]]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fadd197b-2283-4403-8589-4bd2c6cdc756",
+   "metadata": {},
+   "source": [
+    "### PT with only EPIs (with only one 1 in at leas one column)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 105,
+   "id": "1cc3a120-36d2-4e92-bc04-8c6406e7e58b",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th>1</th>\n",
+       "      <th>2</th>\n",
+       "      <th>3</th>\n",
+       "      <th>4</th>\n",
+       "      <th>5</th>\n",
+       "      <th>12</th>\n",
+       "      <th>13</th>\n",
+       "      <th>15</th>\n",
+       "      <th>16</th>\n",
+       "      <th>17</th>\n",
+       "      <th>20</th>\n",
+       "      <th>28</th>\n",
+       "      <th>29</th>\n",
+       "      <th>num_terms_looped</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>[4,5,12,13]</th>\n",
+       "      <th>A'CD'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[12,13,28,29]</th>\n",
+       "      <th>BCD'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[12,13,15,14]</th>\n",
+       "      <th>A'BC</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[2,3,18,19]</th>\n",
+       "      <th>B'C'D</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[1,3,17,19]</th>\n",
+       "      <th>B'C'E</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>[16,18,20,22]</th>\n",
+       "      <th>AB'E'</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                     1  2  3  4  5 12 13 15 16 17 20 28 29 num_terms_looped\n",
+       "[4,5,12,13]   A'CD'  0  0  0  1  1  1  1  0  0  0  0  0  0                4\n",
+       "[12,13,28,29] BCD'   0  0  0  0  0  1  1  0  0  0  0  1  1                4\n",
+       "[12,13,15,14] A'BC   0  0  0  0  0  1  1  1  0  0  0  0  0                3\n",
+       "[2,3,18,19]   B'C'D  0  1  1  0  0  0  0  0  0  0  0  0  0                2\n",
+       "[1,3,17,19]   B'C'E  1  0  1  0  0  0  0  0  0  1  0  0  0                3\n",
+       "[16,18,20,22] AB'E'  0  0  0  0  0  0  0  0  1  0  1  0  0                2"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "table[\"num_terms_looped\"] =  table.sum(axis=1)  \n",
+    "display(table)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "659f516f-064d-4773-bb6f-fe5bd1b17a45",
+   "metadata": {},
+   "source": [
+    "###  Therefore the EPIs are $A'CD',BCD',A'BC,B'C'D,B'C'E,AB'E'$"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a611f871-140d-48a8-bb04-361226448c0c",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "501ea5e2-5cf1-4cf9-a64b-d844beb6bb33",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "970d3348-7e2f-448c-a94a-75b5dc27c825",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.10"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
+endstream
+endobj
+17 0 obj
+<<
+/Filter /FlateDecode
+/Length 18340
+>>
+stream
+xœí}ÛÎ$9Ş}?E]pnè,†ªš®½¶1€Àö.`¸ìúıë¢¨`¥Ì®ïöf:›¿¾ EQÔ‰¢^R…üŸ/Güï|5ÎË×áñå¿ÿüí_~KW‡•/óEê#/+Í—ıŸ¿ı·ÿğåÿÄ?«—ˆÿ¿"N|Iÿı¯ÿø¥üø×şíşñøòÏÿ7.øã‹sGHŸù§ßşKüï¿ü¦íË;óEá¥â?e°şÿ©ÏŸ}dørZ|éÿ9#JA‘ù"X^öĞ_úÿ%ğH‰`€”úÒÿ/¡FJCYˆ
+ZgÒÏúË}ùßñ—~™økIªŸåGú‚ùóõGıC9é.ìh¥¢µm k%’ªV¼hºè¿"›­ÄâE+ùIñóåGıÒ‘m'~ üÈ"’|ûëoÿğãˆ6ø:ÔqÄğ×Š;Šø?éì—¿şüí?‡´ÿùË_ÿWäò
+F«b‰¿ş/ñú[şƒ°/¡œÆô¿hê/F‘qù/şuX¡sıc„˜ü—ğ²Vjüù‡Cßú9î™üş×{U
+§^òPBş^¤ˆ^À(Xz£ªjÄF#Õ_É¿MjNÍIıîˆR¿gk;~6\®0MÏª¶¶~9§­÷nªzi#‚Ò+:ÖÆh+­™Ìp†Ğ©ª±/'8ºô®£B“LÅ@Fo€u³"Ù÷üÇe=ì9ä·´!ÿòƒúØz-›§Ö”Ş©.ríTs]šÍ/¡½Š=†¡Eşå´™aøµ"ºmô•ü8ú"ÇE´Øö¤ÕöD•WÄÎ¢kETÛ#uß€õ8ÿAùf-ÆX¼À5Çëp¾ˆ:¶ÖÌä¢I‰iÈïûÚ¾Ñ$„°ã™£™„Ñ)Îv?soí» WK.ş ×ë¨?”n§_qúv8EPL´û­BëxCbB11ƒåÙƒ!×Pë:eÏ®­u^€­1Ñò‚EaH6šùaà£QC˜şÈE@eT/¦»7lï5aàƒ\‚úË eíµéÃ?Üp¡jO*_ü…`ÒçWƒ÷zxuç-ãÔŠ·v"kÂ|QÒ~‰Hº2OW:S¢Q5Š1˜‡&D	®P“ò
+6.=ÎÿË«„…HÜÊÜmç)éË¶s)‰ûHIÜå8)s…¯¸,@¼"ñ)‰×HI¼¥óbÖTÇ¥ÚÈ=QFîˆ¹#Jä)5ÕÑY!^‘‚x”Äk¤$^JìÔ4úPÄ=R÷‘’¸”Ä=Qjê±ı$
+âå±ı JâåÕFMÍ-*QFîˆ¹#Jä)€;c5ß{œÀRà~+p×®„ŞûÅŠ­Ê5l;²OÕ)q¢œËè“"Rx¦Fmt‚ÒšHÌ"EuJb–ÊènG)Tz] ñ§#}:•AŸN$±jNxÄ,QFf¹ÌÈ,“Ä’! ]Ü7YoøÚªwïµGŸ(cÃç2cÃgÒrÃ§ámTX¢Œ
+ËeF…eÒCÃ‡C O'Êøé\füt&-7|ˆõFÌ"1Ke3év¾êZàö¸ÉzÃ×V­„Ç-²i¥?!}@»âe¬ÂéçÉ!WgäÊ¥íX,¬š`iöè˜ÓkŠ¶/pñ—ÄB NkÛÆLTt¥—Òi·[	×ö¿ô=ÄŠbî!^Î{qæ'¢~…{Œ¢É<WZ·¥>ŞÄë«Ö1^¯cÄqzh w\cî”Ğ1|%°1@	lÙ (ĞBÛp†­„á+¡c*”Àæ•@n” ¥l¼SK*`ØJ ¶ø t§„8®TŒc+¡c„Jèvwàc (áî”àN?âÙJp„ï¹S‚[wŒ|>P	£%˜ãô#«€a+éJ ¾%Œî” O?ò•­Éur@	lP• Ioz9I4Ó‘ßÅN&µ+*5	y0Cï›Àé¨˜gº9&a=4µ²ù<í²ª™‡LÓĞ¯OÌ\®AÜ£YY“Â2¬qgë¥]\˜äSÓ§ŸIÂ4§œ$¦«²³}4˜ğº©W°z0s¼|euâzıØu<ùuë §º½;ÅÃû:â’).Nã~¬ñ9kïK5æ×v‚S[ zJK¦ÏÆçÖ[²ãJ½V¬òä×­ƒXnÍyóºµ§“¸Ä•?Èõ*¹Än1+˜Ç#=†/ö‚èdw¾€Ø¾Ø«°å‹!iâŞÚ_Üa{¾²e[9 q}±rËwÜº/<0°nôÔt§/ÂÎ÷­ùb ÄÃ<Ô€ŒûlÉ 67V|qÇ­ûbÀóa5ë¦çÕÓpş©ú£š4©åÄ¯,F
+£v%l1RR=…J&ÚÏöÓ´Éá§Z
+—LåÖ_¦ÆI&&í—â…L^Eşˆãœ5“Cßß şbÄXñÃ23şÂY€YÅÉ:\‡ŞZ?pWÓsS)´wà2É™DJºOÒ¤!¾ĞŒKÛğišPÿı e¾—7¾ü3ı]Ù¤§¤‘úÍô·o)v$É_ÿİ–ÿe¼,ß:~ L-WåĞ_+MV~íû:mÓ—ÿÿdşKım+OÑ¿•¼aúvÂ¸W›;§}Qejí|©¡Ê_™ÂbåÕ—âò—Ü4z“eO£ş;›A4{FÍ¸iBLâäp‰c¬Öïl®J¼´4îÓ[¨¥>FèRmµzEÛ|§Q˜„9B—êk—”q˜Uc}ÃºÎ_šª?£)¿Ê¬÷4ª‹Èì+ê\.L£-Ue–Á­4oÁÆéHÂªÑ²¾±yË8·0Ò¨Sµ“.PåFè‚U—hÿŠ¤’+­ZÆÈÈõ{q>ÇïKšwîå\4Sÿ†•/3~©*ã¡!Eœ;—I°#:téª£®N:;÷ïé4µ:èö÷Ğì¨“óıšôq=Ó³†º	s|$FYÈ¾¿g©ñu=HY~'ş@½î¬·érj¦DÏ.
+b®ÜÆ¥Ç©?Ğá»ä¤‡¬Éz 4N°9¾>I%cºiE’íKÉÒ!åëæ5†âPË>K†õné‚\4¡ƒ„I.t$ôØ‹yáÃëü‰˜_åÍxcò3a¿BÅıfÒø‹IÎN¤h…´û›.Æ ğÉLã'1)‹0’²‰ô,*T\ïb†‘„¤Ìp$e†‰´1*â’a!’°#)‹0’²‰ôTç¸Å	1D¤Ä‘ÃLZ¯³ó,‚’“#)‹0’²‰ôXg3V"a†f2,DÊßª³ŸL-‘°~25DÊ"øÑÔxáÁ­W
+`C¥ë
+`h80Ø<Å]¨¨°B£XÑLƒEK©1Z´Ğ–ÃE…Õ8¨3“Æ@ËRjŒ´,´‡Qa-ãÌ$üy;rÚrØ¨°AM#	3L¥0Ã0³sCG›âÅÔ<bjC`µ¡oÁK…!‘1äRÈ2mİ¼9°ò	)/—BÊË´'cğ¥gş¼›ÂÒmİÂCÕ3	1Ì¥ÃLÛ0†ªx15˜ÚCmèwb‰…´zÜü3˜ø!˜XHpÄv9£‰!†N1üxbˆb%ˆƒ›p©P—Z õ€©ˆ˜‚(vÜ˜PšÅ 5¡É(†M°APlñMP¨[M¸¶©É-† Mt;ˆnÓ 	ŠÕ­&‚w­Xšè Mn¤Ô4h‚BİiBË3&„eAì¸Jâ÷>j‚”ïVút.ìPcZĞ„Şğ˜|Nƒ&(Ô­&Î³9~¼1-h‚‚šp\7;h‚bu§	sœÎ…tA|MğA@|ÔÄêzFiLü"…qÜ€IıQìx7aó`z)àm >X	$V1aÜ7€Û‹yƒŒù¡4ê®ŠÆÃ*²ÃŞ p=îr]©…º‰|Ö£÷wBßÀ×Öbßf1x5¦P7-êD¿½±ş€ëñoW~ınP×¾ÎÙãôuÿVÃ‘…óÄ…°[P|í…ŞsĞÈµu¯Å–ƒî¸MóÍ ØİÙ[·ç ;pÃA®üÈdˆb‡&ÔtÿÚ¢ƒbğ£“!Š,Ø&YrĞ¸á W~„2D]‡(Û#(˜aOYÃK¨»¡,8ö¯G(Ÿ°µå8B9Ó~ÖŸö¨aÉÃÏÈk!B9—ÿY~ÙšÉ53i¿<+Bù"ò)ô+ßKğU
+Ú”?Ê¿'·œìG‰´Ó[‚9S¡‹Ø¸«¯Çbm–™CAMç"k¼ÓÂUÓM_Ãmmı]¿˜¹èÂ1‡ä¾)İ(Ùhôº¦>cj–çOÄlIqø±ÏmÄlİÍ£Ô!_±¦IüÎj#êÜ‡wâ¹èAdœøwÅã%çãE=ÑÓ3š?=$c¨B?xa†7=¯ìDDİµN6Ğ3"ò†	/›â›öf6ÅA÷ôıZ_—?ó¾şİç}¢×È€·›t¡dy¸Èòp‹èİ°>²úæ+°½Ø»ÿo$J2:D“ü-Ø¯ĞqÉ¿@P5©1Ü‰O‡ŠğnpñÅRJ¡ÍÛ|ĞXè¾²êúÍP¾^K^l0i,ÆK}=¸üiªèĞN!$ó»pV)%NV˜IcÌQ)5ÆÚrÌ‘”',Ì¤1F§”ct
+í!æ(
+…ãÛ2	ŞOñm…¶s$Õ#Ş2	1Ì¥ÃL[9jŠSóˆ©{ÌQkè» 4™–‘1$2†\
+C¦­ƒ.:ÊK$¤¼\
+)/ÓŒAOñm™„??Ç·Úº1è)â-“0Ã9â­Ğ6Œ¡*^LÍ#¦6ÆPºRîaFÍÃ%©ú’rPàé¾ëNõ”î7Wó6Tûmû…/YoÆÆ²Nµ¿Á.·ç&î"¦š—‚§Ôš|ßÑBÜì¢K6²z@{]J±—×c 27$¥Ô[™= no}`ÌŞ“„(î.º”§ù¬í¢àú.úÀu¡~Å>æ”é í¢ƒ¯­í¢C1VjL¡nZTÉ½, ¸¾‹>på×Dİye	ã¹õ6 Å÷6ê<è[ô6Èm8-Ì–·é¸MoóÛ ØŞFÇ’|o£/Î%ùõÓÜøÑ¡~Å>³‹Ø}ĞÛèá¤r¥Æ]ş™DqÏì¤ƒø’·Ñè<rÍb7ús¨_G]ŸÙ¹+ö¬IÓÙZ†$Z†äRh’iëË«¦Ec"¡i{.…¦ív|ûãz’2:âÏ›i‰˜KáÏ›KQ2¥YÄ=¾UJa†~ëRTS¼˜šGLm–!µ¡o×¤ÎáKQ™„Œ!—BÆiëÆàiÑ˜HHy¹R^¦=ƒ—Ó1‘ğçå¼DÌ´ucğ_ŠÊ$ÌĞL—¢
+mÃªâÅÔ<bjC`µ¡¯Ö¤“£ùØšÔœÉªQJ}SÚE¯l­=Î¼&£¿c$Â–E-Ê©rÇ<e
+rá|ÍÓ=,}2%
+ÈÊyÎ&sÇİªW0!YWe¯Ùì¡Ë5÷îeÓ}u±^õ`Gèr½ãÈöÚnsyŒØ¥Z§!õJZ"‹Î-gåF,ÌCl•Xı
+G«€¾q½UòÆøÏİ*1v#"¢ø‹ö"Â whÁ3+‹—Û\¼Xöû	P¡våaƒVE½€‹»ğdA¸Bñ·J,~à­ÅKÿÚââÅ²ß4j¼ò@AmQòù/-^:pcñâØÏÀú9êÁ‚;oãÔFx3Dñ½³{áÍİpa+¼à6½d¼Ğva9¼9"÷Â›pÃÛ ®[% Åß*‰vóAoÓ¿¶èm€[% ÅŞ*ñv/¼ 7¼àº°UP×[%áğâ=•¼ÄÃ›ƒ–;áÍ¶Ş´šÂ›ígû©[LóğS.…7§ò?ë¯šv93i¿ê×zŠßP±Ëm(è„­)(ÂVP¦ıl?}ÕÊøÓ®((—ÿYù¢–Ì¤ı²›ñß2œ³>Ò·4Ä)ÕpN'\ÿ½Ş©‰EOŒSçì–õ[-õ±hY.kVÌËôÉ5İqÊ„i¾#šGÒÃoŠŠq@ŞV¾ÕÍõúd¬ëu0-sû¶é¼Ó7ò?]—+)gY;òéÁ>-PV¿D:scôàİ«_Îi;DšÕÈ©8Í0"(İ‡†vñ—âûã"Óh+í”ÑÒ¾\¬ˆ•à’ÛÉ_Å‰Ôs`æİR€*§â¤Ã1¾ÕÂĞ.şòƒúY}²–í^ }¥ƒôÜ	
+XëR/¦`gí•›ó-^èE‘±×‰®©û?âUø,æ#)^ÿŒG^”ëİxdV’üWîb|¤UxÌ¿æ„!\“õBœ]wÃg¾ƒ$Àğ®C67¦¼›¬ g½^Ìº91„ênÄıÒQ¼øÃªöÄögtÀÃœ^Ä:¿Ş=üT¢Æ,öó®LÏ»0IDS)4ÕiÚVZÏ0+œÊ1Ï‘”pø3“Æs$L*‚%šê´,X¢|¤ÎÎå®ÎÏ”<ğÙf&!1)‹‘iHŒLCb r\ıH&Ád˜IE°DÃ‚%l,Ç:.f»³ùˆÉÈÄd‰ıÔ®™ëİ®R%¡+4éDB&HY¦LC&iÈ¤Q9n“)Ïb3	5"Á²$c“ej2\îZ?ŸĞfc$1‹‘hXŒ±[?ÁO‚?	6’Š`‰†K4,ØXmÒµÁÅlb61™˜,˜t5WVvÎi*¨º¥ÄR|š– >lê	ãÚ6Dîî
+.ä`lÀyUwãìH[Ûå±‹Ç-nÚŞå´ ÛŞ&B?"½Ì|Õ|úÜ­TÂú-v€[ÙbOOØœn‰ã‡¥ÔêigŞ^¢x›Qê†Õ:ƒŞÚÎ@îvş ËÀË…ºì8»…º¤@7GqŞp|îè |st µäxª1ĞîÊn¡ºvIĞ¥Â[+Çj¼õ°ÚëÉË÷ºä_”°—(~¯'Yİ™Òë½!†Lù~Z70dÂ¯­™ª§LÛ2¯¾À2GôÂ‰+Cfœ•n™·;dBÎüÎPOİÀ^¢rƒÎ@YÇ:íŞ#ğ ¸3d¶O¦P—v-gèÒÇÈ·º´Ä‰õİ©ü_ã™İB)!İ"à“á
+øÔ6İó!àƒéV«—ÀjÇk<« °ıÆ·Z€šŞ˜œ‡£‹¿šnş˜—ói—IP¶t§hJaÃÖ¤8\M(U÷&uıÃâIÑ|(¬ôy1ŒzSÈÂƒÜ»wråL’wÚ/B•é&ŸÙ"ÄŠJ°Ékª¢öâ¦cõrÒKâbÛ’BHéá¥”JL¤úe­TxùøÍ¤îÉÏLê‘æ,0Y“š¿Â¿T‰ãE§13‹º»~ñGÕƒ`ÁHÀ¦Œn3ŞBîovu8ŞÖşcâjT:‹Ùi°Å°‘ôXI´Ÿíg{Í|ü¹ô°y.ÿ³şª›g&íWùR·JÛ½-YHO~äìÙZtyğÏ³ç?Ïÿ<{Ş>{&Ï‘oÎÉóê?Ï¯ÿò·<{Âãó¦Ÿ9}vg Ê$tT‡Hù¬%ÓĞQ]¦¡£:T{åÎ”Iè(
+‘Š`‰†¢2Eár—Gu^âË¡™„Ä@¤,F¦!12‰Êqõãç£L?eú‹£Lq”é/2Q9öQ]mp1Û…˜ÍGLF&&KGuÕ\oOŸC©04éDB&HY¦LC&iÈ¤Q9n“;E2$j2D*‚Ù9’!ÓP“ár×úñSÜB"a1ü·iX?Ç- rLıèCàLq™4
+†II°B+´Q0\mÒµÁÅlb61™˜,˜t5×wOŸİÒ“3`ë¶Ò~6æ­­tøµ•­tgÆ4ë[éW_ào¥è…­t\ÙJw~+Àín¥CÎü4€ZØJ_@õí_RÀuz±—w w¶ÒÛ…3½”½DñÏGIVw[é›¼µ•îÕJŸA»üã¨]şQ‘½Dñ-•İYªİË'€;Ûç€íB¯_@Ù-Ğ%º2Ã±rK™¸0düFß[C&üÚÊ¤{sÈ¼úÈÑC&®™Á¬Äô!³ãv‡LÈ™ßy jÁÍÿô€Ø§ÏÁ{Cfî™€íÂé3@-œ>ÿô€Ø§ÏQösC&øÚÒéó ÅÊé3²OŸ1}úŒÜÓg},-2ºÕàÆğ	ÙòOŸ!Šú<T±nKîŸ>“
+7'¥ã©œåË=?ëã|ì•<~ş¸[,W ¯‘:†ÖB¶ÁöÏcèÿÿ¡uÏ¦™“]ä;åÜå÷ÛOû`ØQ~/LçËdí¾øYîk¿#®ëq÷yşk½.ºİ&¹2íëugSú8şàão­´'líø;Â¦´™ö³ıl¹$ÆŸKi%rùŸõW=ôÎLÚ/yqü­ÌQ´Ø]Dşçş¡‹r‘›7•õQi¾g¯Ô^NåŒ¨4¿¶ù\xûÅ…g¤ùğ±ğË©Üİ¾rá0n‘6qË©ÜÚ–qæiÇ]ŞÌ3Ñ0OT.óÌåÖvƒaˆ¹¡ÄÜ•›µÕKDNè1L€?9A¿pLŸ¯‡Tl<ˆvóºÚÃ	êJ ù`ù)Ş›A¼ğŒ›Gúù—õçûè–$uLÆtĞŠ!òÆ,¨(”È{/¢Ç9ïßyDí+õ—Ï>¢¶ñºÜÎÇX]Fˆì<\|‹Ôò—õ×¿ÈG¾~Éƒa4ÒøXÎj°0Ò¹’Á9´MÜü…~ñ—t$øŸŒ+3†`ô;n¤ÄäK«¿¤d¤Ñé-¿ÈsƒŠ7^b¤ı]•õĞ¬úÃ¿“Ö×¹ÄÑµ)"=KXW¤ÔèÍ{í’7Ù˜ì‘:ğpıyå@Ñ¯Ô_væT;ol“ìL·è[{™´Vó}u~N¾ÍÊH³fÛ±@~R^gı¡Ùa-9LÏH&„çsI-ğ'gšdŒöÀdE^^Ş˜‚ÒğŞTŸ´Êqíßàè¹4İ‚ix¬šìáƒ)i‚\²ÀñNNç$¢—Ó€~qPÕšË—Šó6}PíÈşí1{ñ —õJnÌ+ÖÏõ;>m{R-7›K;[E¬êwVÈucG/Œ6.¬O6üôÆĞB;½u×.HŸKø5lâŠËò«öÖ>8æîA€S\Cıe}CŠ7IVòŸ|Úşæò×Æõ«›©ûú–ÕahÁşœ$ı1“$éñÁ}İ£û±¥<ŒämÖhÕfiC(½._ŸØ0l€Ğ‚m\íıàÔfãúò¯™&m(ùf^Iÿeışô']“±zÄõiÚÊóĞóıõiÒú.ÇÑ`p/ÌÅÏƒoœıQO½±õÉ}}ZEÅ'weŞ½nÎ:l”=càÆ©ãúá]yºs/OŞ]0ÀÖ·„6B¨)3Í„ĞŞhH¡¾4ÓLX0ŠÂìoí>Î©L›Sı=¥øæ:¬CnfŠgÑ^CTy6÷ƒàOöp=$İ¹™9Qª¤G[ò[á^“Ó‰é³¹ƒ÷u?INh¨Ñão¼À}7ª†uÒógTÍıÔ”¼
+£œ­—ğ´‘77rç‹t‡ƒ|Ÿ‚ÜıÑ^KÁö)è½æ„+°=|Ö»y·	ğiFc0®¼Ò–±qP‰#HlÕS;ßê^ŞûhN°_ñçj¡êBI„»;‰(ºprÇùŠ^RœEŠôÏôÂİtPt¡Äe)ŒÀ únŞ»Ò4Ü],$u.ø}F'KR4€Ë‰i#;Îñ¾DU/ö¸É;Né€ÂGô²&EÕ y —7%jzyÿ¾[SÖù¥|…Gı*£K7½/NÓZÿR ZûÊÕÚx•E›1AìGÒ‡i'4Êµ”Ic®%LÊ){2mÌµThc®%\›K(İ×@¹„	åB¤"X~$fÌ%”i(—.w•kI·ôjP‹ßĞÂ¤"†ŞĞÒ-½Ú ÆX­Ÿ€sQe,L¹¨
+¦\T¸7×Rkp1Û…˜ÍGLF&&Kì¹–š¹Ş¥Ó¾\	‚&HÈ¤)Ë”iÈ¤3™4*Çm² p*ºLBM†HY°LCM–i¨Ép¹Kı´ôjP…ÏaRCM‰çtK¯6ˆ1–cëÇâWµ2	f§Wµ
+f§Wµp9¶I×³]ˆÙ|Äddb²D`ÒÕ\ßL¦íyÍz-
+òs¡@äû¹P†¯-äB‰ëV¹P.¿ğ¤…3
+Bós¡LÀg¡{„µdqg.€ÛÌ…2p~@LS¦9NşÔ™¿ƒİ©Óø…> ²J€pë¹P¶ºä£ì%jA—è.Š{ÿ¥—>L@ˆyLÖ¡—ŠÛµâÁİ¿1G¾Ñ³˜ä¤w’œ ¶æ¸€²—(¾9’¬nÆE¯Wùã".Œ‹ ùq~me\LÙKŞ¯¾ÀGôÂ¸ˆ+ãâZF¸>.vÜî¸9ó;Ï”NÕy Š#‚¸9ÂtO×¶8.9¿øµ ËÎ–Ÿ#¢ø9Â Š#‚ø9Â‚Qû×Ör„A)&S¸Ë†€üaÈÏ†€ìaai%­Ö…7†OÀv!G@-äxéõV0Jaã¤±eÃñ|M¦¦Öy;E˜‰¾é=¥pjiÀz²ô{şGn“»—…ŒÇËÊ?úe!s„°‘Zé„­¥VJ›Ø8µR¦ıl?EÍ§&^©•rùŸ•(	•2“ò«}©;D§÷£Í±j
+R¿Äe®6'(W›}‰ØeœÇ´Åwù×{…´ÓíMóRNÅî2m¤˜í•›ÏíÕK”b\ìËE‹´²`ÈïÄH&FQLôB`²&í¬]¾ŞÁGí3v¦|ñGÔ„¬{¿¹ÇE¢bğ×f½öd«{í¬øÃ‹’;İ¿ÁV»s÷´Öıƒ<»?üy,uÿT¾vÿü‘ÜıÃéê×ª¥ócfµõ¡à2øËH…–O8Ô!™kD8F}äÌ(‰$É¤ñD“Ò–p¡'
+…6(àrÌs£>Ê¤qÇ“Š`f:*´qÇ|*wu¢`”Ã’dÃM’ÃM’àr\ıè?H’IH0DÊ‚e,Ó`¨÷D¡5¸˜íBÌæ#&#“%ö…f®w‡d&N®±I'2iD*š	f2éLC&Êq›ÌH|”I¨É)–i¨É25.w©G,F$a1FR#Ñ°‰†ÅË±õãğ³Z™„sÓ³Z…†sÓ³Z¸Û¤kƒ‹Ù.Äl>b221Y"0éj®o’öÀ@şf D¾¿8|ma3Ğ(ñæƒ—_`o"43p.lšª¿±p››göVÀ
+Ên¡Î,â’™•jm3 76¶ºtìó»…º¤@7›F…> ¾¶øÆ”cE»|”İBíbE1,UËëœ÷–Ú€í‚.PvÕu	õÂ<?3Ú{C&.™ ù!~meÈÔŞ¾9d^}?dè…!W†L#ÔÖÙq»C&äÌï< µàæŠ}~AÜó3½×ŞÙ;C&`Ë??ƒ(şùD±ÏÏ ˆ}~fŒ52û×–ÎÏ)VÎÏ0}~†ìó3äŸ³´È€VÄÃ'`Ë??ƒ(şùÙPÅ·ÏÏH…{“Îx=< ®>±7iúâú«Ñ÷g’î$dšã®¦Y3Ó¼hQK…ö¤»£aı‘k`AüñEwR©A¤‰0n_`š53-×`¤•ø!»Ô`¤q¶>`ÍÅ¬ 1ëQÌês«ˆ¹ñÄÔÄ`‡¤ÚÁŞ	ìPVsß’K³•”@9Ñ† zD8.@OÓšãì¡ ÄpiRøt7Ñt…¸óµ©ßráçÇ‘/ÿèãaî-_¢2wWQIS^¢»Ætì¨$Ø˜•“Ï
+4&›“v“Ôòt5ÖY­¶¡.Ó¸ÜÙêïPÿiÛ6wm´ì_'æé÷-ØÖÂ–ìÇqAËòY–es‚-Ëæ[ö„F^_Ï‚Ï×íxo@AŸ=°š*İù p
+L‘ßë]bWn#ëd?ÎsìY¬€ÄB¾Öãi¨ïŒs§tõÀşˆó#z¶>Ë© .Ş£^¯£ŸÈ£5aÁÅspòc<È7õÈ·èÖkNó ß $Ÿ¤ŞÎÛxhĞMEBÈª´Œ#óÓˆ-K‰zÅvAŒ¢0$ÚºJ«L/’ï®›
+õ!EZÄÁAó‹ëÆ…ôa‡Çã‹‰£Oñ"¥‘ùãƒàÒÃòQ0¶¯)
+&Ñ~¶Ÿª…¾?ÅRL*ÿ³şª¯
+f&í—¸ˆ‚ñÒê–ªêÿ½Uk_HÚ¤ĞJ™¾XSG¥I°¨“…&Á¢.ˆ©w±äp8œK$íNRh¥L_ƒ%Á2M‚µš,4	ÖjI0\îòx>˜c#’°©#Ñ°æ˜ÅË±õãì$X¾=
+–JaÁi“`¨Ü•~Ò|‰‘I£¥Ô(F¡bd—cêÇÒO‚E,•Â‚%,Ò&ÁP¹kılÆ™„Å0“ÃLfŒË±õã±agÌO†]hX0?6.Ç
+ï C ó¬~E +K'u>¶yz2°yQİİ]Ä’Ë-ä3it‰¥Ôèmt‰™†\".Çm2n2Q}5h2Q}5l2Q}0l2Q}5l2\îR?R*,F"!1r)$F¦!1‹Êqõ#u˜‹$,X*…K4,X¤M‚¡r×úqf#_0ÅÈû²HŒDÃbäec,ÇÕ:Låk¬ƒ`¹,Ó`‰†Ãå.õ£ädÆ‰„Å³gCÎfŒÊ±õc&ÃN$,˜™;Ó°`f6lTë›Ã .±ùàQ)à¤ºKl¬»Äæîn]¢íıg’Õİ¯ÅYL¦ûü¡ĞÀ^½õsÒ€=ıc*'µiNN4nÛê8}÷ş3ÉêŞ@¹‘6ìó‡B{õ¥‰Ö Ô`,Wj€h¹è{×wø¬"“&yİ1ËëYŞDÃòåŠ¼ˆ–åil;Õ Ø¹‘6Õ Ø¹‰†k0–+5@´\ô½K§h]$o"ayË‹B‰³¼™†äEå²¼˜–äE4®ÆS /®Aêó¸‘6Õ`ŒB.5H4\ƒ±\©¢åŒ4Öùèİ6èH¾B@ó(.E@+K%€I7üaõu›ç[âh:ŞöÀ)F<“–ğ) ÉûÓ ¸·®ZÎb0N²Ä!^æÏD%®%yF4“²/íu:´¾üÂÚú—º?ƒËlıd3…*r8P+mÍfĞ/mrvQ CšZ4×ÃIˆèñlPŒ”;(ç›­ñAR [İjuû|ã^²¬uğ¬Û½jö‰#Ô«ænXü)İÔ(%ÙU|“Õyg×{‘lAÄ¿{c4H
+ş¤g{´óãşÅáüxEÅ–}^hXü17°YË>ô¦»µÙ0D7r‚›€Í†«Çe_ØaĞfù( ×À„z¥@7–kÁH÷¬ìÓpÁ[ Ù¢¡H|=¯ N=/€ºg•İ£”t×öĞÜøÇõ	†URu¯Í¤û½ë±n}2(Î÷É³úÃnŒì[ğ¾ Û£!•É©Êä£€ócj€J—bjšJA¸sRv:a uºèøQ0P¯±3]¯a0Ç#èfac…'»Ü…²6øşÂføac…={ÙŞÂæòÜ…ó6peac…“Ú­,l øÍ…Í ¿ÔãüìG ôà@A? ç+M·Rh¬[öÂ€ßXØ@b=^êé@×+ =4<Ğ+ =_ßh“Ä¨Ï.oÀ×–7§Ë"qîrt—‰€O €í¼#>ßå8ÍÙÚAíKÃm¿±æ"<­
+¡9wÔÓÅ8$¥‹~ íŞë€J·7oeÜÚz`lù­,ˆú×DİÔ»D†ãV$|ô,‚ >y õøäaÚòH	nÖÕ·–Gyt¶Ñpzƒ$€B\ í’í# ~¯ĞU‹>f^à]Áàò
+gV"	 ãÚÃ5ğir<ù˜o`y5æbX›øu-¾–GàG åø`ÿPË#ğ!wºuÙÆ}œàñFS».Aœãhw,àîZê¼kŠÅx_yäøŞ8œLwQì±¿¯I×l,øíWl„yÕTÓ	Öh—7oOÀ+\åÏe1 =-ù·ª—€ÔŠxÒ„NŞ<‚&õë>Òv¸WgüÇëÀ/NkĞÂŠs‰J]ğ˜g¨Œ«r°­-{Û´µeß_mÍ¶f‹ÛšmMnÛÚOWåZ_.uLÎÉr…¦BÏMíÚÜ s/C.öhÏŞÄ­ÌÁVöìc-ĞÊ|he¾x •)ĞÜÊ}êÑs`äVÎCDmeËí»gƒ9Czc2¦" Aò†ôåƒ@ƒ.€zƒ.€zƒò³š€%A·z&âÈj3f7hh{¡cÒ’æ‡W|0Ì—ÂoL66&“ÉÆTÜãAkNõ[<•bÜ4wUñö.Ø…Ø¿oJœ­…Õ”vcê´ MÉ¦äƒ@S^€†Kdò°ùŞo¿BVÒ„üë‡’©Û¸–o†Qïë—siÃäÚ®/_¤ç¦³p“	ØIH½
+|‘5]~ËñƒàBf4's ïè…æBæŸ'3Ö“YÛ×“Üº!)¾^³ò·kÂ>.ÂTº>‰o	Ï’Ëé}kÇcş{:Çş†"É>E§›„6n²}i¥|°}´?µÔå‚}@àúÌ½{iëÒô×u<´"¬şex_À¸n‘õAè)ØøŠÁÀ…äO\Õ–‡Gôÿ˜«ÚÖ³qUû„­]Õ0‹¯jgÚÏöÓÕûÙãO³rU;—ÿY¹rA;3i¿Ì|U[=P_‹Yf¯Ş,ˆFzN¾«o˜WÚœˆ6‚dşƒüNü¡YîÌD“ì›«¹ø‹£Øşú¥c·uà­ú a¾Ÿ›<ãYGšù·õ:’\nÔb	‰É?ü"“o_T6CÈÚ«>*jg›Ó+6ÍBÕV±!+Ï2
+eç©Jù–=rŠô^¿¥¿R![…a*?å§zÖ‹[–kl–á/?iRû´^%±$[Ò´1VH—" yè¶z1ÆÊôvë©ã£Í-]8”˜òÜ\¨øÁ}|sFà[?ˆ:’Z¤î7¾e?ø-÷ÁoÑÆ²ş-ÒŠ?ªIšË'uLsù5¿„íB?Ø[„ú%\¾ı.ßI.ç‹rBÊô×³ß“úËàßŒ—|»è{ZÄT×¢}æ«©.9?TÉšßp!gˆåòıƒ\È9ı—.–ä¢H.ÀøÆñğú¥5™ŠÏ?ºãılÆÖk‰“¼$Jò’K¡$/™†’¼$Nò‚Êq/q{;%1I$”„"—BI(2%¡H4œ„—»¼ïÃ”Ä$‘°aNb’iXŒ0'1Aå¸ú	rJb’HH°\
+	–iH°DÃ‚ár—ú	zJb’HX='1É4,†“˜ rlı¸)‰I"aÁÜœÄ$Ó°`nNb‚Ë]ë'LfœHXŒ0›q¦a1ÂlÆ¨S?îØ°3i¬”+´Q°LC‚árì$/ÕaÀ$/Õ¯À$/c)à¤@’—êÉ@Rƒêîî’¼8!r‰™4ºÄRjt‰…6ºÄLC.—ã6™Ğ8Ç\&¡&zÊ1Wh¨É„rÌMå®õcqF¹LÂbØ)£\¡a1ì”Q—cë'às™„S¹BÃ‚…)ÇÜTîR?)5#‘¹#Ó‰†Å@å¸úIiD°`§J,¥°`zJ•˜i“`ú9U¢K	N°n2ã\
+‹áf3N´I·“*ÑÉ0v"aÁÂlØ™†³a£r\—Ø†€æYüŠ€V<”Nª»ÄæÉºKlîîİ</ÖC6şuHä_‡À\‡„_cÈß®CzuUm^‡¼úÂº_‡Á×!1ğYfïÑeŒˆø~²ƒß½	Åx@{N¿vÆ¹¶Çk{$èV·Şbİò¯Cvğ;×!O‚zå£€^=÷‰B),nn€ËaAÈÙÁ¼u²q3Ï”iAÅ¨®b>(«¸Tq7Ú †ûÑk—;øKP„òQ@£lp$èÖt­~â¿,×â_Ëz¶ìço¡ù( g6ê™Ñ7C8µ¼9Ã 7;›D/“<½óQ@ï;®qç{wˆñªï‚ûØÍD/w¶2!ŠmÄ ¤LP|E™Zbe²İ/ ¿‘âeaA£|”°øs"qSüfãRºöu²×1øş:føãÄqö©½uÌå¸ëæ¯c&àÊ:Æ	5¾¾»²à7×1ƒü¾Pl×Aì´.Ä¾5í„	X·ìu ¿±"ğÓº@;­±Óº@;­KtÙ£ŞYÍ€/î¥u"-¥uÁ@vZd§uÁ@vZ—”İ ¿±Â"ğÓº@;­½ŸÖeøÚÊòÇIÅØá[Xş€î¥u-¥uÁ@vZd§uÁ@fZ'q¸É²lÖÓº@—Òº` ;­.¥uÁ@vZ'}:ÍŠGïØ½´.ùRZd§uÁ@vZäOP”0XÁ|ŞÁûi]°ì´.ÈNë‚ì´.xö¸1FIïÀÅJñ¡ÛN£6Üİ®ZÊäÇb£AƒCÌ}¦ÌÑ|"xp€º%°q{‚f/)}¯¼‹°~DzR•¿âúşï»Unâ÷é{ë÷ècúÊÁú…käú[ë×*nØ³ì˜yáâ“¦ÉkS$R17·}¨{c]†[ç 2qÄùZıùøx×ìç°‘°êâØıÅ÷÷¶B($àÒªĞ†'¸äL‹ÓäqÌ4fZÚzJ4	å²z¦…c¢©8ÀM4-gšy¨0óĞræ¡uå!¤Z3Ó±"¾?–”UI¼Ÿ”UlÑar¦e´¢bDa¦eÛñİ°¬bDÇD+*F4-gšy´¢bDÓ•GVñmÄ“"b…FÒ¤ĞH›ŠhY¡#­(ÑD˜iY¡á˜Šhá˜hE¡ˆ¦åL³3¢Ğ‘VŠhºò€
+åÚ¬‰"'Vq¢acZR1¢ecš3-©8Ñ°Š1--«Ó´œivæ‘UŒhYÅ˜¦+g›5‘5Vh
+6Å
+ÕrV(¢e…´¢PDa¦e…j9+ÑÂ1ÑŠBMË™fgE¡#­(Ñtå±e³‘1Vq
+¤Å*¶~V1¢e´¢bDa¦e[?«ÑÂ1ÑŠŠMË™fgEÅ#­¨Ñtå1¨˜99Œ0¨c¥˜‡TÄE$0@Pù‘‡{T‰Hjú<œcĞ~#	ÎX`,("ùè¦UgI ò³N¥6#?Á³–Ä×'~åğ€öl„w {’‡½ =í÷KszÊæªuÛ%Š`ìE¹ƒ >Õ-Xø ª’’ >ì+í	àÃa«rWÊ™÷'`ü6|8Ê×òJ9ónï4²nwœiµ”ÖEq9%Óê4-ŞÒ]úB3¶Ğõ´«ÿS¥Œ~06¥kN^§ÍH.§„€g>Ï"?ÌÏûœ$Ğœ[•ıëCV^ÇØª„}ÜpS±Á>Î>ÎÁ>nØ™yAçƒŒØ ¹«:=€Ô¡Ö¡dØ ™+E<ü•"@úØh\­6aÌ•E<ŸòwáÇôÉs·Ë¿³¿¿sº£oG3IÏ×¹Ø=;o2è‰|è‰lì‰|è‰|è‰ÖÙ]Õi¡'²Åƒ=‘2Š€=‘‚=‘­ØÙ Ø;ˆÙÍ1%·¾ê‰CÒë2p.ôÄÎd)ìôDs°s[÷¸ ê=‘=qÔ{â¨÷Dƒobqz"zâ¨÷D~@O\ ù+Eğ{âH])‚?&ĞÃ£ONÂ)È[¶ê³ß}¿Y£aŸœö¯gèŒ4Ö°#ò(AGäÇO‚ÈÁÈvD>tD>È]ÕéÉÒAGäƒ@GäƒÌ†"`Gdƒ`GäƒÔ†"`GdGÔ‚h§øu½#NŸúáS¨ì‡†È¢~Û?½» -ôC6'Øù Ğù wU§…~È~È™+E<½~C°òAjC°vĞÓ[›šzƒzáù"
+óømÖz£¿Œ.ã¼Ô{£ßØ²Y ŞÈÁŞÈŞÈŞÈ¹:ÁŞÈŞèÙ›CfC°7²9ÁŞÈæ{#{c£"
+*‰] ‡VêGB­>—œd áN†d2ë*¡“=Ó¡ië\şÆ	¢ÿÆÑ‡t¶ç}Ubkµ(aß¹&›…0ö˜øİrûMÊ:|k%{J7õŒŠÚ<Aã™Ï%'m^.¤!'H>s²
+ƒşòÌÉé—¶5ˆ¸€Ô3§®=AÌ3#›œµ	Pyú‘‘£¿ÉOOœ ¯Ï åHüş²ò’İ oŸëäœh¿"ĞŒıŠKa
+€AÆp‰9×ÏúˆgĞyâH´Ñ%èGNNÏfç´A 'c;g;p–4êËâé¹N­ö.Aé™„ÄàäS{êÁÖ]BÔu«™:Úø[]™ñ/&Ù8ÍŒ¶âü(‡owjÅáÊ@}GÒĞ ê“0'r²I™.>ëØÑ vR4‰õ¯r‰¤³ÅJA…{¥;S«°[ °ÑùAMlãdSªQb®ŠEìŒ~«ªZ¾ÒÁ-ã2ÆBàÔ9) q¯€‰«ßè{ÍhMlyİ‘o¶©ı½²¸ïRP/óm&¿!pô2å’eçŠ}	>@\¹– ¡ÑĞ ¸úÃÍ2™ x¹tŒz˜ªüélqqá“k´Şr¹±sÅ3Š«Ñ/ŸG"Š+­ üÎØ…—ÜÑQ¯-sÖ²±dvÒØ='İ2kGø‰«dBu[ß|­£´î>òÍè5CešÀ9¿9ŞŸïëCçó’yhî„_Ç™—´Ù%¨ç¿V"®•Òô¸£ç^:¹k„zŠk§­e@;QÏ“~'UfÍÜNÔó\Ï®yÈõ<é7‘„P“Ÿ»Zg.uAëÆÉf•õ;c¥ì«ÊZ·"¼Ì¨Üc/@ZÕ„+w¹Š®æ;\™àm|ÉÊÛ:×¦X]ê"´ysGı¸ô©OÀ- eÍúh7sÉP7ŒE°%Nİ£È»¹‡;Ÿ´¨¯4Ú—‘AÊsG«ŞöšJ—gNìáSÂŒJ×ä– ™‡:ÔÄ·¯Éºí9Á:o7?òãR@m±“§æ5Â©ÍiQL"Cİñ8¡ÜÙ_z{¶˜RCr0i‚R»ÉÉ”;Ó§k;«Êœ7‚¹ÍrUM¨[<½®ÓŒŠš¹IÁÜºF'9*˜]Õ8¡òy§h½ªq}«ÉœÅÎ9)—[Í”kT.·quÿòá°Mª8*Œ}†»ŠPq!ŒµË¬kŠbß©gì¥ekm½±—š¡¿¦SQ±—bår«{)Rî4¡ ±—Öåè²–âè;ö—'cJÛö×‘v¾²ÛnJÇ‰–4NTËGmjk_vgHÑ.Î-ç£{í(:N†ÒñÉ†Ñè8ÍÙpëæ»şÎv×ß¡vı]:yÁş[Wi±¿c½O]'­(&åŒ9¶¼¬‰îgg†`¢ï©sêeõ¦Œc=™¶kâ!%Û°]ã¢‡°;C˜ñqÂ¸çÛ÷m¶,o0õ oY¿ö8ÚvØj]£{ÎÛåæk…i»å«£§•º­ÜW5lÓFÑÖà™‚aDyÁú‹[¹mşvBÙÇ^Ô¸ôÊŞÊ¶dÜÈ•é”¢n^á¸ò·rE]Û/,£-•uë²†eôİÅŸ-×U¦Ô_Êm(8-ïê‘ñÉ”;£Wî…jÊ^£µüÀëòêğÚRnôÜÅŸ-›oÚ·vc§á/³—Ğ#W¦S’Î· eõú6¿Z8u°®áè»‹?[®k
+2ÛĞ®G‹'89r—."(,«6mÑ›¼øè,™G=JÛ©U˜ÇÊøs¦ìÒI†²uRö¹€³çFÊ5SZK^cSà¤«Ñh˜ájI‹Y±¬%-Ú¦QçÊt½).pP/·¢æxfIT4¥½kšiœJ"Ä=×ÒÑ©ÔÀ¬Õªšcò‚Üs-#dû.kÉHÓN–VíWê­¿¾lÂö‚ºm¬Pö8cÎ¹Y{N…ëµÓÖû12åÎâZ¼ÎZMÙ›}j¶*¯·šM±CÕV+ú¤lQT•bºÃÈ•}¬ÏyÃ¢nÓğ¤F+âïÚW‰]Ö°R¢®ƒz]¹#¸ªÓ²Uiµ;GŠÆ’;„óÚQ­Õõh¡säà^N­ÂÁƒînA®àÉx‡ÊÁµ8ã	¦´·—6öÀ—òÜ<:ÏÓ¥¬iIÕëê×FpwlÔ2®"~Ì1M‡p.‡IQ‰1MÔ(¹ıŒ‡³:yKÙOg%7AåcÀ†lÓqTáŸã5ìQ²eç`šó<AÏQŞM ç Ø¿T@Uz©uË†Ó
+3!]İïì¨çx'$¦ÚÌ	{ØVL0FÄ†ˆ¶]6µ(İ_ÅÈtÔ†PÏ¡Rˆ¶ ZĞ‡Tu_³ƒ#6Òm	)¡ªu‰rnB=Çy¤Åp	PZQFZ"ÖQ‚@])#^`«î_ÊM*|î_*(b„(ÅÕ}	 Zé_:mi•;+¼”|ÙÅÎ•VbXëÏ}+~!ã
+„òµÜTé(©nÊ,ôG#Â„z6¦ˆ˜úãs×2e.F(ıR:7C:L£#nÍ—ÉéŠÊã;#º+=h³ªq›â×Ãè`ágq¾³>X7·.ã²Ÿ;g ?rˆ¼Zò0N¨ûsÊİØßõå3Ùßõ‘ ë…Æ½¦ÌÒ~q…é¸ó¨¼§!KNáÙ’;Š~iä„b„_ZUG½bÜtó¢î,-ñJ4Om:ŠÑÒey9¿Â+]‘;FVÏw¬n»ÓÅèkÆbçf]\™Bñ¼yî2Ç1šÒ3'Ûé,e€×Ştoë5bÜ­Ó£XWŞZ¤XçÅ¹ù0ŠÃË·]ÍÎ‹sNbë
+œ|ÎB<+Ş@N©ÇÎ(­Ö+÷Ğ…/QÚã.,Î[à!ÈØ¾”$†Áx7û†¾j?ŠğÜ¶Ñ¯àcŠ8œîOëûÓöK
+’Æ+År-3³¹Ò¿„¥åv1–†šwgT\C”`ñÎkÚìQ~BÍÛ…3*è|ÍÏ^Óæä„J‹R„š7
+/P-æyEÂh+å¨mE…RêÔúÔ¯/ j„pDÓªy…†’fBq”g¢Eçyß’„¶](_Ò^Š$,ş¬Wé¾!÷^}F]Î;ç…écÁÕÑ.ªt¦ıÙ%&”â^ŒÁ8{=e¤ö]>zÎÚ­Pî¦·Ñ¹5%€r·sc“Êz,mçÆuJŸL™›Ş~ƒ[\±›|Ë5;‘FfGó¼¹àr´§@;SææsŞDÕ×4,sY¨Ğ./ëIhıÂ¶Àl–twùFM4K[Âh·ÚÆ•Iëms?.7Laˆµc/¶ŒŒ>¡9ÎE-Ia_Ø€5*ÃKá¸ÎO$DtUı<A¤{
+o/ƒ“3³}ï3ú±jö'ˆqí³nÊtÌóú×Œy^%Fk«ÏovÔóê7Mke^"m¶œ‡R£À
+«àâGŸçÂ"ÇU÷vÂ8'¡òŸ(Æò7Í‘]02Ë$.o'Š‘]Fª–c‡²ÁK”>ûöY¯g+”uğUdƒ]¢’ñB]0–À97Üa\bRœ·ôÇX$©î x¥P¿ºª9yá8””Åá¥Nïòb¸¦”¢gDqxû;	µü|ö$Êè[ÂQ÷A%xn["^Æ1DĞiË§„ç&O!¤ÛÇ3iÃ˜ù'íz®…ë‹ğµ´ï¼‘}~¢–á×tóàf¾Â+…Ãºxce§Ğ§XKfY¯>
+ÀXIÛécœ•tZçp˜%Á]»=¶bEÒË:µ_jÙ0¡XKæ¶3ş¨ZÆJZNc¨6EÉ•Ë%ÁUYW«Ò1ÀØ;ñ$ãd0ˆS§8–,6„mcÖRÜQOæ{•»@Š#a\š{äÜ¦åÔŒ
+ŠÁK-QÉŠ#ÕbBqxÅ¼å8·gÅj>µ°‘¤ã²œØH"âÕ©X#–ÖÔÑšæ–ÌåÁ)¨--@¹±vN¶UH‡2—ãş|Èa¹®-J¦óänì-êm¹¦"¥DBPîŞLtká®Qo6„Jj¸¡®ÜTkÆ½vTäôsdîGŠ3fs½¢ç4™²£›n¦N'{İ0·Û:e­´¬İ4å1ud^Ô°Œƒ2$îVœæÜ»š©µç0NV•àêŞi¹)•XØtR*ÈMÅI®1Ö´¬lÏhÚ¬ŸÌ¥K9Fõª‚„ëÍ0
+Wî¨P¦›©!ğ”iÁœ¾iîÙWëˆí/Dİß\®ªPõR­&³)S&6©½­éGÙÑl¹5¸”°¬%¯^şFItUãúª3°6ÊK0	eH7n±İo¥Zæ6ßf¹ı±¬İt†ºc€)ì¸„—/÷˜”ßiÏŒÒ"°ì£ŞÔ“Ê™y¼.ıÛ³†‚®±{zNºÌpÄÖì:âúÒÉç±½Lãúìˆ[6qƒ2;tÄcõŸ§§Çk¨%vj±‚¸wl€nHnÆŠØcCój‹êª]V¹Q/å‡ı·WMÖ¼–ÜQÃµ[ŠË-šf¶uzº*-˜P®§Hù¾·äMù*duÃ‹ö e>H^¶…5ƒTÄ´…4!.—áÖµkÛe¸›.C9ÿp¶éªz}^Z­
+›’åµ	Ú¢íæŒw;– b÷nÕª¸ºß-[n>vÙs*íF¸Ñ¸™ëì¹ş\µ^åZ(Ö²ëM[hu«sUÃ‘áÄ•9[Òi£Špøã1ŒI!ÏÃMÅ²Y¿[@O,Lˆ‰ÅS´Ô	åNz´Ô	e'õ@¦3e^4OùÁÊ¸W•yÿ:]C5ešUJ!÷˜Æù‡G5¶Ä	dhL,3M“ƒªÊ}Š@è6é­Ê}w¡å–^XÚO²lKié:0e?1Ñ£ÃÖÖ%†`¹UEº‹sl2µÅ't¦ePÇ)0Ù{¸v».ŠwõÂÓ£0Ü¬ÍÑ–‹WËv—òmÔA
+S·á–mNÊY:Wç2¥³ËSĞuy•}†ÃÎ^¦ux¬35²ìï/;MiÛõ£õM‘QH¿ÜƒŸ³]öz²_ÏÈ÷&ÍasN%³Í÷ :KnÎÙfWÊ*ûÀõf&Ù¦HÊM|’ö­í8"qC¨İilõy‹“’k!ÅÎ9%äéŠ&®ã„Î…Gs^˜Ü‰½>I/Ù9êà'.`ÒË´‡@Ó}s"©ÀÚ‹Ãñ£ßu~ÓåÅá¸Éuï˜çK*ªÆ!uÌdAÇÎ3ÙúŒQÍoÑÂ]+P§€¦kıo˜VÀ'bÒ¢{'ëHûIˆ8•·ÖP7‰£cÅ›ƒg"ÛŞ?ZıšQ­lg†U{sGv""§€µKdhO®uàtçù(jÁŠ^Ò	C8^UŒ(+µÎ÷æÚKU”J¯äLIX÷Ú/Í}ÊHĞùMÁ‹×HÕR„¬¶DÚèÁ<§ä"×Hß"WõªÒs­†¬$	KÉSÜ(êd§Ss¤”e;ê¢9>ıñe¸¶Œ+)ğ–ñÅä2ä1Mó\F©Ë]ë41e3¿sšºÿEøt{Yª£.&WòQ£õ(/C¯ƒ«›ßs$¿Šı¢D!vÔdiAÔ¶nœ®hDi}ÖkM#)A[}3{A#)(­Lm–4’2[¸u«J9ÙîÚŒzél`õ¬úôÌY@Jdä³ÑbCÚ¤Š‹5Í…*´ky×—”‘.Ë<ÔŒàZ¶£~9…NP·æx•nCÔ3êMš8ÍJ~mU“Æg§^¨Y“Å&hƒ~^ÔÉJç÷–Ÿ²ó—£…M¦l¾º‚ëz­ÃO(^Äâuø_Ñˆ5íYkZ#?×²Û^ğKcêÿ6§¿
+endstream
+endobj
+18 0 obj
+<<
+/Type /Font
+/Subtype /Type3
+/FontMatrix [ 0.00100000005 0 0 -0.00100000005 0 0 ]
+/FirstChar 0
+/LastChar 8
+/FontBBox [ 50 0 200 -694 ]
+/CIDToGIDMap /Identity
+/ToUnicode 22 0 R
+/FontDescriptor 21 0 R
+/Widths [ 250 0 0 0 0 0 0 0 278 ]
+/Encoding <<
+/Type /Encoding
+/Differences [ 0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g8 ]
+>>
+/CharProcs <<
+/g0 20 0 R
+/g8 19 0 R
+>>
+>>
+endobj
+19 0 obj
+<<
+/Filter /FlateDecode
+/Length 99
+>>
+stream
+xœUÎ»	À0„á^SÜßš'!¤pöocÇ“îƒıò¥BQ.[k…‹…8)¦pÉ2¡¦É&¤MÒëÇHß‘¨±#ø>Ä¸Üo„ÍÑKVÇí+oÍğ-—¼ò£ ¹
+endstream
+endobj
+20 0 obj
+<<
+/Filter /FlateDecode
+/Length 69
+>>
+stream
+xœ325P0P º¦ÆÆ
+F ^Š!X4—ÂÏÓ`9\¦È,\—!X¤Ì2± Éš¢2MAja*AºÒ¸ “?(
+endstream
+endobj
+21 0 obj
+<<
+/Type /FontDescriptor
+/FontName /MathJax_SansSerif-Regular
+/ItalicAngle 0
+/CapHeight 691
+/StemV 109
+/XHeight 444
+/Flags 4
+>>
+endobj
+22 0 obj
+<<
+/Filter /FlateDecode
+/Length 224
+>>
+stream
+xœ]ÁnÃ Dï|Å“Cñ¥9X–ªT‘|hÅí`X»H5 5>øï³P+•z i˜y0‹<·o­w	ä‚é0Áà¼%œÃB¡ÇÑyq¬À:“6Uv3é($Ãİ:'œZ?Q× òÎîœh…İ«=î…ü ‹äü»¯sÇº[büÁ	}%š,|Ó»W=!È‚ZË¾Kë™¿Äçª¢¿mL°8Gm´QÔJ5P_.@oÿyÑæ['OœTªz)Ùí4Sy²g³q“2~©wŸ?CÌT^ùSmù
+endstream
+endobj
+23 0 obj
+<<
+/Type /Font
+/Subtype /Type3
+/FontMatrix [ 0.00100000005 0 0 -0.00100000005 0 0 ]
+/FirstChar 0
+/LastChar 237
+/FontBBox [ 0 250 724 -750 ]
+/CIDToGIDMap /Identity
+/ToUnicode 59 0 R
+/FontDescriptor 58 0 R
+/Widths [ 250 0 0 0 0 0 0 0 0 389 389 0 778 278 0 278 0 500 500 500 500 500 500 500 500 500 500 0 0 0 778 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 278 0 278 0 500 0 0 0 0 0 444 306 500 0 0 0 0 0 0 556 500 556 0 392 394 389 556 0 722 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 750 722 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 275 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 778 ]
+/Encoding <<
+/Type /Encoding
+/Differences [ 0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g9 /gA /g0 /gC /gD /g0 /gF /g0 /g11 /g12 /g13 /g14 /g15 /g16 /g17 /g18 /g19 /g1A /g0 /g0 /g0 /g1E /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g3C /g0 /g3E /g0 /g40 /g0 /g0 /g0 /g0 /g0 /g46 /g47 /g48 /g0 /g0 /g0 /g0 /g0 /g0 /g4F /g50 /g51 /g0 /g53 /g54 /g55 /g56 /g0 /g58 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g85 /g86 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g9B /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /gED ]
+>>
+/CharProcs <<
+/g0 20 0 R
+/g9 57 0 R
+/gA 56 0 R
+/gC 55 0 R
+/gD 54 0 R
+/gF 53 0 R
+/g11 52 0 R
+/g12 51 0 R
+/g13 50 0 R
+/g14 49 0 R
+/g15 48 0 R
+/g16 47 0 R
+/g17 46 0 R
+/g18 45 0 R
+/g19 44 0 R
+/g1A 43 0 R
+/g1E 42 0 R
+/g3C 41 0 R
+/g3E 40 0 R
+/g40 39 0 R
+/g46 38 0 R
+/g47 37 0 R
+/g48 36 0 R
+/g4F 35 0 R
+/g50 34 0 R
+/g51 33 0 R
+/g53 32 0 R
+/g54 31 0 R
+/g55 30 0 R
+/g56 29 0 R
+/g58 28 0 R
+/g85 27 0 R
+/g86 26 0 R
+/g9B 25 0 R
+/gED 24 0 R
+>>
+>>
+endobj
+24 0 obj
+<<
+/Filter /FlateDecode
+/Length 348
+>>
+stream
+xœURInÄ ¼óŠş€%z¡÷8Šr˜ùÿ5U`{’”@]ô>¤JK9Úpéf‚íK‹6•#F“wÑê€Ş$»)»”³pÎú\ó–±÷V¯!sÈÑM6\(UÅjˆW1ïÇ©®â>hÀgåv–0'Ğa.Æd06˜°´¼È³‡I¦Š0ÜuƒÃÂ‡y^`Ù]Ğ›!ãDX›”0S2¦ï|Ä4~ugQ›Oyª;ËOñœ¬¨¢Ç™½.4€´:(X†LXçÑ`ç,ÎËæÊêÉØNÎMLøúh¼ ˜C7ùû†<:ÿÁ=jx1£VØJ½sı<E&K!¸UîŒ˜|~ËQ8~
+]£âÅÃö1¬xÿ£wY5¬¤y}²<p±İ¡ŒË†é	\t¹¸é›®u)3Ùª‰iwÀúo¶?Ğ¶ÊwùÀn’;
+endstream
+endobj
+25 0 obj
+<<
+/Filter /FlateDecode
+/Length 138
+>>
+stream
+xœ5O;C!Ûs
+_ ‰|óPU]zÿµ	¼ÈVlÇA†£C;šG‡„ ™âÅÄkŞÙ—xÈ¥ì–Äœ¯¹Llb-ëÙë§pv¨'8<Vş´43dmu`ÓäCæíŸÙc^ãŠˆÏÂÈ{í‰”$*²ø9zÅ%ŞùˆE5EÕçöÿ6}èM?!s-¬
+endstream
+endobj
+26 0 obj
+<<
+/Filter /FlateDecode
+/Length 276
+>>
+stream
+xœ]’ÍmD!„ïTá„z6ŠrØî3ã}I¤\àãÁXf2ÅS®Ú.U…Õ›Âe±äóÆTy²ÿ8¥,y¹ (=F)‚ºTj*ÀUrá”NG0{u$'/5	ÛråF$æ-ÑŒ¿†Ÿ#—ûÂ…A))1'!ÄÏ&0ÓÏ"4‚`hŠœ@P7DªE7¶1ºy/‰ê`×¸‰Æ›p ûò7:]¨ÿ¸şpK9*¬õ‡Ù›)úƒë¦ò{œ•¥ÔK"Y%\ì¹íê|€­4xõD³£³QÑ–8|)ß„y|
+o!½]¬k¾şÅøªt²VÌkŠ/‡”b•†Åï/yŒñ>¾˜#mü
+endstream
+endobj
+27 0 obj
+<<
+/Filter /FlateDecode
+/Length 225
+>>
+stream
+xœUQA’!»û
+>ĞU"ˆúššCïÿ¯A·v]‰4&DF¯T©uºlVMıôâÂmz…ıJOa6ºt³·ë î?Ôè.qİÉ¤:ˆºĞ%Äî0ŞÌ R wÙWåhImGU'üšFeRÁD®%^/=IM4|y|Ó¾×á{Uˆ©9½²n£`1„î†B]ÀV&èÄ–$È·{€)g‹“SFkm'Øl¡‰cìFè6	Î ©¾3%5ßû?ËÈó0ì)t°¸ÿ[ë]>å]~İz^Á
+endstream
+endobj
+28 0 obj
+<<
+/Filter /FlateDecode
+/Length 405
+>>
+stream
+xœE“Ë‘$!Dïe…¨ıAöôÆÄzı¿®„€½4¯øHI&=˜&¼*ˆà=j¯Lƒ¿:5~kc¢éEµD¯:<AtÃçÁFºÁ÷ÉÏÃ6O‘…İ…ÇEÁQ¨ ¤Â¥fX•æš”sà"’ kQ"1Ûe½\y‰¤°Ns.}Š*4
+|(Õ3	nLÖ¢R5Ç•Z¸/À×&jCH¼ïLäÇØ$¶í¸nĞ5ƒ®Š‡†¶‰=±‡˜˜d©ÔÊ’y¬AW²my};aZ³‘§§“yoJÿ¥’æ4å“jNÊ>-- Â—üíÃš3YK}5ÔİI£¿c	0¤%Ë0%‚åÅß‘c}Ék»S¹*šm\Ö\k.úÜ1ä¾¹Ÿ„‡¶7¾’\ÑÔ>~¶ó?rÛîõ>°hw6&³´“o
+g>Ev“ÙÒ#`#ú]6h™Ø˜=m=n©©º"+§²/!–ÃQo5=R¬j66øÚ‡»ƒÊpÿ¦Ÿç÷ùyş!µÙ
+endstream
+endobj
+29 0 obj
+<<
+/Filter /FlateDecode
+/Length 321
+>>
+stream
+xœERK’!Û{
+.`• ø9Ï›ššÅÌı·“ ïõÂNC4bH©î&¥*_Z´1Ô‡ü•ÑÉ\lUl|•,c„hû`[7ÓWÈoA‹Ë¦¶6±ÉfflìÖ†#z,ÑfŒÉˆÙÈ¤KÕ¶%É’ÒVÖ)ZaéDÅœ›xúù¿:¡£iG´SÊÎy0NG¶Å’ajhİíM²Ax“–¦°+±ú@:Ì/sÌQ}‰c¤6zã{#”?æ!†ÏÍÑo4ˆùP%Uöã+•_«“^G­=æ:i—>iøœ t7²$©#F‘¶ßÄÏÌÖíS Ñ.qÏJX³a¶Ö@wåÕå¥á!ØÊaÄÎPÌôy"
+ä›È!è›²2t[z¤| “
+u¡ÿÄµyåº²ÉÉ}ŒÑåµCÕÙ´où<ÔWù)ßå,k…G
+endstream
+endobj
+30 0 obj
+<<
+/Filter /FlateDecode
+/Length 216
+>>
+stream
+xœ]‘AnÅ D÷œÂˆä±˜óüê«‹ôşÛI¾”v?l&ƒç¤]Ü] ò…† ·Tå§Á©v~`*Gd—Uµ‡¼Út’wé<b³ªQ©‘Eç&g×ÙÖ|’EŞÎÚU§¬¬ª5A;‡ f™2C•W³´GÉ&nìÈœ«cı{Ö1¶V˜à¶ş!|w\ I°ËÁ¦Ø(ßK¬"a¥‚±	å;˜ó<Fî ˜	W İò·×ÆXoé
+Â«ÿáØ‘áÖÛœ÷›<ŞÎöİŞí­VTs
+endstream
+endobj
+31 0 obj
+<<
+/Filter /FlateDecode
+/Length 420
+>>
+stream
+xœ=SKd1Ûç\`¤ğÉ‡óÔ¨Õ‹êûoÛ†z½Â‚Œx†Lq—W|¥¨Êš)ù¶VCK ?÷tËk4œÌ>• PtË†ïá^Wæ#¬ nù Ü6k€ÛYçæ&t4'-ç8Ã-P¸doœbû2ËÖu¬I"âˆæmğzO·Ö³O1ÙÎ³EyF×bTÈ:3x0:*ú¶]8ß|BD&°.fq¾Aå!’¨éz“Üq,)€Xg«r.¶yíí¬Şm4Ëµ+ZÂÔÖ&¯^İè—>ã¾.J·N­&¹år&¶=l¼r˜Ù&O\Ñ[ïF1;ÂDı(¥ë–RÌ0èÂ¢¡G ğácCå´E|½„ÓBhOJmM-/&ªxµÜâuëœÒßY{ÖA;\¯©˜Á(l³k>ÙãÁğ¥—XÜ«Fˆ‡Ù 2ûâF‹ò8—5˜íJ?}·T˜NÂ%‹¿(yªlÔvÁL¡‚Acå+v§„4ÆÑ¬"üè˜OŸŠ×÷ûû’¯ñ=¾Æ/¹°
+endstream
+endobj
+32 0 obj
+<<
+/Filter /FlateDecode
+/Length 336
+>>
+stream
+xœ=’IrÅ0D÷:pƒ„¤ó8•ÊâçşÛt#;+‚fˆí¢â*Wï.‘__Ö"ñ#å·•'åCPšU±WˆY–éJs7Ãs€!—‹çDìİ|æy:óÍÕÇK 	¬³Ä çÆ\k‚\lñÏ„ED	eç–Ët>0:}DW;á>ôÔzHy¶„W$$:XI•Aç†úêmCÓ &eI‡  œÓ		 pÕ_aH;PÍg>i¡¥ü„ÒID=_H8Àyî5U?KAT<09éBj‹%–NÖİÄ-¡Ô‚æÔt;h›jó?m!á´Ì}ĞbœÄ››m¡wÎ PÉ½Ïåğ­ïcu=@ÇŸë%n9VÈ®áLÁü¯¨C(Â±lÄ:ô•Uª%YxÅæcØÿÖº©ê%eœ¾ß›ş´Ÿöİş H;‹Ù
+endstream
+endobj
+33 0 obj
+<<
+/Filter /FlateDecode
+/Length 386
+>>
+stream
+xœE’I%1D÷>HÉÎ“­R-~ßÛù{añdl†1¦t±.W„É0=!´ù-|„O|€ı@( GWÙèiï¦Ó“ÌOÙQqïfóe~G¼dEÖñ> àØÁˆ‡¯uãÆ!`ƒuã­ãĞvO[_ $}òóåş$¸Bl"¶Šk§¹›{‚•-¾—Ñ£O¹ y°Kºé¦Ä“»¨¶@g:ùÏ‡D$3Æİ ô™‚ˆÆ9Š)°YÀæ¬Â’i,Ïı¬,‡Eœ¬g10’½ˆÑçŒBõS™O*HyÌÎó;s•½[nohí”íûñ8:ÿi¾_bwS8ˆãk	D^làİ’0=æ4+«¹A|É¥ás´KVÍ~ÔZÜï~ÚoöÃ”ë˜¨("úÀXÆqØ7ö–‰1ÀœÅ;‘úÑÓ¼áŸ±sG®³ß%q_Üe•>÷…›8Ÿ[ûs§yÇå9p.&Æ§8×(ø†úŸöHÀ¡
+endstream
+endobj
+34 0 obj
+<<
+/Filter /FlateDecode
+/Length 265
+>>
+stream
+xœ5QKrC!Ûs
+_€üÁÀyÒÉtÑÜ[Éä­’±e1Ç!¶¥Gl‰¥¢C~´‘1ùRg‘Åòj¦)GÌØ<À.«ûvˆ>¬J}'Zàªú‰ä=7¤ÈH“»sé¤XpÁV¸tt`|WÓD³°‰)óš§‰°ÚË¹,­ª„¨Æ:ÜÌ}Ë³ë«ı6KF>ÍSÏŸxë<‘«s<ív†\°`óõ¸ü]Ètä7)°Á@4C:&h`ÊÑ2ÈÈ™¬UP~ÙuO8CX€Áø‘òª§'ƒÂË²¼¾‹ ¹òÇ˜ÅXßPTaÆ.€8×—ËG|’`,ïöşñeÜ
+endstream
+endobj
+35 0 obj
+<<
+/Filter /FlateDecode
+/Length 402
+>>
+stream
+xœMSInÄ0»çú@ k±l¿gŠ¢‡éÿ¯%e§í! !É¢¶ôÒÄºÜ&_“½tN¹³É÷a&:‡ÜªqHNy]EÍèD<dËävbÙ=RÌÈhpZWPDXÂ-ÄÛÜäuy·c£Ó'È˜LátÚœ6ˆûlĞlL[T-·-OPÚó.†8•QŒ#ŠÎbïË›ıc¨m£9ÄÄ5%Œ­ái[“nZ€ªXÅâ»p§ëG¬mèê)10ÂXÌ5â"aÁV"{­ 4Â&
+µù!ë×gC·ãˆd©V);÷ŠVB©æKÜso+@î¢¦´)·È—åfÙ!R¾AuÓM U„i_ÛÉ$ˆãzT´& ]­É:Ç|IÃ]ÅÆFÅ±Ñ@a›Çã³#uøÃx{ŠOS,	nUÅ”9,L'i^NPuÛòAsõ:‘º””+=Ë³şGê*¼ &l_÷Qè>	è$‹(è£nÃr?%\±æ¿6İ’z*z~Ç×õu}^?u©¯ 
+endstream
+endobj
+36 0 obj
+<<
+/Filter /FlateDecode
+/Length 622
+>>
+stream
+xœ=”ÉqdADïmE9ĞÔj&sïç%|é ‘M±&ğgï­7¿í=f´qfó¾Ú{Eêúmß¯°´Õ¾^~¤h>7`xs/›· ‡Ñ6ŠØÁÛÂ*foÓ‘~Rú•W¢1Û–´İ.¾vå#oÛ½-RÙX%ûQ4G©t¡è	ø¦Ø¯rõ¶­½ñ#-XR+mü¿¥Cüu{Snìz3*\³Ùä¯ïfikã4ÃÂÎI’œv$? È½È"¨£|FŒŒ2 FAÇ:OÊ'§Ä±ÛµÌæ€&
+¥~OsëšP‹ÍÃ²1‘;só‚oô’îâ&²^˜ÜÊßScÁIÆ‹fv!ÎÄ
+Dz%T«&º—ÈÍ!5¬d…EÁ
+êÜÀåYC‰L5Á!3UcqÔ
+U‹›·Ïõ€\„8äÂèQ«YlhÓâtS`µ¯nt¤
+/,×&¶¶Z|‹¹Ñµ¬I¤×jjŸ“h”n–İì× úI¯œzTt:Äz@Ö·@Í²t'­æjş‚#x\öÜŞÏŠ¬UP…Äü\ãÇë/ƒ}˜û.¨õïI¡åÈä´â0Á“=¦e˜Öî>V~ïgt{ÒŸø	i%Ì•ÓLg”§ç7À¯nº\³WâÚSˆ]°:`³[Q_¢ˆ]ûÎ}àp4ÃÙSÔ1t,ÜÙkŞÚdÎ? ŞD—`«6’T\‰kû%gOÉ‹rKÃ’K”®EQô¡QÔËÁæ§e)éª€ÿ;uŒ”8,×Ê ÖÂõ]E¯Uğ±‘_P7â˜®nÕøçë?!•‹
+endstream
+endobj
+37 0 obj
+<<
+/Filter /FlateDecode
+/Length 298
+>>
+stream
+xœM’KnÅ0Eç^ˆd>{=¯ª:h÷?íÇQ&á„?íNÄéŠ>HCğ÷ÅMBMf*~K^æIƒñ	R\6‰×¤ÖOã¥ !©	HxxYæ )•d¶"ãØ¤Î/4e W/\Q˜Å¢ÓY%È)]²“h ñÔx¤1J7IbŞ0í1Î¹-òùpÚ6n'É@'²8Ë;©Üği:m•WÁÜFª–ë”_û²|ßXù£÷g‹Û“loÀ=²Pt·\¼Ï–
+kwªoÚ[.óExf<WÇŞ«JNæ´¼Ş<g·}.·àû\lŒãçh¼î	§€ç…ì"%à Ü9²b`$ÅRê?í§}·»«“
+endstream
+endobj
+38 0 obj
+<<
+/Filter /FlateDecode
+/Length 300
+>>
+stream
+xœU’Kn1C÷s
+]` S’çIQt‘Ş[ÒjRt½øC‘òd¦5óewæ²D7À>p‰nÏnß…1›E:æ¾—ûkû]0¹	h3òèGVuœ{$l·pÖ±-+Û=®1ìÓ\ÙæmØ8}`üCş¼7•ÇqüÆRïNûRkÒO$‘?Ç=°~Áq6ª+/"¨°{5—ÿ®½aê”K6æ®	˜Q¸)ë;9'ÖÉ3IáÚ9S¢RãusNS•¹ä€F¾9Arˆ(—êÇ!­‡æQHsÏ+Ûz£àÑ+ìœÁ~q\Tô©G-dÓ'¥æœ)¤àÌ…Cš‡?F¨»BŸ[“×“Ä*`¤<È”/Ğ©¦O¢&°ù1©U0íÛ”~^?ÿ_y 
+endstream
+endobj
+39 0 obj
+<<
+/Length 64
+>>
+stream
+500 0 0 25 499 62 d1
+0 62 m
+499 62 l
+499 25 l
+0 25 l
+0 62 l
+h
+f
+
+endstream
+endobj
+40 0 obj
+<<
+/Filter /FlateDecode
+/Length 74
+>>
+stream
+xœ32·P0P02RĞ575P04µT0Ò)†\`!C…\.CCK3Ì4³€Ò†)XªÂ—Ã38n^WW 5Òz
+endstream
+endobj
+41 0 obj
+<<
+/Filter /FlateDecode
+/Length 70
+>>
+stream
+xœ32·P0P04´PĞ575P025b…C.ˆ™ËÌ°A,CS$–®¹!L…	Ö7<nfWW ±á‘
+endstream
+endobj
+42 0 obj
+<<
+/Filter /FlateDecode
+/Length 156
+>>
+stream
+xœ5AÄ E÷‚4±çi3™EçşÛ¾]ù"_xè¾ˆÉ&:¼w:D•niu7œ~ 5š=OTœİéjz2ğiÎ+q%Še°£êÜ0ò	Ğ!5•œÓ£È §Õ¬(ÖìH¿6Wû–˜n3½ÌDÃŸ¡Ÿ¸uªZÛí•¶L‘^¹ˆ8Š èˆã£2ı*¤Î§ı‰<‰
+endstream
+endobj
+43 0 obj
+<<
+/Filter /FlateDecode
+/Length 413
+>>
+stream
+xœ=R9ne1ëß)tÖjû<Sdîß)¿ŸÊ„µ‘”rN™&£ª$²ÄLşè£Ëeœ’©OÑT€8¢ö‚¯gï‹jß¾ÇèBêfC›ı|=¶'£dğÅ„qáÅk
+ÃĞª{0H®.q„dM}#X:Ñ4ú§HÃÖ&L±¥/Èu‚iï_¬«ßØŸ A?ïŸ×›åù©ÔÅ¿„=3`²ÿd%DŒÄššğ€/åAW
+‡[	ÕÓ4„N¨vÑ*†fævMÓÆ““°-nÀ)Âö’Ÿœ¿p2'|µ§c»•tAÜ 4ŞIôÙÇµXÏáÚª_ğÛÖHYƒ,îœµˆĞ2°W¬g@à}½5]¤Î¥1#ûE„;ˆ-}Zõ¾‡Üşbcp¢Ìqy>¹w® 7WÌµç:ê¡¦ğ,].ğ¾	BG·¢äŠ7EnªŒ¸ğçÑcj2¼A–Æ¹7œÒà¥*İvœiƒmÙ‹LÁKD·”‡ôìKÜ”wbÿ^İç¯xa0şW2õ?ÿ¤a¨Ğ
+endstream
+endobj
+44 0 obj
+<<
+/Filter /FlateDecode
+/Length 461
+>>
+stream
+xœ=“K!D÷}
+_ 	ÿøœ'£h“ûo§ÊtGŠÄã*»³wé.mŒ!‘SÌäG/îh¦|é”4i[e,]òº´ˆà‹Íåuùì¦jcUg Rh¡ˆ7C2_ 7çµÕ‰)üÛ|8  x0Ä§Ö} ¦ÖM¤îJÈ1ÂJ¾i¸$dôL{öœ§a3¨¨m(ß\Ç‹ ~Ş)´õdÅ µe„À$_µÆ¦Esœi‚_‹Hññuø6Q*ğã³ë±Aƒ&dˆ&!*Èî)è‡ÒÔQÍ´0yZøº~/:Ñ~*õ Knâå[g>ï´u/±§£0_f4' áXZÆ<8•EERß†
+ºÙó§s‰ÒÖœ&
+ÍµKİT‡kÀ
+)Àó<W{5ƒÜ.óï	©n•Òù€zé×Î)Äü}nDÿï4Å»ŠahÖó©Î¨+	Ô 3šWĞ:=OÖÙ&U1¦  ¨lKÇ ¢pb½Fu»ƒ]Ô· ßÉW~›_§¼À'ƒ…º„-h§æUıÀTÏÅd¯•6Vr)©˜·¯zZñ¾şò²»
+endstream
+endobj
+45 0 obj
+<<
+/Filter /FlateDecode
+/Length 290
+>>
+stream
+xœ]’In!D÷œÂ@ò„óteñsÿmªèş‘’•Ÿ<a—ª¢2†ôš%¹†¸Ë‡5zr,ù~hÈ«í´H*•=i·ì;§\ÍÔ€È4Eö°  8<4GÀg(‰,Û„bĞY0Tlp	õ®ûñ½Z$Jrm"­}¡ql@!/j¡Ä-¥ûÜbY¶&ö™rªtlnÅÙ›ÊÉÄ¶Rw£A³<9vÅ#18Ü$ú92æ:vé‰@"TA–n1øQuºa˜îP=¨M`€Hn¢ìIqAd™äQËXÉSõR^ãÆLêPùFÛq£ÕHœËó0‹9Ş­ª¦ı×ıĞDq=ô×ò˜Ü¡fÈ8Àåıw®öÕ>Û{)qÊ
+endstream
+endobj
+46 0 obj
+<<
+/Filter /FlateDecode
+/Length 417
+>>
+stream
+xœ=’K²å CçY…7@şÖ“®WoĞ½ÿiK&÷8àK29§L	“QUYb&ôòå8š*ÿ.”‘»Ä­ ·¾·<×AqlGì_ûÀs…êÁpãWõBN‰…n~ÏÓİ§x.Ëû ‹i¢wñsöÜlY»UGÕÕy'ÈtJ¡¯ZˆÂÀÀæ¹Ô J·èÂUSŒ¸Ùç¦b¡4né\p\«÷0Ëêvô§[ŸüÛÑt,Çâw÷…r$Uç © Ø!ñie‡;tÅÛºXGñß!6Ï°ÛVÒØê$‰¹NXÎatŞ3`ˆÆ1Ìß '=§¡MÙˆóE*ğ;¼p´RpÇk	(~PcôÑEvÀMZ¸"á_wp,==
+ªÉ<“CƒZª 0ÃEÄ‹Iì}ßÚsıÂÌ>Íğğ¢;Ş[r®Hû€ñmœÉ5*fôAçˆğïÆÊë’sh	˜ébäĞ¦½BîŒ&¾Ñ–Ô>ù ¢úÆ¢pŞ`ZŸ|x›FÀ|VtìLÌğœh—€â¶ƒGÓòuÍ~®ÿĞ²©m
+endstream
+endobj
+47 0 obj
+<<
+/Filter /FlateDecode
+/Length 405
+>>
+stream
+xœE“K’1D÷u
+.P|UÒyÚáğb|ÿ­3¡f¼Òk(É¢KUTJå^kIæwùe—é#·[ÊßëÉ!^²sVÊçjÊ-e<mÎ(fH]Ö–û1ÙGî\ˆÄc‰Y°—C†ZS±íàŞ:>WT¨ëŞ6§«!ÓP» Ğå’Óø¼ï$nñÓUœŠHj“q #ØëáH­_—ecáúÆZĞ=±£L£ŸmÄ <úzq©¤î×n8Ô€&Ñ§…¹:Ò.äÃ&)¡İ81Np´¥sËü}ã“+àmLûÿ¦u%pŞ.9­‹MO^†}*§%Õs„7*æÌ]oMøDûÂAÂ¨‚&`˜Q~("İ ~ŞXØ{+Ö4àV0‰Y½+¹•üÈÏ`p¤XG_ü|6XD¬N$dğê@ëiäâFrƒ•7»+WêFŞ^ç*fŸ³&bŒÄï3Frá&6Í¾1jĞ`äÍªê’Æ£³{ü{ıüã>×Ÿë÷õK	©
+endstream
+endobj
+48 0 obj
+<<
+/Filter /FlateDecode
+/Length 217
+>>
+stream
+xœU‘9!E{ŸÂ	¯Ày&ŠR$÷oc›a”è?lô½`­aCxxï¨âö Pç€¬À»ôPORŞÔ2ÖQfFÊ0<Lñé3ü–Ú\Jt§Èm{ş Öƒô¾PV‡f7ÊÕ·ˆoĞËJÂ‰Šç°áHé—ıŸ¯"I«	ıéÆAXêš¥¨<Ò·‡NÉWÊ¸×FØ¤6Ä¼¶wÍvm/©•ÎR¦x+(ÍK¤n1E¬/@Ã-¥¾å„ğ”5ÁhÈ&;`â´Ë¼©m\ù<á²]r
+endstream
+endobj
+49 0 obj
+<<
+/Filter /FlateDecode
+/Length 458
+>>
+stream
+xœ]“M!„÷œÂxşÁÀy^4Êâå sû©2t"eÓı	ƒ)Êöè]º„É+sHŒ)fòK›Ú”W¤ËŸ¦øêJÀÚ†uy·ƒµ$Ì!ê›°ôADĞqÁX]¾±¦D ìîÍIRSL;À qáİ,ŸµI¹Ğikr»!èêL’âÆl¹/Ø`i»‚Œ‚|*Ó"#°‹Nds<Cg  Ö”€ç!5Àä“ªşƒXƒwÍyr¬Ò2›wù4£p·MLmKşA)±ó@b7qGC¡
+t×aşç"í›>à.äÁ®ÎBvdÅ«V™´ª¸‹4FíP^vàiÿ4°^ö>õj‚BºÄFR˜¬}x7>•T!dª+Rv¦°Õ°	àB*0	eÕojŒÁ+‚+/…ıæ¨ ·Ãõ`mÁ@¬¿\o4?AÇ!ä+xbF.°kµû¬JÈèì-=0JéÁº“³„yÆAå Àp_‹m¬âœ„:5‡ã*ú,{<£`1µx€ú	ê]C¥hh–%Q	ş‡1‰¼ûégÌßíwûj?À6
+endstream
+endobj
+50 0 obj
+<<
+/Filter /FlateDecode
+/Length 324
+>>
+stream
+xœ]’MnE!…ç®‚˜ÈŸÊz^ÓtĞîÚsô¾¤éäò]#9†É!}Î)…¿mªğ„•ü4uQ}¹Ø%¯v0mˆ"³'>ªqAÕÇ7ê/ ‚õIHfnÀ\Ë|øíSKLíÂ«Yí‹Î²ûBÌ@ğâ˜â†æ[lMéV,k‰V6Q·µi¢ :ƒ…ó{J2ß%CÃMi¼B8Ks.‘”í»º¼m÷hQ’u÷8Š&R,ÿqD•lã&^	€.¬p#vcü¢EìŒå%*Ä•Ö Õ>–:"©x/»µÙ‘tƒê6©É44F-
+N…iİ-%ø>gßCïTœùÂÌ÷x±|û®GœÍ©}2ÏƒâY(,WÍ</à–î©nîk£ôQŸ+·ìÙÁ÷^¾ÚWûl¿„Ñ‚M
+endstream
+endobj
+51 0 obj
+<<
+/Filter /FlateDecode
+/Length 219
+>>
+stream
+xœ5‘KÄ0D÷>ˆÄßÎyÒjÍ"sÿm8Ù„gcŠ‚31-£#3Éuâô‘á’€ÿ±/î‡gËC–ë%ÛdR¯&—Ğ5Œ•Ş3KMÏ,ÒsíÆºbÃ5tæs7ã…¶g•¬‹4`#^²Î•ä*€‰zÅNÒ=ñ¹Fº›"Êw§„µÕ>Ò©ÕJø,œ¤RíÅ6 ){XŒÅ]ŠJx&Y(óod®^Œ¸õ¢D¼#l½;p[âk•FªÑ!ú„f%idg‡ı—®ñ7¾ã7~Tş
+endstream
+endobj
+52 0 obj
+<<
+/Filter /FlateDecode
+/Length 309
+>>
+stream
+xœ5RIÃ0»çú€kóòŠ¹Ìÿ¯CJí)Œ)S$“œS¦ø•±Ö’XSÌäGŸ»däIù{ÒtÕL„ÕÓmÊë!2’*CÁ“q„*…èÚ”³,Õ×cûøÜ¢)î)J™iİŞØ`À­qZ™¾jUŞ^0Ì%‚Î.H£UÜ‰Ù‘›¢r8^ÆB,„âX˜3’Ìmñ) Ş™‚Pgîò­âõü>nJ¹^<¹	=á2Æ—ÒÑæŠ‚óârLØÀ½HÖ³O_0%€–ŞK2p¢ï€á'øå{r•Ò"’°×Q‰¨A¤Ê	=ú¹£i¥¢-«üj½Jıôzõİ†
+´É†0^SŒÒ âihGVÇtŸ.$M,È~±Pc%€S:#ôéœB}ßJÙïûù³gy‚
+endstream
+endobj
+53 0 obj
+<<
+/Filter /FlateDecode
+/Length 88
+>>
+stream
+xœ-»À0D{¦¸,qØ±Ã<¢4Ù¿Änà>èaã„"F¡)èî¢dĞï/ÌA­Q°f=…C±‹kwfÊmóêG§;K¢7ìS¹åx´£
+endstream
+endobj
+54 0 obj
+<<
+/Filter /FlateDecode
+/Length 167
+>>
+stream
+xœ-P»C1ë=…xw™'¹\Šdÿ6‚—„,ËÂ¾*pO¶¤–á[ÀhSBS}4Èiæ¸¶´ÉnÃuÀí¸B­gKº£ãÓ¸Kò±AräÜ„ˆ5š%É&Ñ	RëŠÜÕe¨¨Åd®£—º”§rm¡ºÀYp;ğ|ÁMª¨ıfUÅ›`É#xïŸWÈÉü†¹tüÿãÑŞíÕ~†Û8ğ
+endstream
+endobj
+55 0 obj
+<<
+/Filter /FlateDecode
+/Length 164
+>>
+stream
+xœ=AÃ0ï~ˆD°û=©ªÚÿ_ËBâ#ŒwÜ'1©Ñ¡³“‹ĞzQ¦_Q_d‚:È•éjİVá7Ñ&ÀCÅ¨‡lõ¹P®6˜ƒ¯ƒsí­àìO½­DÊ»@aZh'Õ”ÕOç­çIÔÌ×C‘j­Ú¹b	z>0¥Øy6¼¥óIy“ˆ7ŠLÏÕ®öiïöUhA8
+endstream
+endobj
+56 0 obj
+<<
+/Filter /FlateDecode
+/Length 177
+>>
+stream
+xœ5A!ï¼‚Xµ €¾ÇT*‡Íÿ¯ps¢Eú\|±·°‹uVÄ—_HÅ_²HŠS4ôÄ>y“yR°KFaÏ·~$”›‹±*ş†ëÔŞT,Ô M«:
+Èj¯yzÆ àÄVy‹cqÓô‚›DROšÅ;úŒ]«š:AËkÁ&©”ğØI9¥Í5M\ÄÏºÌM1şäO[Õ‰ş§Úô¡7ı m†>Ğ
+endstream
+endobj
+57 0 obj
+<<
+/Filter /FlateDecode
+/Length 178
+>>
+stream
+xœ=9C1D{NÁ,™Åæû<?ŠR$÷o3`'y2Ì°Øµ¸órn1:›+âC¨Ğ…?›,TÄÉ¦ˆ:ù&•`‘Á2ƒ**¦ş¦BŸP¢¦M¥¬EéÒ©EZÁĞî¦ƒÆ»Ê¡´™Ô8“şÖHvİø&ßÍ€“È€ñŒ« Ë1{"¼€¹VÜÔÏÂNlÇ½u¶Ñê’½éU´¯¶øw½›^ô¤/#ÕB#
+endstream
+endobj
+58 0 obj
+<<
+/Type /FontDescriptor
+/FontName /MathJax_Main-Regular
+/ItalicAngle 0
+/CapHeight 680
+/StemV 141
+/XHeight 442
+/Flags 4
+>>
+endobj
+59 0 obj
+<<
+/Filter /FlateDecode
+/Length 336
+>>
+stream
+xœ]’Ïnƒ0ÆïyŠ·CEm%„Ô–Vâ°?Z· ‰éFˆ=ğö³“¶“v úÙñqHöuUÛnâÉ»ô	&ŞvÖx‡«×ÀÏpé,“)7nQXuß8– ø4ôµmVœ'¸;N~æO[3œá™%oŞ€ïì…?}íOŸ®Îı@vâ‚•%7ĞâI/{mzàI-jƒûİ4/PóWñ9;àiˆet££k4øÆ^€B”¼8KÖüÛ“"JÎ­şn<–±TˆôP²Bgr¶¬vÄ1¯(¿‘ñğB­¯VÈkEœmq9CŞìS‘¥È‡Š8İ¨`ìæ ¿û¹{ßx]­Q%‚“*&È”È2VdÔoIı–ÑL®(A—R2&èf*£Dí¦·ö±!ˆñ1{}õÇŞ:Ì›&İYxünp¤¢ï Ã¡i
+endstream
+endobj
+60 0 obj
+<<
+/Type /Font
+/Subtype /Type3
+/FontMatrix [ 0.00100000005 0 0 -0.00100000005 0 0 ]
+/FirstChar 0
+/LastChar 40
+/FontBBox [ 12 22 1051 -716 ]
+/CIDToGIDMap /Identity
+/ToUnicode 71 0 R
+/FontDescriptor 70 0 R
+/Widths [ 250 0 750 759 715 828 738 643 786 0 0 0 0 0 970 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 878 ]
+/Encoding <<
+/Type /Encoding
+/Differences [ 0 /g0 /g0 /g2 /g3 /g4 /g5 /g6 /g7 /g8 /g0 /g0 /g0 /g0 /g0 /gE /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g28 ]
+>>
+/CharProcs <<
+/g0 20 0 R
+/g2 69 0 R
+/g3 68 0 R
+/g4 67 0 R
+/g5 66 0 R
+/g6 65 0 R
+/g7 64 0 R
+/g8 63 0 R
+/gE 62 0 R
+/g28 61 0 R
+>>
+>>
+endobj
+61 0 obj
+<<
+/Filter /FlateDecode
+/Length 639
+>>
+stream
+xœETMÒ;Û÷)|©2`À>Ï¼JeñåşÛHàÎÛLkŒÍìÜc•ñYKÇö"ã?ydn¢?¨È²_ÇE‰ñ}Ä×ø¨	>!ûÀ‚çßGqüÑ#ã§60·mâ…¶6NÅó \ÃB/ÈÕàû,‘†KébÛËi,hŠ3¼4I€É˜ÌÄöbºÌÄÚQÌ'“ë¯ìŠM„ˆ‚´Oö`F‡õÛ.	0
+÷åc™Ëvñ±"^>Ö9/>ãåÃ×l>(>L_>Â¬K;¸¼|ÄŞsÎæ£AñÑ|£’8ùòl’†Hf‹ÇbC•å{…»¡¸¢¿ie!wÒÉ âÊE*•H¨‡	É	"ğAæõ’9#üápO
+fm  '¤†Åx»fÉõ^FB¨mWT¼Ú–`”sÏşå‹ÍÓ‘’Õ©«¾$éôÉÄep•ÌÍ+u¢Ø8AŒ-xS¢`éÅÎ’
+8Îdc+V–Ğñp“ˆ²U8Âi³ç,ü4`«ó	g ™û)À˜œÈÔÉš!”KÉ†İôIÅƒêŠ3…”~Uê@w–ß`5Ìd7Ô¬[>tq~’5¨i»Æ°š4¼`¿àÔ=Â„jë£FîÔğ“Òƒä*tÛáeŞZ/|º<ĞPòÆDqÒ1…d¯<’Yt€;JOï*İe)´çFÁ1eªU
+UMôóÄlä×ÿ^WÇ°«¡(¬º)r'Q´Öä¬§Œ+ï™ßò7rS’W¬”Z™ÖåDQÂñVôV„òÚ5°aá5íT–¸Ä¹‚{%ŸßÏ¯ç/a¡
+endstream
+endobj
+62 0 obj
+<<
+/Filter /FlateDecode
+/Length 563
+>>
+stream
+xœETAr$1»÷+ü®2~Ï¤R9ìşÿºto	°±,ä>1ÇkÛs™[ğóK.õ ø{)²shê¸ÁÇ-g|.=2î•CÏDá]à¬D£?—¢N¤İÑW'ÖFí&Jô›†~øÇÓîµµU\ÔĞ`ÊK‚ğ —è&È1`U`¹¡|ë0%o[$‹$NÅ¯MÁÈnö±	Ù:|³¿*ji¨ùõÀ9bœÁˆe.XäM~úFˆÆŞNªØèÖwvİûœB¿+QeEš5”‰¸pN6ï´y'î¶ë7$D5–3€T¯ÎÅA¦ŸR “z$§‚iîÊ–y˜~âª‘qé/DèçŞÏ8³®#).%FÉÂá@Ï aÈÓñT%8ÌqVI¸µÓ:Ç8>	î›OêsÁÒH‰’ˆŞ°ÕõÂÑ½İÿ£èzãÊ²?TÃÒIéıöz¾NjF¹êÚÚ~ğŞDhİ)mvó¬ûDiH»ÓAŸÑdîÔ÷ĞÕÛ9-dˆ¿ <\F=Ù”€ÇËàl\†÷ÈòúlR&«Ášñ2VyëÌì÷¶:¥›ÍâûÆ¶©tM@—¾sP×e€[4IhÕ™Y9Ê°ìZ¼ ü-ÔŞ>·¤©„Š“Äô~5ïcy^G‹?š¦äÅ¡OÔW
+jTà­rPvJÒ¯ÂËç·Ë³ŸMÖó­²£×é¬ç£è1Gì>×Ïõ}ı?ïÇ
+endstream
+endobj
+63 0 obj
+<<
+/Filter /FlateDecode
+/Length 540
+>>
+stream
+xœ5”K$1D÷y
+.’Á|ìóô¨5‹šûo'»¤VûØœµR†Ä·FHå3ù£ÏÄ‚¿%x-ySøzÉÏ–òâ\LœyW£g–¼sKä”K…¼m¯b¨Ú¢Kñ¶=øk;¶,IÅªcÁ‘¶é’®ğ©Œ0étî×²2ä”È àt¢`HV;K²¯7f]zmÅP6€@æ›NãÉ€Æ˜©_ğvkÈ¹¢LjÔÄ,?x’¬oIÕ5zô¯Í£¥ø¬ƒ`+¹°ÄÎ`x§ğ6ÑëÄıîêª<oUŸ§Û`èM´nØ|@½3!"íP\¬€V<yÉ†3êp™-)M¯¦Ïcl):c8ñB-¬j”@éRè¨Azİ`F	Î„­+Bóƒ)£Upb^ê`±™AÊÜ™œ]7JF¤DZ‰¡ã dÇl6f0wĞà‹1&æ€Óí¨×t N"¸ÒV„}&ÈÏxå>øyr]ÌÍK Vn¾€®*7@˜Üµ0Uâ7’Î
+Ö€ÆòM½ÜzÓİX6Fí—Ç!!Àé÷5~0t¼¡lY.ŒØF°„Ú¹üHÃŒ‰uJ˜'…&Pˆ¸¶I'…˜“ºµ³;Y|¦´mgn÷×À!›ßã :CåÚ¦qNÎÅ^-“õm^×dOC”¥øê“Rju&‹~vı‰ áÅ<c¨î7èçùûü>ÿ zİ-
+endstream
+endobj
+64 0 obj
+<<
+/Filter /FlateDecode
+/Length 544
+>>
+stream
+xœ5”M’í …çYH•üºÛÕõ÷íÚç`2ÊQ„˜á2ÄUî\C*6ş~ôÒ5å6ù™o‚íşwOØ?—OúâkŠÏ%·‹§Ë­›öÄBÀo&[z_$-MßË¶7YÛ¾böXÈÅ—Î<ßm!Ù9£6ÄªxeÇ4°æZ+ãÅ°y0Ü	)VG¢ÃX+m×46â²(fˆ´·›eŸäÚÀl ĞÅ 0’Xv×ï<8G›`çäçšaššÌ,J‘<X£Nµ ƒBµ‘9¿×d‚ÄiÔzL£Ä(	ö)Ñx=w!†XTiuE!j"Ê•Ò(aÒèF	ÓÜy³ÄÙØÛˆT€Ñúê*¡]p ¬E\â›½æèJ“Î‚Çè5—ĞñÀj`&œ7&“¡1Ñ³ğÅ
+fuk,Iæ5—?àTé rrm¸`dQÖÆnÄ5ê;ã…s’ïÂ¦øAc±‚ÄïUè§Æ²6+ ,oÙãSu'åNÈA”·º¥Q¶
+;Cˆ6~ğ{i«T)Šî¼™®rnrÒ‰¶¨¸•ğ@½º™­ƒµ9rV­¹Š-*ntb‚h§lùBb#²TÎ$¦Zƒ»)½Ë¢Î)ÅÕİˆVwİ’V=%ç;ûçx?lşÙİ„®~ƒP«şĞ?/Œh¦ÜïN¿BHB…#À}L·s£Éón}®×ïõº¶æF
+endstream
+endobj
+65 0 obj
+<<
+/Filter /FlateDecode
+/Length 538
+>>
+stream
+xœM”Ë‘æ „ïDA®B/„ãù§¶öà`²ßnajæb–@ˆ–ä´ÕGí×\£çt|}I›÷ê—Çèÿ^tï9Æ Œşi)¹ñii²1­Ü(gr½ñxÂ5§¸é,Lƒ=#wBŸ¦Ã6>MîI÷ìrÓ 3DN˜8Uîq€«ÌD×Æ§iÑº&£!i]H|*ƒèòº¸Jç-'Qp¼Wvxsµğp\û
+ïÂ«VJPi	ÖøêÌÎgŸQ¯O³»à¼°[`F! )¥Û/Æ'ÜÎÕW¦mîÂØùü´¸iš¨Ÿ8YOÄ¹ ¨ğÉ~·!· M…õ×äò¬}¨Å\yÀ“e¨?ÜNŠfŠ¸´Ï)y<yûìs_—÷-”Â£n?ï(µ‹¢›Í†C$i6êê¾ñib:â]†/Ÿ\Ws´Òe¨˜/ÚÆ,$œ…i°	õĞîI=ª¯=iS8aÙ.*³œ7‘;Ç·n@˜/ñ¬³3¤¢-hÃH2(€U
+fëPû*ûgôHêƒ.NëìØj¨¸ª,U¢ İBiC…ĞRíí Ë·†ïN€¨<“ø4cƒ—›A¸á»½ˆ.¬ÁlÍ3VÃ‡ÚÛÍYB9¬fÕª
+CöÄ¹Œj’j2c½“9sÚ‹ıVøãàÌXtU§¡ãşA±ÏOëÓş¶?í?è
+æ[
+endstream
+endobj
+66 0 obj
+<<
+/Filter /FlateDecode
+/Length 369
+>>
+stream
+xœER¹qÀ0ë=ğøJšÇ¹\Šdÿ6 m'	óA-[2Ÿ³–Ë¿=lMxàşyàHÑØ ´«r&g†¨#%UÔ`‘…ˆ"'–,” ½f›ëmğG’%Ürêw¿ûlap‰'†Ò‡V*ÍZQ;à2ôò}„Æ %¶»qÜàÁA(¾éà ØmN#€cæu¬N^»9}ßÊœáÚAÀ,—I~•&ÅÁ5I¯¤”¥­©I¼}t¶Q/ˆ;AÎ¬…µ6uzsç[é’A0Ø‹2ÈnÎ O…¬	 m5,¹ïÈà{Ûëø:fï…MèX‡m|‡!áA†SÔ-iI.}µLîµRba›\¦}}Ş›hBkë$Í‹7²°›-D#¼v+3 îg¬r>¨GÒÀÌVĞûq}Ã¾?W¹_R_Æ“•™oeÅ3¡5È9äOŠôyüÒ÷•s
+endstream
+endobj
+67 0 obj
+<<
+/Filter /FlateDecode
+/Length 424
+>>
+stream
+xœ=SI’Ü0»ûü€«Ì]zOO¥r˜üÿ€òÌ©Ñ„$‚ İšòH>r÷“Òõˆ™|éU©rÇRù÷ÂJ)‹h©Ø Şò¹*PYk‚SNà$kø}Õzam>¢` ¦<·yÅBúá©ÕÒ¶äÎ"Ù‰Õ>ân}Á"Y£5v¢ ïXßWAk@ˆ½k Y$­ ÀLTLh'IÈì@Öœ$ptåÀ Ÿ¢Ì-Ù¬í’t;Ú>WÚˆ
+Ä~ø\tôÔ4ÏM‡:H,6¯Áx] Ù)ÊQbÍ€E+uâs8Æ_KcC"G°xÈ0h¡‹!RôíÅ¤/xøü¯”iM‚©x²ŠÒaMÌæãU #Ã½YûÙ;FÌB-@2RĞ|j¿€îòBK¯ğ4IbüğY(:“nLå=ÅgLzè2Äy{‰Ñûä†èÂ¬šBË­xf€ÍĞúKr¥Q–l¦Øx¸ÚğÃÏ¢SŒæxŸîD{ŸÅ‚.ß>²9ˆæ6a“ÆFî‰8ŸUn•ßOísı½ş\ÿ©§
+endstream
+endobj
+68 0 obj
+<<
+/Filter /FlateDecode
+/Length 489
+>>
+stream
+xœESI’Ü0»ûü€«$®Ò{:•šÃÌÿ¯({ri¡%. HWlb!w.“ŠÄ¿?óÒµp£K~8Bf œ^8§|®é&w¸LCHL™H¸}óe"Æ—l¤xJ®>>WjƒïË`1D«ãDÚ‡c<×)–ÛˆÅ*q²×†ˆJ²wïß@err—ÄB´IYl•R]k(›>@'ù¸]Ò‘n Å’I˜2’Ì¬¹¬*E-^[`;ªm½Iä gû2Ù!Ç–š¸I3rÛmõ’d×·œÂ¢¢LX
+ãŒÍŞù}.M?PG¾ N8O&Ì¬’¹•|œ¥óî0³ÙÎÍ™cÌs“4ªÍØ³aÊY>¾ëó¹¾®¤ıó@°•óGıì•©ñê¢…Å¹Ö8 wé¥C  ‹W=€á<*6üÆ¦à6gÃÄ;@Ü)hQrÀv¨Â»­h6ì¨@³öĞ{Õ!ÈÛ“VUç1j= ËZ/•Ò~åŞPéÚò«VUø9p*6~c\¹-Õ›}>£|fÏç£ÜÄ¨ÿgôhAé6ÌÆXÖZM:ò´¨A÷²–CïE7˜úfF0Á‡øzA[øuı½şGzÉÎ
+endstream
+endobj
+69 0 obj
+<<
+/Filter /FlateDecode
+/Length 385
+>>
+stream
+xœ=RIr!»ó
+>@6^š÷L*•Ãäÿ×H†Ì¥­¶åM8}öÙ—÷‘=5ğ÷%Íö·Uğİrö¡]¦•1¡y5É‡@%AR|_MÃùÑ‡u­Dr5ègõ±ÖµQ 7PÍ…¬,"Ù†œ‰ˆç±éŒÚğì>ä
+ªïj/¨¶áa®((â•õ FÂ»¹ÊbšÇ¹ªŸí„Ín±ï$f½ ”­BdÏnj,°8šd/l@G”“™{iiO©è«Tô£á«”ˆà$”fNÊæŸ°;Şf]1S1äke×FE¢MÇN¹+Df¡°#jp:ç¸±°@p´É¹ÎL9™u Lø¸“0¨çTô{5ñzºà´Ü<AnléÂ"‚Â ›5„êáOä¥ÿ’?Åÿ×Ò›§Š‹+# D§ø«×Õ¾ÚZRÍ¨.èû<gŞ’Ù–<”Ÿœ ‡Ä'‚jÛ7ÜÔp\ôß6ƒ!ıÎèŸfìüİş Úœg
+endstream
+endobj
+70 0 obj
+<<
+/Type /FontDescriptor
+/FontName /MathJax_Math-Regular
+/ItalicAngle 0
+/CapHeight 680
+/StemV 156
+/XHeight 441
+/Flags 4
+>>
+endobj
+71 0 obj
+<<
+/Filter /FlateDecode
+/Length 247
+>>
+stream
+xœ]ÏjÄ Æï>Å·‡ÅD–ÒƒeÓ…ú‡¦} £“¬Ğ¨sÈÛWMv=(~|¿oœzn›Öšô#8Õa„ÁXpvKP=Æ’š6*îªÜj’ĞîÖ9âÔÚÁÎègrçV8<k×ã¡ïAc0v„Ã÷¹Kº[¼ÿÁ	m„Š‡TéUú79!Ğ;¶:ù&®Ç”ù#¾VÀŠ®·n”Ó8{©0H;"áU%€_.‚ Õÿ<¶%úA]eHäK"«êÔÂÙSy?6%·õ¿•fÚÈS½“›—?Ë¹O¡–Ò ek¥óÜ³±x_¬w>§òùôI}
+
+endstream
+endobj
+72 0 obj
+<<
+/Type /Font
+/Subtype /Type3
+/FontMatrix [ 0.00100000005 0 0 -0.00100000005 0 0 ]
+/FirstChar 0
+/LastChar 117
+/FontBBox [ -51 71 689 -750 ]
+/CIDToGIDMap /Identity
+/ToUnicode 78 0 R
+/FontDescriptor 77 0 R
+/Widths [ 600 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 611 611 667 ]
+/Encoding <<
+/Type /Encoding
+/Differences [ 0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g1B58 /g1B59 /g1B5A ]
+>>
+/CharProcs <<
+/g0 76 0 R
+/g1B58 75 0 R
+/g1B59 74 0 R
+/g1B5A 73 0 R
+>>
+>>
+endobj
+73 0 obj
+<<
+/Filter /FlateDecode
+/Length 187
+>>
+stream
+xœ=KnÄ@D÷œ‚DâOû<F³pî¿MÑ=šy2]EU³pÿ>µ.ÖÅ¿JÑv~ı‘åõéb**wµp¾ièÖ‘¹õ”›Âe U0 ª+:¹ÉÅÌæğÄT³§ïz“…mÒ^?`nèmôT67péØ“cÇsL‹q(v\ÄÒxºı`Ù¾<&Ğ8®QN¶‡æˆƒè}*Wn0U ;˜ş9Õ÷|7½éEÿŸFBÀ
+endstream
+endobj
+74 0 obj
+<<
+/Filter /FlateDecode
+/Length 270
+>>
+stream
+xœEIrÀ ï¼‚P¥•å=N¥rpşÍäbÚ0ˆ–ºj•Úfm=½æœøûĞêµyjı.oó.û°ùŒ)½>ec­©ã”ğyk=E]¾}—­šğŠÅ\¬wp*ö Ù«b¿%âOØZ‚‰k¼d}Ë+/7Ê¿ÅFì5œ­¥/$ì¬&BéĞˆÛƒ¿vŸòUÌÙ§³w§Ñ#™Õ;A’!¼-(ƒ@³œ$xH„ºoW©æ¹WLeù&H ì^ûÛ¤¤N„•“ùU¡—S2WÒ­#É3Ìcr OçÅ˜{˜ë‚&‰A×j¡èİ÷E5Ÿì•|¿‹„Å…çÿù.ŸåVÍiŒ
+endstream
+endobj
+75 0 obj
+<<
+/Filter /FlateDecode
+/Length 181
+>>
+stream
+xœEAC!D÷œ‚˜ˆ(êy~Ótaï¿íŒşünä)Ì€„™fMÍ4EmQq}™’…~¥å®©˜¶Œš2µL.z‰ÏzdKçùM0vÚPXOX^BÊÈ›Ç™Y2ÚîÕÙ2v@é%„uÀ°Owk°-…JïäX³m‚ßõ‰0Ù1æä¦>
+eê6îáHê¬b=›Xòëœ/
+ÖâØ äßçy]ÿV¿å˜4A
+endstream
+endobj
+76 0 obj
+<<
+/Filter /FlateDecode
+/Length 272
+>>
+stream
+xœE‘KÄ D÷œÂh	0pŒZ³ ÷ßNdºQ°ËŸrÖ*U<äÕ[•–)]åG‹)¯ì)wÑÙª44W¹ÊÆ˜*¨9E{;€àœM0ò@ÓŠàÁ€²@ú#¨$&2ÌP6ĞıÀUÜô¡LÀv;%J„5,‡ŞÙÓA›Ml hÍ˜B“=½úÁ…<HºS Kv5×¼àH]p¤ˆv ıØ˜ÈcÂvíãäU~‹M¼Â•»X²pzşø`	X6ÂiÙÕa4ªâHŒíì©I/Øt×{:°Ï¹ïz—ÿ/öYå¹õúf-J÷ìu@Bô‰×áŸÿ­o%ïòùlí
+endstream
+endobj
+77 0 obj
+<<
+/Type /FontDescriptor
+/FontName /FreeSerif
+/ItalicAngle 0
+/CapHeight 662
+/StemV 125
+/XHeight 450
+/Flags 4
+>>
+endobj
+78 0 obj
+<<
+/Filter /FlateDecode
+/Length 231
+>>
+stream
+xœ]ÁjÃ0DïúŠ=&‡ 'NHÆl>$-uû²´6‚x%dùà¿¤º)ô …aæ-£åUS7¤=ğgd‹zMÊádf':4±ı”–~UiÊQXÆÜ.“Ç±¡Ş°¢ àŸÁ¼[`sQ¦Ã-ãïN¡Ó4Àæ»jƒngk8"yÈXY‚Â>lº	{#OØ®QÁ×~Ùæ/ñµX„CÒûŸ6Ò(œ¬èÈŠ,+¡¸^K†¤şy+Ñõkôœ‡èùFı–Ÿê*?&ê×â'_Íäì\(•.‘ÚÄšğu,kl¤â{3pè
+endstream
+endobj
+79 0 obj
+<<
+/Type /Font
+/Subtype /Type0
+/BaseFont /DejaVuSansMono
+/Encoding /Identity-H
+/DescendantFonts [ 81 0 R ]
+/ToUnicode 80 0 R
+>>
+endobj
+80 0 obj
+<<
+/Filter /FlateDecode
+/Length 311
+>>
+stream
+xœ]’Ënƒ0E÷ş
+/ÓE„1ä%!¤†4‹>TÒ öZ*Æ2Î‚¿¯™I©– ÏÜ™ËØIUjkO>ü ¼3V{‡«WÀÏp1–¥’k£Âğ­úÖ±$Š›iĞ×¶XQp|ÆèüÄÏz8ÃKŞ½oì…/¾ª&rsuîz°V–\C+½¶î­í'([Ö:ÆM˜–QóÈ8M¸DNÉ4Œ®Uà[{Vˆ¸J^ã*Xı/¾#Õ¹Sß­Çì,f!EÉè3Sv Ú!åk¢Šh‡”‘nEºlC”#å[¤õŠèHTÍ´A™Dw7ùŸ«ÇOìQ$¨§Üb%ñB›TPîÉVN´&w)õ¤Í|E­Ó[3*?Oe>½ûÈÕÕû8m<bó<`cá~ÜàfÕüüşwÄ
+endstream
+endobj
+81 0 obj
+<<
+/Type /Font
+/FontDescriptor 82 0 R
+/BaseFont /DejaVuSansMono
+/Subtype /CIDFontType2
+/CIDToGIDMap /Identity
+/CIDSystemInfo <<
+/Registry (Adobe)
+/Ordering (Identity)
+/Supplement 0
+>>
+/W [ 0 1843 602.05078 ]
+/DW 0
+>>
+endobj
+82 0 obj
+<<
+/Type /FontDescriptor
+/FontName /DejaVuSansMono
+/Flags 5
+/Ascent 928.22266
+/Descent -235.83984
+/StemV 53.222656
+/CapHeight 358.39844
+/ItalicAngle 0
+/FontBBox [ -557.61719 -374.51172 717.77344 1027.83203 ]
+/FontFile2 83 0 R
+>>
+endobj
+83 0 obj
+<<
+/Filter /FlateDecode
+/Length1 39328
+/Length 14182
+>>
+stream
+xœí}	xTEÚîW§Îéî,„$$–tŸî&	°#(’DÂb ˆ
+!é@6³°Ê¸ Ê*:(à€ŠŠ Œ£¸!
+2*¢âî(:3Œƒ$2ÆåWŒJàô}«Îél 3¿÷¿Ï}{“â=U§NÕWß^u:$!FD!t=qPYå«ùêv¢AÛ‰ì=ËóË|sêÿµhñ*"wtYşâÊÈÔ"ƒYziEA>ù[ˆ.n òZqYÍâÌğ,Ï/"ê1¿¸Ø—ïØ§€zã¶ĞÑÜÛh †Í+]Rtlf0Öª|
+ë}PT9¯l–²àS¢bü#kôS›í¡D#0^PP–_9û/w¾GÔsQ×É$xW®Ş×mÅkwÎî|Éärøzÿo“¿	ÔMkÎ1í cnÅC&àj/3b‰Ô÷šÖø£´ƒVË—*z:TB©- )Nw	
+ÚA©ê{T,¾gBQY6F$7PÂÙnv%í¤<¶‘²STD+©‘¶Ğj´6 ½–VĞuìÛHy²œ¦‡ñk1â0‰ñ«é•áúMGo-zk1s-¥ĞF²Dbü6ö±+hêª/Ò!Z†rHâ	zh;¨ƒ´šÍ§£X÷b~¸ƒ>V"éc¬îñl-½Eqèy•Å0Zş1–bıĞÃÆ±c˜=|¯e‚çÁµ(/‚—–B sØ*G¬â2Ê&Üo´J ï-%Ñ’B”'¬²ZÊ(yĞÂ!«C²bPYÙŒµèmÕ ã _ Eí Öá4<=Ñ~¿ÿ,tùÆ4 ¼Í~Ô#4ÚzÕÈv²®nÆ
+£°Á¦Ëz­ÔxR`› ÄÜA|ÅIy·ÁzÇQği ]Z—ĞÕØ:wÓ*é9«i4F¡^”&íQ.=c ä‰•\ÚH§şğ´‹ Í’›Å´°™Ÿ J Ëè©¶¡ô@YN‚?‹ú%Z®p6‚v(\ê_èK¬x!ş—6[‰`gSãÍÔ“½£¤ÅÖÌÙoYm¿e•À¼Õ¬Xj4°J@›ËéQiÑˆ¡'ACÌom¡Ñí43ƒÜ‹¥îR(‘|³†ã.1M·BËèèyŸå£KQœô0ÊE´³—AãK!A|Zxç­ô
+(ç¡w;õÁ*Å4|¯¢Û°jíÆuJ›î·£zÀ·(aÑĞÁlØluŠ ë]xR‚Ú,³é=¬;ô^G´ş@^Ù‹˜†lu=M·PƒM7`İÃ,¥İ…r9 E°öÊ·ìS”«QY¢Ò›`KPö¢ˆg—²U,Eal:ÛÁ\,Ï¸Å¡=‹EbNR Ğûl=ëÆŠ‹Bæ3Fcµé,t=l:ı…¥ eß`Ícr…mìMVÍ`gØ\Ğšv#í•óÖ³-È4‚—iô¶àLÎ•”ñ•GëqM!fN“#Ö"?ûFUüQ«Nøâ”¶Ú‡L[†õFSwvÊï2¾ò»üO•ş·Ù0™w?Âõ0|DøÃéÓe.®•ùx±ôÁZxQ-âàÚã`ñC˜;­ÍˆÕ¸¿Käô5ĞX´jè~ôNE<‰t/FfÑLØsœœµZÎÜ„Q£’<ˆÃˆN±ÚZÚŠüO4‡n‚ÿÍD¯ ğİrwkÁÛu4õZ3Óú‚Ñ‘]æÿŠ<è”Š¥$;¥|nŒì,{…\*h¤{J1tSq_…ì¡ÃãË<’…ˆYNï1Ÿ[F©Qàó£¤\‡$wÇ1¿ c¯E{9¨8q/ÆM¦‡d”x1ÿbé	¹'ƒº4ÉQ:F>>Â˜iKÔ±’Ğ¨È.šK×€ªÈ)X)®”ˆÄzëĞwÄİ ¹A{µM1ã}©D€n‹ŞÚvz­ä©¥Š‚Ÿ4Ù~X_‹pZš†»VZŒk?ÜmDn¸
+}i¢rô;ŒR9è™
+sä37ô¸ı·ÀúƒAo<"ëC¶”³%ĞÍd‡g(6Øë;hA}€—ë çéxv/#Š‘Ÿ§ï0ã!xÊóÈÅq7ıŒzF÷¡	Ìİ{ ÊˆŠqùşÎ`Ä§, ;Î6ô	aB¾ /üo¢ôF	÷‡ÃRÁ"#ùü{a¥Óâh¾;âhl«2 º(W"7A7Ã"¯£şÊıô†ÕU3ZsÕ<¹æ^¹n`şcôsXó÷Ñ¥TJKp†º–ò©6½VœOe¦,@ñ¡„ãI!WÀg¢`¥iØg5­¡»Ï¾B9fA®[Lşo•0Xh6Ëô‹Õ¶Ó=Ø‡Ëú«¸W¶Åõ^ìÃåİp9âÌ¾‡î“OïEk¡ÕZ‹gĞ_NÛ™—İ	ÿ{vƒ=VÁKFgé6%%‰„U®FÍ`=Ù%(ÉÈzLaiô9ú2`ù&6e Ê”ñ,“]„Ì;3ó€‘è™Äf‘}^6™vóÒ26¹l;å!ÏÄ¼È­ãñ,åƒÂx¬ŠŒÉ~‡Yq²5ZÒšÅ³Iô.ÓqÒ‹ÀÈ«A{0h‰X§‹ §ª –[uë“Õ)Œ	œ¨ˆ‚vVË˜}ÂŠXµ=KA·eÍhš3sÖA	ó4%0Jâ—NS:Q€§Œ'áó¿Dnç‚¶ç,±KiZŸ8çŠ ZŸMÄÉª5ÄÚâ<Õæ‰ÎÄ¸v'j£Ô(õ÷ôÛı/ú7È³†Uü×ù¯;·öÜZÃqîtóyØ*şIşIçRQvœ»Í(0
+Ãp>ø%°.ØA]rîs;Ä\ãQãÑV§ëÕş×-º÷k¥Úãhf1íùÄœ"9çããgĞ'÷H¹_àD0LR,w½óK{ÿ,ÿÑÚm¨ûoAÆŠcß(Nœ; }mc=N³Œ¯ÀĞç‹a‚_9
+û©ñg¿O ³fDµàzÎ×aüh¼5¯hìÄÙb§ÿmº'o.èa„lö=†÷Py
+Ûˆ÷¹÷­‚İTGc75Ç<ÂºÒõÖõ
+¶ƒŞoÔş˜uv7îßojX(æe¢u1²r/YşŠ’†óîÂÏ3aF"ÄÈ‹ÍãP‹Œ1	Yyv4ñVW†«™¥û¢/×ìŞÉÈÃCáÅ„İAœ$‚÷ëàë#)å29~ŞÄ›á Ü‹Ø	±Ş[Jğy=cX¯fì³Ê”™(ÍÏD1Û;«\ƒİÓ,Ï!ï^2½b¿ÁS¥«9õxÔ}åŒ¾Í­1­éJlµJó“VÏDOwú×ïÛ”1rû¾=U9Z@œ(÷Ê3Q¦ÿŒÿİ€r£u=#ß6H~‹h'ëO¸X–ç°§`ÏÃ[ú«Ü ù†âè û×<hxF`gı…2£Mû2”¶Ï3Î›1İ*3Îëi)yíîÎ/+Pí«Q¦œW¦Z¥ıÌ^rn	;…Aÿ'ÿO8Ó\añ‘wŞšû©ò,õû@±" ÄQ'ŒÌ‡ŸÚàW;i<åAË½†SF1ú—ÃglxïÊc$Çµ±J -,èkõ´ÍIA^wÍß û‰9`WÑà<N\­ÕDkrÍ8´·É¾q8óL°ÖÊ¶²ÅÈÒ]idİ­vŒòJJ(®áJÀàq6Ú„³\ƒÃ^ÃÙş’Öµ#®ì5ñÜsáû@	ôÿO• ş¶õb¶8°î…Ûç%Æºî’Ep\,ú [±¤ká×‹Rbæ[ƒ:NÜµ~"ù´] CÖÅI¸}_sıK}¢Ô^ªMœ«Ë3#J›ç£ÛÏøşlğó|œ§CËŸö ƒÆ"?¤×Qúá½(çúdœÏ8;ÈÏpzáíí"äóx@”0ätPœX 0o4K@õMœéœè™*=1¢§ÜDÙ†3úót;J4¢ëQ¼=dátƒ\Õoµ£@sx¹Og"¤#^+ñnqæÍ7wĞ?As!Ş®Â@aŞCP¤dV…½q>E@ÛCsÀw
+¼g"Şº{ã-a"Nêıq²K_ÉÈ —´*ÉVÉFÙ„w…¼ÕÜ€·¦.Ô9Ğ‰<xpVÿœˆ‘#ÁçDå(ÛöGş‹.FÏÌ¸or+pHï#°·mÅ»Êm¨Çƒn/Äj7è6obé€$C¶ÓÏa\´@®áXÇvW”8<ÑÑÛu"z»§ŞÈÊ£ ­ÔOéÉŞÂ¹şcö>²B#´äG–HF¦Koé[VÄÊqÒKAy‹ŞfGPºãÍ0‡j$ú#/æà:L¾Í‘ïèÃh›‚«x
+».ÇŞ-V¿yHÌª…Åûâ:/9ÌÃ9a8ä¬e‰¬»™İ,NFşm¢ÈOƒnÃ.V+³ÚTh[Ô¹â=çğˆ+î.à©`Ûé ?_¾)d‰ÏÌYŸoÃ›G^ ‡ãM6éWK.ËUúˆ‚sL9}‰zØ?V)ªöİo)<¾»çjXÇ+vkáÿaíßëŸßº–o²¿Rãw ûWÈş@=ÌÔÌ8V&ìî¿VFüXîY%p ¦â=Ø“ìsèè
+¶Wé˜‡œŸÕÌë'ôİyüÿŸ_˜%À§¿·ñWÉQ 7·®qb‹jS/¥;Z×Ízqù¿’µÃŸ¬Ó!¹¨o¤ñù¼ÊòYòø7ùS)Çÿ²ÒlzRD_Ù8;ı†ïšü¦ï”\èû7Çp’>†7…%23÷ŸN*ŒåÑ~Dà(¬ƒıïĞ£-nM¯ùÊ?¿Í‹À°‹«åÓùIH:âP|Æò‰¢‚Óå8à@’<ƒ“cˆù«¨±èe²Ÿ[ıªÃ“…!¾ÅEüb'Ø·¬‘ı¬¸•4%C™¤<«¼¨QŞW>QN)_+ßóÑ<çñ|¾ˆ_Ç×ğuü>ş6?®ÎVÔju«ú ú¤º_}Y}M}SıY‹ĞbµéÚlímÍn¶…Ú¢m=m.ÛHÛ4Û¶2[m™ízÛM¶[l·Û¶ØvØ¶=f;h{ÓösØè°Ãn
+[¶&l}Øæ°{Ã{0lWØÃ;öVøÙX%6(6*¶[¬+69ö’ØY±¾ØÅ±ËbWÆ>ûgggç$gs‰ó.çVç}Î?9w>ë|Şùªó-çÇÎ“Î/?8vE»b]®I®®™®Y®«\Ë]O¹^v½ï:æúÆuÚeèÁºW×‡ë#õÑz¦>QŸ­_£ßªoÓŸÖŸÓŸw+nÍİÙİÍİÃëö¸{»ãİıÜÉî	îËİ³İ«=]<Ñİãõô÷Œò”xÖzô<íÙçyÅóç”ç¯Íííîu{ûxûy—z—{Wx×zïô>ê}§·7>%~mü¶øûâOP‚&&LJÈN˜puBmÂ	%Lx)á•„$|–ğeÂ‰«·$~™ØÔ—ú¦ô]Ğ¯S¿I…I•I‹’–&]—“ìJKNŞÕu—kWÂ®[wİ¾k÷®Ÿ7)M74İÙtoÓŸšN5ùã¬á÷Ÿóû¥çè´ûE;Í~bg•ŞJº’¥LUö+¯(o**ŸIû“eÿ¾”ßûßÊàïòoÕ¹j•z›z¿º[}N}A}U}C}G×zhµ™Z¾¶Úf³5ÛßmK…ıçÀşKl¿³­°İÜÎşßÂş7Àş·HûßvWØ}Òş»Ãş¶?ìµğwaìß5666)v@ì¥±scIûo}ÖIÎç g®³Øy-ì¯óçç^çç+Î×u~æüÂùµó'¹b\ºk‚kªeÿÙ®ë]{]¯¸>t}ìúÎÕ¨“û§è#ôKôiÿJ½F¿Mß®ï³ìßÉíîŞlÿ¾ÒşSİ9îÕîÛ`ÿn°‚gˆ'ÍSæYïyöÉó–çï°?yŞo/oì?ö¿Ş»
+ößê}»·7â/Š¿-~{ü–`KMH„ı§Àşy	ù°ÿ–„ÇaÿÃÒşu	?$Ş’¸ö?#í?¿ŸÖ/ö/KªMZ’t­´¿öwìê¹Ë³kõ®Û`ÿŸ`Ö”İ´¦é¦İM_45*…°ÿÏÂşşş—üÏúŸñ?åÒÿ¸ÿ1ÿ£ş‡ü;ı"ßë¿{õÿşUş•şkü%şşişËıSıSü“ı“ü£ı£ü)ş.şNş ?7üÆ9£ÉøÙ8a3^3^1/™Æc¼1Úi7†şFÃc8^F£»nŸóŸk:×xî‹sÇÎík¬nÔ8°1¥1¹1©1¾1®±w£·ÑÓ¨7º]NG|ú…½ş\ıÙúë¿¬ÿWı©úõ©·şÕú'ê¯¿¦¾¬~A½¯>¿~vıÕõ³ê/¯ŸR?±>³>­~tıĞúÁõëSêû×'ÔÇÕ{ëİõ®zg}l}¯úõİëcê»ÕG×GÕGÖGÔ‡×‡ÔÕ³zªó×©û¹®®îÃºêŞ¯{·îíº7ëVÕİ\w]İÒº%u‹êªëªê®©+¯+­Ë©Ëª›Xç©ëU×³®G]L]t]çºĞº :ÇÉ³'Ïœü¯“_<qò““oŸ|ëä'œ|åäË'÷Ÿ|öä3'Ÿ<¹ûäƒ'o>9øóŸOù|âç>yâËÿ:ñÅ‰úu'Nøç‰ã'>=ñâ‰ƒ'?ñÜ‰}'8±ıÄÖ¿ÿ'?şÃñßyüöãÇ?»í³uŸ¦zñ§Ã?öéĞïşxóÇw~¼¾ğ©Â=…N*Ì*RPİ+üxøïÃ×„ß¾8üÒğ¤N:íïôlèçı†¯ÿ¿¾Bå%Ü¼‘Î ¿#ó±}â;ìsQ¿œ nê€o»Ó@#ğğğ3ğGà,‘âFı'Ô½4´ßGd ı_¨³€I&e*ğ¬IKÙàD£Ì^ ó€7Acğ!ğ	P|œ®¾¶ >•ï-ÜbŠÃqÊRV¡N7¡¼†:Ï„Xƒç›P^G],BûÔKëĞ~õMÀ´qçëL(ÿ@}+pÚ£~ xmÈÈß± t¦âlÊSPC§jÚ÷¢®ªÍùêmÀV“†z?ğ Ú¡Ş<‰6 >@GüyÔ/ /£ıgÔ¯B&Ü«à[…¾8ô§‚ováx¦ÁÖZÚĞ‹Ö|ı€z 0mŒÓfàSu¡†>4èOG½€ì*lf³v´§ p®T/GjBÍAmBÍEİÓ„:µË„ŠõlğÛH´g Nğ\½õ&T¬mƒØÊĞ†íl5&ÔM¨— ËĞŞŒ>k»í? ^ÀN*üÓ?°	ş¡gÛí&TèÙ¶Å„Ğ±m‡	:·=lB}™6°4¡îDı¦	ujØÔ©ğÿ°Ñ&Ô'Pß ÜhÚ,ì&êÓ¨ÁKäP÷¢^cBİ‡z½	1v°Ù´sØ]€ğ¬¾Ã„_Fı 	aï°]&Tøpü$ñ§Â‡Ã{aÏš~	;€ößP‹9ˆgõQ8ü3±ªÂGcZj¼ÄÂ®ZgÔQ&„ßÄvº¡‰¾+|D<Ç;Gl2Úx; ¸Äô¯ØKYh' †ÏÇúĞFüÇ"¶b£‰z™	m"ê•&4ä†XÄAì3hÃßb!G,|\Ã›‘±ìì‚6üÄôGsœX×‰±æ9ásNÄ—†yÎb ¾¢A?Nä'tªAvçVìç„Ğ¯võ# t§C½xmœ“œ°™ôÄG´NèÒ‰ø³áË‰s¾jÆƒzw¾eÆ„ó¯ ò­jä(çI´Á·óàK´»£F®r"şlĞ¥ùÓ	^lq„×=@Äôæ‚Œ.<·Büì‚şlÈ_®	€ˆÅÔÈŸ.C¨gš°AÇ®Y&lĞµë*"n\ˆo×r´‘Û\ˆ×ShC/.ÈèBş°!¹ —ùÖ\È·.èÌ¾]âş´‘ß\ßÈßv5r·o“v»¹èÈ	vä]À+ş¯(êxvä@]`8Ú°›7oyÀ.jø8²_Œ²êğ;îõ‰&ìcQÏ6aÏ+ø‚}jä¹ØİèÈ¥ú6´á:ö2ñgco:bËÜ ?oÂÜæVLØ“nÍ„}-jØÏ8°¯ÿ¿€Û7 †ıÜğqûïQÇš°#vİö;Q÷6aG¾rÇ›°#¶İ}~h#¹“MØ‘»ÜLØá—nØÔœj‡näS·÷Ô«MØçnÈèOÙá³hèÓ=0‚yİã5á€>=ğ'âÅ{† ğ)|ÉƒıÙ?rÀŸ<ÈµÈíXˆ9Éƒ<ã€,ä5tèxõ>Ñ÷ _q ×yàû÷ĞÏÿ`_v@¿oL8ğ¬û‡>æEñ
+±Ÿzáç^èÔs†·€½Á˜ÁËyû ßóö3á -ïP şë@ö.745üÙ‹= ¾åE®õB– Èî½ÓD|Éız!Gö¯à{drFo¯‰ é$¿B\Å_€N0òw<t›#âáWñÈÁˆéxäŠxäŠà% G$ &‚PCÖäƒ`ğ™€½16FÌ$$ğçÄGÂ$!ƒQcOMÈFöI˜n"ë'àœ’p5Úˆ‘ìË	µhƒÿ„;L„`ïL€?%`Ï
+óÀKörÔ/™AşKÀş‘ {…@_	ÿ0‚óMÂg&B ¿œñ ïìc	ÈO	?¢Ù ÓÄH"ü8ë… .¿4‚ØKDMlB{ƒø&°‰ì»}SL„ ^ú"÷Å9.d#Q?ÄY?ÄXlÓûJ?ÄTü<©ĞDö¶$ødb7ûläNBnÏ'!—%ÁB sdK‚!;9ÆDü5Ùe"¹-q™Ã†`_IN6‚½qüpö¶äõ]ÈS»Äxœ¡vaü.Ø+ûä.ÄÜ.È‚\¸>°2…@w»v›Áytrø.äğO‰›ÁŞÚhBn	ù'jØ¶	zù5ôØ¹C±‡6Aæ&ìC¡ˆÛ&ĞkÂŠõ›à[Mˆ£Pä&ìÕMØ‹Bôa ß…bï5«…"Ş¿‰PÄ ¼ø±…>KìèzØ‡• Î¡&öQ# ÆO6%ØzhÿfÈH±Z
+ıú—9““JÙÈN
+¢`
+Á»F'
+£ÎNI](Š¢©+u£êN=¨'õ¢Xlí.lnò IôF ÆSõ¡D¸P?J¢şòû8â;!ƒh0¡¡4Œ†ÓE4‚FÒÅt	¢Ki4¥R¡tK4ÆÓÊ¤Ëh"eÑ$š,¿|9eSåÒ4ë»Õ3é
+šEWÒUt5Í¦9„Ø¢›éù¿ı6Òº‡ ûií¤i=L¤İôı‰£Gi=NOÒÓôí¥}ô ıô<´÷£**$•ØûÓbº*iöƒ…4ßQJ«è‹¨ÚQé¸†æÑ"‡ÓÑßÑ‡9R©”®U~¤‡è9º
+¨Ü1„å:râÿ~.Ç9—n¤•´™E±h»Óî²'ØûØ½öŞôl°›^db÷¼Ö>Â>2äŸ!'ìI´ÄgO´¤›h­ õ´†6Ğmt;İJwv#ºƒ¶Ñİ´•¾Wæ)Kè¥VY¨,¢¥ÊRe±‚Ó3v›¦r…Q’¾G‰Ë,Ü“zyşÚLwÿ¤v·z¸]ßCS÷tZ¢ïóû§æ©=µ™{´^{xœcç=şK÷Oš85OßÇºeŒµÈfÌ‹Îœ<4ÅºÑŸ1V>«îÑâğ/sÎ½ X_¾Æ;rM¸odÿg•ëYôw\¥¥õbÑãz=©,Š´»Èk$œ³Ù—×Îô\Ãd»Ó_×ÒâX'Z»P¸g!p3Î‚%½ 9ÊæÌ.Û69F“mUösÙ£È–:Óà†ÁÏ-çgŞdğ3ƒøÏûùOËùë´şãjã3µÆu¼ñzõ‡ÓñÚ3ù©êéxşıw)Ú÷gøw)ü¿ş­Á¿Ä¿â_mâ`±Áàûüï¥úÕ/Çó*Ôşµ‰Ÿ*ä_¼¾®§Voğºü¤Á?_ÀOüŸûùñÏºkÇÏğÏºóO7ñOş±Áÿq,Zû‡ÁEó¿oâûk´ö7ƒÿu}ˆö×hşÑrşáH~7GGòşş_‚µ÷ş—`şÁß5ø;k"´wzñ·»ò·şæ&şÆÚ8íƒ¿nğ#ËùkÕà¯üğ:i/üÁ_2ø‹ô^ˆâåŸß¯4øó®ÒßÏŸ¿^=°?N;p?ªîãÏüÙM|ß†4íƒïEµ÷´2ø“…ü‰BşxßÉ3ø£Fê9ş'ƒ?bğ?Fòİø¡0íáAü¡0¾kg„¶«ßÁÜÑ_{p9ßÑŸ?`ğû~ŸÁ·ßÛ]Û^Èï½'\»·;¿'œßÌ·|+Ùjğ?tâwmIÖî2ø–d¾ëoŞÄ7İ¹_Ûdğ;á[wîçw^¯Şq[œvÇUüTu£ÁoğÛqû~~[ß elHã·BÚ[£øú¾ë
+ùZ(mm_ÁW|•Áo1øÍ+#´›¾2‚ßdğ¿1bŒvc¿Áà×/æ×ın¹vÁ·œ/wòk¾,Œ/5ø"ƒ/4xmM¨VÛ™×îc”úwµ&”×¼ VGòêTµÊà×¼Òàå9ZÅ&^^ÖG+Ïáe}x©Áâó^2ˆŸáóöó"ƒû^hğ‚¹N­Ààs)\›ëäùŸcğÙ¿úŠíê0~U!¿ò5>7³¢ø!Åg|ºÁ§õì®MÄscğlƒ_¾œO5ø”(>Ùà“Xm’Á³öó‰}øe™1ÚeÃyfz¤–Ã'dÄh>wãù8ÜÛÏ3bøXtŒÎÓÇDhé‘<}Ÿ’š¤Ië¬‰àcö)„»´Ô0-­3OÛÇ^À]êèP-5Œ§îc×ãnth6:”ŞÇRSÕK>
+,Œ:Ã/1øÅ}øHƒ€‚Gò‹öĞ.šÈ‡|Xÿ(m˜Á‡NäCôĞ†LäƒQ6ø dğx<°Ğƒ§ •Ã“ƒºjÉûyÿ¤.Zÿ(ŞŸ"–M
+Ğ’ºğ$Áî&µ_ß8­ŸÁûbdß8¨ŒÔŞÇà	ïÌãºÑâ2xïÎÜkpOçÎšÇàn½¿æ^ÎõşÜ5‘;±²Óà±ïİö2xOX¥gwŞÃàİcğn Ğmïİ_ë:†GG…kÑıyT8ï‚q]¢x$æG<’GŒááX!<‚‡›ºëªuîÌ;›ºë¬……ò0Sw »NÁ¼t÷”ÄC…oWCI‚Ô•;Â¹İà6¶\‹âÂñ3ØúkÊHÎÀ ëÏ)œ³}¬påzÖïÿ/ú¿ÍÀÿæ^I÷Ñ»Ùí¨‹HôÜ¢\‡s\ ˆŸ~yµ·½ÁV³çĞŞIgq]Aß±`ş*Ş%(Ou£wÎbæ^Oµü ½OGèZõlÇ\ö>¹Ù§ ¶ºe.~Şä®ËøAÇ\¬Œv0¼Ñ2¬YA×)¨•lP~Kü¤$½…ó×-8}í 
+´g+ÀÿÇ8g­¥Ó´E9…3ÛS8'?¶_¹;J ´[¥ÉŸ{Ù€-şl¥j•°•t\;ªôÕ§ ød{›vTÛ"ôú¨ö-ÅÚöÙ¢ì^H!ô¶“`•Éô>ÿË5—_É¯áÇØJÕ«.â§hƒB|Í§w´£¶(Ú`÷Ò[[¢Î‘e™OY¤Îa»éhÎå?áŞ-HHLô”’­MÖ&Cæ"ùssâºÁ¼ÚÂé-~z¿]1Øu'ËTñÿ]îÇÌh†¨‚Åê´L[oœMwSm=ßúRl°2Š¶)El-¸m„6+øXœ›‹(VûšV²§À7Ù—Sµ†wğ¨À)>ë¿¡³³&Ş¡Ùmÿø -¬Á±ÿkÔ>­pı¯àt[hı÷aë<Õû•¿‚§:Ğt è@:Ğt è@:Ğt è@:ĞüÃè@:Ğt è@:Ğt è@:Ğtàÿ(TllR‹µÄÉN®òçÁÅoï‰ÚËÚ
+E¥”—?hHá4|Ğ0 K„;"Îá.Vél5ïyö¤±ÉöÓwU¶Dù;Ønã;^k‹¤NäJílÛF[Ã:Ù‰GÚ(&85DŒZg0›ÙÍ¯9œ×®\±båöÍwÜ±Ùù¹qqİIcdİ×ìĞgŸ²—@÷JĞMĞµºvâ 52tÏ6j¡;¸kdt”b÷‹:DaWJšÛAİÙ`\òéqã’†/Ø+'>g¯ˆßÁG×¨KÔB	©Qt_Û®İgç¡J•z9zÛBÃ?¸¤áì%R~ÙÀ"ÜÑîo„{¨;B9À7Ò2Æ²êFcìnÑØÍ€ßÆqå;–BÅ¤†ğè~WY,Ù„ß0Í½]XãÙÃ(`)ï7°ëÌß‘Çæ¨KøıÒ=SCÕí6e;94¦’L¼<¨Ù‚ Ou7}* „>¢ŒÙ-iÄ©hGÑ
+¦-©iÇHÕT%NSí€-NÓÔ 8ì X\0¦8…8CÜ¾™íá«‚´ ‡İ&±A–ş†nPpÊ%ŸŸmˆ1`bN=Üñ•=\ûÊnşkÕr|5Óó„3vUj`ê,ÿbšÊYˆ¢òP5ÈnsÜÌV+«è*Æİl0ór7÷*ÅGá;ÿÀ¼W~î‡Ò÷4ï9•?z¦[i,¿%c§ø}gÇA¤Ó¨TowÚ´9rÛü¸+"¤»«‹CÑ(ÌÙUÔk`9#¸¡äAg¡¨ˆn#„s¤44œnÿz,8xĞ°¡Câ½<Ğˆsêe³;Yt”šÈØ5ßìÙtÏCß|ùû7Üa\Æ;ùÓŠwÆÏÆ8åÈ¹—­ÿıj¥È¸´rù5…;_yzõ=Q]ßÙşÆ;ğ§µşê@í[êNÉ©=º?IOtİÌ;=úDøæ Mü®]…Ò@Û€‚5áSŸŸ–<5~= .ŒyuŠ'°Ò-:™y=JDx$ø®œtÿ,ã¸qˆf±³îŸtÙîé‡_~ùpŞÃ™CÙ&VÉÊÙ]‰‰ïŒJ5Ş5Ş2Ş6ŞM%¿È)è,:¢Ş©]l›Ue3­R‡#´s'	–úyY(FğĞìNŞS¼âÜ•ŠïÜÖ7´£»	»Ï—ô€ôB(.µK° æP7Û46œ;í4<(TÄ7H
+‚ƒN7j&ˆ@qá£ŒWÙˆ³‡ØãUPmºn÷nõÓßƒn­´mê—Ã6‡Óæ U‘áÁ$mP§‹"È48Ê4g„tÃÓÂÿY+ó©0\?áeşµîîmë,öÔ¦ş¦½®¥œ{ç•+7î<qìã{Èüİ+âwŞ5íÔ+5Ì&5ÃFB+#5ÄXÃÙ¹†%b=E­6ú¿aôçgjıL¾WÂÖ^uô‘Hå©}ƒíÔCél§½1öu‘îµúŸc×õ>yWL'£vC2««¶èKû†ŸnxÂ˜9+ååÏOŸÿ:bDÄˆÈˆ¯ÔØ®ú ÷ ÏvÚÎ¶+Ûƒ·‡Üßu{·í1Û»oïvÜÃÕU¸ÇĞáŞ¡pOüĞ!Ã.fC…ëØìC/eƒáHN¦ußKK·<Ê}öâ'¯ÿã›MßÿÈnŞxõ³Šöç­=<*^W_Sé«|ÿ¹Ä¬s7ì,œıâıû_Š½yÉ°!û²³m4e}²æÙ¢ k/Ú#&4ˆ¯ë´.ú®Î{níN‘‘ãcBm¶ãb!Û ARŸ© ã øe‚±Èˆp'D{#óM«VŞ¼fÍÍ+W;‘´µèõ/N½QxWò¾}JÊ‡?vôƒü]Yœg1¾1¾4ÏÈY/~W¡e‚è>üd¤ÆSWÎ‚×­·uİËlë:±»¯ër°Ó]±\éÔÕF™½"Ã'ŞÎ6¼ı0Cïs¡ôğÓ_Cç`2Úmi4:Š`ÔnªSÍ;{âÏæ½PVrh–Ñdüéß~øã>õöU+	W®¾ÂöÌkx¦_?6‚ua¡,ÕøäğıïÙ?Û?¶¹°oÅ§v	"¼7ô0ß«q›J¶¬ ±'}ÓÌNg¤®¢º^Ì¢…5Å£\7kæG§|Úøû”mºöwÛ>x‰ÿ|ö—GÔ9¼7ü—Ã™»Æı£¯Ÿ©sX­±Vş\rWÖü»‰fÓÍ«7œ±Ú
+6ú«šQ8»Éj«h?cµ5
+eÿ´Ú6
+S:Ymda%Õj‡P¬r«Õî´1ú«FC\¿Q]ÂİA¹Šh3Ò™nµr°«ÍÑ?×j«hßiµ±ƒ²×¬¶z±o¬¶ƒ<J/«B#•l«İ©K¼òˆÕ£bW1¥SUÒª¢šGÅTƒ¤ juDP£5#tƒ15TT‘ò©Œ’Ğ›IåŸ,ÿšc)ŠNÙÍ´ªåµsâZˆ‘Á4­ù 0j1¢ cóAe©£-èë Rk%ÆÌİŒÓ1¿ëæËgÁDé•KªJæ×è}
+õAÖç.ÑÇ”ÔT×TùòË’ôÌò‚d=­´TÏ£ªõl_µ¯j¡¯09x¬o~şôZ½ 8¿|¯ZÏ¯òé%åzeíÜÒ’½°¢,¿¤´å4Gò)xœ>ÊÅOÏ[dròË«õIåâPU ,@£¢bÁo¢ğ¦L—®†^*¤ÖAÏƒ	{Ót_UuIE¹>(yğğ¶”tÛQD/ÄF‘fÚ´Æ²€‘¢Šrè¶'i÷Xm¤ü{.…… ‘Œ¹¨«äßQôª¤Í“A×‡9T\SS92%¥DÖ&WWÔVøŠ*ªæù’Ë}x<®	øêù¾)UË¿3"ü×ª E+<õÆÿ’å_)»ĞÊ¦5òÑjÍóù±,ÿŠÌo-bõÿñ{am·È\biQ—Ïó¥”I­.@_,ÿïx’M•ôÊ$µ¿6iËg>K®yr•ré•…’N‘|êk^Í´°émI’¯
+Éa¹œ_iÅ¹‚ø«5–…K¤W˜²XšĞ¬‘\´‹|ù7B…‡TZÔÄh“wÓ“|2ôLö´ò´œ˜[(ëjÉWæä[ò™>X ¯,“Tjä“€~ŠĞ*µü¸O3-+ˆt"ø¯A,˜~.VlÑ‰è©Äµ«ÔJ>[¸)”ÔH_›‹§5òi`_^!ÉŠ¥pV+©˜:Y$} Xæ„K3e²¯µDúUm¼Òä¶Vê0©•uD»LÚ3`ë–ø­Æì¤_#©YÎ™—tIÙŒ“v‰¥Õ¶Öÿu©š3¹­löèšv^×"Ñ"©²ÿh…@4ÉœZnIèkµb¡¼Š5’d-41#
+$=sLk?.µ²dÀBríBÉq‰ÅéH¹Ö¬|P¬™¡Å­sQ‹ÎÏbÓ©±¢¡ºÍØ@¬´h¬uh=O—2ç[–šÛœ·¾fjÃÌäù¿bÏ
+¹é–íËdİ’?ş[Ô@òJ¹¯å[%·ÑÔ¯Í:YÒÌ™Œ¾ËŒ&x¯±²Ùcr*tZØÊæ­½.°‰UL}Õ‚J¾œ¨Pr*ìUŞJóä_A®Ä˜êæ•94_zé»5Úë§úßÊÔ:Ç¶ñ°|i£qğëœ´]¯½^.Äc’e÷R9¯äW²z••|’¿²6t=ÕÍˆ›ö»ˆÏÊw¾6X$¥*”ó=Ø=Ír·Ÿ!Æv]O+o3c'«İ>3WÆ}E+^k­xXb!–\@c>Z,õ\nEt%Š¹‹åËÌêkÑÚş&Ï¿1Å2Óë²®¶xôIúe1¥»POkå¨¶¾VõVškmÃß³Õ2{öì–¨D”8A”6ŸAª¬m)VJ^€ë<Ëbæ¾X.uÛşüñ"cı²Ts­©±öÅ¢fMM ¹ÎšŒ;±ÎÜåÒœ'³å3ñW uœç²ñd:îÄoÕ+í’&Ÿˆç3Ğ§Ğ4IË¤‘« ==‚¶.ïÅİDŒŸZbn†ü€bÅIu
+Ú‚ö$ôf¡Î°Æ‰âoDNÃ½h'q5×¿Û7WÆ˜'x19ÍEËªm¹Ê”+8›„»lĞŸ`=¿G8SÒü'IM‰öäf>ÇYœ¦I	Ê‚f:8Ê’w¢wê©—#õ™&e6¹,e‡ç¦,’Ó&Géò÷Ï”#Äo2Î•\ˆ•r­‘IRB!ÏX9_¬:QöšœM±¬,Ú-T’-]š|ıOo^9GÊŸ…¢KùsåïJ¶Iı İ€ïŒ—&5ûÑ4)_šÔÃ¹ÂùLhQè3«ydv+«¤K}	»	ÎÇÊ•Ò¤Fr.(I€Z[ë\È;+Œ—òeHMeÉÑ9ĞcÆg6÷˜ş˜)eM·tkÒ4ıŞô‰¬VÚM—2
+Ë^U3,ŸJ“ºk+…!‚ÿ)L¤Y×ôV:k±şdËºéÍ¶"½ì|­Ì±˜!G¥I[ç4kaœŒßIçÓZyXÀÓ,ÿœÒÌY[ıâ(0î?É&­ÀÚm-8VúS–ÅaN³6ş=]3we`_+ï;5Íy»íÎİúôØr*m}şLj•k[ŸÌ,<^-k7®¥×ÌÏæÕòÎÓúw¡+ğ–lé[N¿Ó‡™»Íw£Ö§ßByN7Ï‚ÕÍ§sÿ¨h>™,’O[ötóm°Lhı¾W-×5%«µf´§e/óåiA¬V}mşÚÕş±Rî÷æ*‹d»Æ:™ùj­±¢i»·âªvoUÿÎYşş«¤½+­wª©aqL¶èVQàı¬E'Bæ§_eí¬Şâ}‚ÚHj:˜×ŠóBËâæ'ibÍ`¢qòÃ8ñy¦øL´ù³P½OµÏ§Ïõ•V,JLÖÿƒO?“ƒƒ[&O÷Uåë&åæÏ\ƒûÿêWpğoÿtVo·r	XÔkªò}eùUôŠ¢öT‚ƒ§úªÊJªåg]ì«òa­yUùå5¾Â$½¨
+Âc®šçKÒk*ôüò%z¥¯ª*æÖ@à’òyX¥ L‹‘5Å>ësÍü‚‚Š²JjŠAJò•WCÁ©O"ˆêùÕÕ%ùX,¨-ó•×ä×~ŠJJ¡ã>‚¢œ çTÕ,‚Î=‰’“*_eUEamO’),`%skk|’‡6’`¥‚ÒÚBÁÉ¢’šâŠÚ0SVb-$ÆW™ªÙÚjŒâ$ée>)µ´ouqR«5’Äš)UzµvÀè°j‰ßniÁÈV
+E×Xª“-*®(;‚0CQmU9ôÉ‰…zuE’^];w¾¯ Fô˜:.…K
+
+*ÊK„Õ#ƒƒsñ(nÅBŸ”Àô"É@³”WÔÀÕf¯°Je‹˜Ïôêâ|5×gilÀÉóÛÈYQ¿¨ÒË*ª|[¯YRé+ÊÇBÉ&SmŸ–å/ôË*
+KŠJ„£å—ÖÀõĞ ÑüÂB)¹©:_ùUà«¶4¿J.Tè«.™W.Ù˜Wº¤²¸ZLš_ "ÕbF€Ÿêö+™Wh*,¿´vD¬y^Z(‚ÅòÒ%zIW‡HU¾òü2s¬hTe
+ÛBÄ¿ó™,ª¨*¬Ö=Í±èkèº©6X'ËŠ™¹>D“ Z;!V”43æ[\ƒ¨Ñó++bùsK}â)?(·3Lq~^œ_Š¾ò¶zÁr-^¨×–Z{Úæ)á¯Y¶º¢TD¶40T¾^*2â%0°2¿`Aş<†X,¯hÎÿ¹cµY
+I,úJ‹S2ôqS&çê9SÆåÎHËÎĞ3sô©ÙS¦gÍ«{ÒrpïIÒgdæN˜2-WÇˆì´É¹3õ)ãô´É3õ‰™“Ç&éyS³3rrô)Ùzæ¤©Y™èËœœ5mlæäñúÌ›<%WÏÊœ”™¢¹SäT‹TfF 6)#;}nÓÆdfeæÎLÒÇeæN4Çhš>5-;73}ZVZ¶>uZöÔ)9 1d'gN—U2&e@JŸ2ufvæø	¹I˜”‹Î$=7;mlÆ¤´ì‰I‚Ã)9[—C’Á%hèÓÅäœ	iYYú˜ÌÜœÜìŒ´Ib¬ĞÎøÉS&	M›<6-7sÊd}LDI“•aòQÒ³Ò2'%écÓ&¥ÏÈiYD³ÄiQ‡˜0>crFvZV’35#=S4 ÇÌìŒô\9º‡&²$»éS&çd\>X™!—€ iø—.9“âO†¸‚Nî”ìÜfVfdæd$éiÙ™9‚…qÙSÀ®°'f§AŸÂx“-~…DßùŞQb¶%àØŒ´,Ìlœ7Ş•±¸ÀWY#|Û
+n3=ÊTjæÏ$éµf€/Gàš}²	FdÉÇÌp-Á%¶ä$+ıŠôïÆnd¦ßÂ…>dÁj‘J"™,*©–‘m°¬ÂÚ÷ªóK±f5B¾Ì/Å´êf6ÛT`C¬¬*Á”EU%5H&z~-z«J–Z[q•µUµ—@¬Òÿ*_u%vª’…¾Ò%É[%ö3ÉIIyQEU™%ºT_AÍÈ@­ÑçIâ…¼¢j^²ø#v¿ı»¢)ò¼ H‘'ÇBùy\²ül´}m?çûõï¡¦,*YP’R‚t¸8¹²¸2ÅÊÉâ¿$ü/åº¦
+endstream
+endobj
+84 0 obj
+<<
+/Type /Font
+/Subtype /Type3
+/FontMatrix [ 0.00100000005 0 0 -0.00100000005 0 0 ]
+/FirstChar 0
+/LastChar 117
+/FontBBox [ -51 71 689 -750 ]
+/CIDToGIDMap /Identity
+/ToUnicode 78 0 R
+/FontDescriptor 77 0 R
+/Widths [ 600 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 611 611 667 ]
+/Encoding <<
+/Type /Encoding
+/Differences [ 0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g0 /g1B58 /g1B59 /g1B5A ]
+>>
+/CharProcs <<
+/g0 76 0 R
+/g1B58 75 0 R
+/g1B59 74 0 R
+/g1B5A 73 0 R
+>>
+>>
+endobj
+85 0 obj
+<<
+/Type /Font
+/Subtype /Type0
+/BaseFont /Arimo-Bold
+/Encoding /Identity-H
+/DescendantFonts [ 87 0 R ]
+/ToUnicode 86 0 R
+>>
+endobj
+86 0 obj
+<<
+/Filter /FlateDecode
+/Length 322
+>>
+stream
+xœ]’Mnƒ0…÷>…—í"Â64BJH‘XôG¥= ±‡ÔR1–qÜ¾ÆCR©–ŒôÍÌ?3NªæÔíiòîFÙ‚§½6ÊÁ4^z†‹6„ª´ô+Å¯:K’ nçÉÃĞ˜~$EAiò²“w3}8¨ñ$ys
+œ6úğUµÛ«µ?0€ñ”‘²¤
+úĞé¥³¯İ 4‰²M£B^ûy4Ÿ³*"st#G“í$¸Î\€,¬’uX%£şåù*;÷ò»s±<åŒ	VF: íj¤*’@ÊÒm¤<EzF:FÊÒ	I ÕHY¤-Gªö‘y Áø>Z_=æ7Ç÷r´ÌQ›¢s}ÅM®íwHOxJ†Áúæ<ñ:yA¬Ü‰Õ¹üÇeŞ÷!É«sa>ñQÄÁ,#ÑîïÆvQ-ûXi¨´
+endstream
+endobj
+87 0 obj
+<<
+/Type /Font
+/FontDescriptor 88 0 R
+/BaseFont /Arimo-Bold
+/Subtype /CIDFontType2
+/CIDToGIDMap /Identity
+/CIDSystemInfo <<
+/Registry (Adobe)
+/Ordering (Identity)
+/Supplement 0
+>>
+/W [ 0 [ 750 0 0 277.83203 ] 10 [ 237.79297 ] 15 [ 277.83203 ] 16 35 556.15234 36 39 722.16797 40 [ 666.99219 ] 41 53 610.83984 54 [ 666.99219 ] 62 64 333.00781 66 68 556.15234 71 [ 610.83984 556.15234 ] 73 79 277.83203 80 [ 889.16016 ] 81 84 610.83984 85 [ 389.16016 556.15234 333.00781 610.83984 ] 181 [ 277.83203 ] ]
+/DW 0
+>>
+endobj
+88 0 obj
+<<
+/Type /FontDescriptor
+/FontName /Arimo-Bold
+/Flags 4
+/Ascent 905.27344
+/Descent -211.91406
+/StemV 76.171875
+/CapHeight 687.98828
+/ItalicAngle 0
+/FontBBox [ -481.93359 -389.16016 2796.875 1042.96875 ]
+/FontFile2 89 0 R
+>>
+endobj
+89 0 obj
+<<
+/Filter /FlateDecode
+/Length1 41768
+/Length 17024
+>>
+stream
+xœí½y`“Åö>~æ]“tIÒ}¡MÒĞR(P ”M°a+ (ZhÙÚJÙA*- **e)®W/
+¨\á‚B@EpAÜ7PPQYDTpšü™¼)¡¢ŞÏ÷ß_-<9óÎzæœ3gÎLŞ1"
+£y$S›Êéc+9§õy›Hm~CùÔ±oWÿà"Z‰J¦Ì©å7UÚ­j{"–€ç”icÊYö‰.%Ê©0µú¦?8å”wÂså„	cË“ÌM†¡îY )+ÂGÙF!ı"Ğaü”Ùã^X±S!º	4®rüÔaqáD"ı™13«·¸«ï#€öÒc¦–WîöİŞ¨ız0=…8ïlĞ©ô3J­]ÏQ²‰øÏÛı&dpúai¸ıbúÅcqe¦bÔ5LTÀ§~µï:ê·õbúù›ãÊŒüúŸğÃ<'ü0L…4’4’ÈFÙH‘<A.$…˜F´‡×”:Ø@¯ÈïÑB¥ŠÜ@²B9ê[4œ§©(Hr
+iÊ“4õ—à¹@ĞÎƒúƒ€ù@ p y@ èÎËĞæà5ŞP$è1­ï¡‹·(t(-FÙb­sàã,æıò´Èß êÊ‡^ª‡ôU(Gú¤#õe$FnäwÃøUè+4ã·Rªü§î¾»¢œÏ¿ ´Sä»EúÕ¢à?Š|‘†|ŠúÇD}NåÑ¾¯èûÍEÚ¤uöŸl0”Á¨ã’ºÑÃ Y1ï1ï¡!sÿhÓş/PĞài:øÛ<|Â[CÌ½UT#çĞpĞ È•öôÅç­~CNXæÌk`S*(ÏŠàóê‹ç¶õÀœ•‡é.ù,å¢ì.íÚ-µõÏ•~¥VÒ)j¥¥Sd×}3`:ú{r(D[	m×ƒf)ß U4…q¾Êˆ‡çBè”Ïùj¾Z Óq¶¸„ó€±e.o®s6ÔÇubÁ8#QÓ-PE‹PPÃÛ£¯æbœ€t¨°»	çFàS.WÎCÂÆ ŞİèëÈÿ3hSĞ·@ßšex^:€×Áø|ÍE	[…½p»ä¶Áí}™¸„½æÀí½6¸^Ğ~0´Ô¤ÑÆ£®ÎyâvÈ×J°onWÜ>‚TØódÿi´_ÆçÉí>„.Vw‰y™Ä¸U‚ÅF;.‹IœÊ±à‡Óı°Àz\¤|¼Å|=´SÈ\ãõö‰ÂÎa‡A”E=ı °´»áON‚ƒ4TŞM×ª³©@¾2Ü¼ÉşSÊ~ø¯,šbÚE«LÄƒ‹³5¤ú~ö úKT6RÚ<™‚JiÊ~¦ªı¿ªÄ>S7JËDúO´!Ø@§¡eÿ×üÿØÕ.ƒ´t¼Hï‡]í§[øšĞO²UÀİAŠüu@sSÛbšÌöéE,_#v¤xè*Õÿ·‹Æ)±X›D¯#ß¦õº¯ÅØ'ØI*‚¾ŠôXê /úÒ¤O°7 Ho­
+±£Ël®¡-iĞ^RÃ–¸mE‚Z°î2pÊÀ‹ÀK°Çb 7ßğü„h~özÉ>ß¡¡öù';m`Ÿí²!åû
+÷íÁuŠ±–çÏ}#÷qÆŒï{ÁúiH{ì©şÛ„ŞCÅXÓÓB¾¶ÇÑÇR`‡¼nÀ8Mµ¨µGMåw‘~Èÿ­>™æiÏø÷Bÿ­ßKwÑÃtî¡ÆÜ?ÕŒz_Øs÷`/àû'øâû¦6›Ê´I4„û?Á+Ö ü0]‹:“Å¼kö+ZÎı¾¼YøõÉÊ.Êf
+]˜áÏW€’¼B”(¿Ğl¥9mWR„¦Ó|íU„1ˆ<^”ç©Ãi1l.^Yş¶ˆ=ò*Ş·”ëßÏõõn2ÍCB¯0æyÿ˜wÀ‡èbÑöiáoëWAæ2µFÙ"ŞF}ûth<±+ a¿…rñÒÇÔGÄŸ!5İ`²ĞbS3Ô?Gqú~!kÎ_“G¤İ"ø‰FC^µrì0FÄ ê“şÓòyÊEşr»‰¥Xõ°jÅÜTÄ"òIêÂíCç¾Ç¼Şhˆ¶‘jµ]èw?eh¼>ÏŸLíEz£ßoølù".á1ŒÇÇ1ú.ŠÕ=bçAÄ'h+ƒõp/Õr?b:‰ù9©Ê:ÃöÆóxÈ²€V°×—Ø[t#0Şˆ ÿ7ô`pÈÿ	à>%ò0èµ Q!°7x¶øÄ(ã4‰SÎÖ@¡êÅZ~{ğ{4ùr.Ág5à6è-\º¸X£$ÓmÆ~šÒŞè¯¾[®ÕŸQ¯ì+ÿëò+áò~y\q…}:”šÿ¡üŸé_øç4ş¯ÊÁ#Ö® Âç6ô±h¿,êóhC_Ôÿ?Ñ˜êrjÈÁˆó6…ì»)ôô>ğ‡A€¿!¬;›ğ5XïÂ/ñ5fPá“ößH"^6(÷/|sÿÂ×8h`ü °ùâkVÛ‚=—±·í
+Ä”è·SÈŞkÒuŠEÌwPè« ¾o´rÌÿŒğs	8Mç®7
+îŸÆ™Î¦Ÿæ>ĞÿLpßÔĞæğÑ]ŒWkÄÈÜ·ò}Cú’ŒØ‚1ö‰\NZó€¬‘×ñ…4	è«t L £qvìßhWÃù‘Ÿ¹ºÑZùmR1ï+øh3x4a>fîË›€_ğoé‚<Ï¹}r}üÅœ~Y¬Qõg›üu ØÃºĞqƒíL=1÷ÁÆşˆù8áÖ”óÒñN ¿İÀ»F?}ClíN9Å¿ŞˆG&¶5 ŞÖÆÏ« £æÔ³>VZMKÕp*
+Ø¹WÃõryõ¯Ö`pMà\|Ú8û.0ö¢®ÂVyÜÆòaĞWo¾Ÿ©qf«z²Ö×ñ
+Û0)ïc	ÄöµÆY:˜"_M½¤õ°•\Î(ûXœ«çÀùÕÿ1öIZ*xÜğ˜ÀqSÈ‚…jbûq÷5°CDM¸ìÛŒQ~§ş"Ş¸tN·)wc¿ç²«¤^\ÿ@òùıÀ`ƒl€ï·˜¯˜#ß77Š;Y^…˜" ^w˜)ëf1ìu3Úİqó)Q{8Kn-z«A?½)N¹çÑŸ°¯şD-ÙrR$…: i€›O’íÿUúÊÿ¿á÷4Áó®qóêuæ0îW8ZsHXÊo@¤Ó€îÀÀóx_ÿA4ä¶T–~ğŸg.œ­%j+ıè÷‰±lô@C îõˆÀÍ/Ç”a´¦®”#móAsZ}‘ÏiS İ@3 ù<Ä´A~s£ı€ŒFş€+ğQ`”çëõ²Î@^ÈÏ3ÆÈ¯òsŒìgBÃ¾CúoÈÇP`PbĞ¡¨7´ĞÑ OwB>§}€Ş¡@>§ót6ĞùœŞİÁGÃyD=.Ë6!sæòN1äœmè#¨›¦†^úúÔ©¡Çüız¿Œ#Ûƒø	ŞÁ·Êˆ‹^ õ€¶”û·Œg^ïI<ßp	ÚÜ@/ u‚–ıôAşĞ¸Àİ©ïùÀ8şHó¸µo`,ŞÖ·Åàín#n\oÄi€×gAß0Áko“Š¶°Ô|ø¼ ÙÀÃ¨ƒÚ7ØwM€o/{Ü/énF»Ç€oõ|>ä!†®Ïş!—à[àÑÏëÔün2Úb¬ºÓ(k´ÀóÀ"¬ÑÀpàÄ'ãáø^m’ÈÁ)÷µğ¹×©)&d¯º5x'Äı&Ã÷u¥mâ—¯È¸áøï‰Ø“æ NèİÊ§Ø‡ÒP¦ä„¯WÔ/Ñß¤D’M¾“2ù83ì—ş£|<ùcøúáó‡ŠsÕ"1.ÎM–nT¢u¡pøÑôŸ¡¿³ÊhÄÊCı¹?×'ày<İókÎ—sL«|†rYìY½Ä¹V§õûßÄ]-±Ôô+üö{È¿2H"7OÏ{gÇàØÃÁÏ“”ŒüGèÍW ÓÉ‚gğ+b´“3¨ˆxl÷ü?Î¢â<øÊ…iñØo.RºnÆ|·Q­Yß¥âã*e5]rÏÏ†Ú‡” Şó¬3j)LŠ~Êc»`Šsîbåmğ‚ó®8sqh=ô1Jœ…OŠüËÎ	Áª>ş7âÒúş¹pÊ÷Î¹ú§Xçe~fåçk±÷6 Á9ñó5?×¢Ÿ"{]MÃõ›¡Ÿ§hö:]«ö„]C×š’ ÷ÿP,ÍôqFLÇÏNœ]VR#>çxÕ@0f?d®—İg†Ğ`\½8äê¯éÿv¦
+Ü«bŸ¼Âİ×ßR¬@É ƒqlC¼PÿÉô)®kk5¤#‡Ëîyÿ&Ôz©]È}pC:²ş¾ú¨r|jÿ_ÏlüÌ8s	z…{¹ÀYì_.¿Ÿ¾Dkùw#õq¤8OŠ;‚¿Cıw¿ˆ1Ğ‹ƒßu_	Zªÿ7Ş=âşío Õã09ˆ –</Àÿ†<Ë!3bˆ“©b®üSöˆÿà˜©cú;ˆøûo€˜™éØíL×S¾¾É–Çÿ‹÷ıÇ8LğÀúù üg9‚rÊ1(ÌÙÉç]Ïsp|£ßÿ=!ôøÏz|jı¿ıY/ş³ÿ<oèõ˜÷ßñX‚iØò	à× õŸå¸"ßßRO` Xè-î™Å÷`â»°³°™{¹¿á>ÊÀ¿§÷÷şò;ˆåß¡¡mşdü¾˜Ãx6î¦İÚ·ş:ıšÎ×¼Â8ĞÇª+ÉG‹óê#ş3ú ïûÏh“¨ê~
+6îĞ¸ï-4|_¢yüà2q'"|‹É+¾kl£¼B×bFCÎ³â»awæO#nñù}8¯.TÂÉª~Bik¡7Ü8‡ù_6pÖÈÿo(äÖ”Ê4ö0ÿ´@üê{Íˆ#§àûtyh<Xÿİ!"Sœ5	s }'‹}ç!ä?„4ÃÙ{6æ°B±Rw~g˜Î*î£ùıô1q†çwÙ}d@.=”{èºúµò=ÎçüÎ÷Õ;ük´¦ğ‹G©_ıùšÿıÎ?Ãg¢(q7Íïø]úàßğ¸D>F©êİ8K<F’§–¨Û”C‘)]¾•ÒÙt*”P´ì¥vr*Î"iÔBEiòMğÓ°©›q¦óê“HÏ"—|%«1ş²J1.œ]¶!ßE9rà\Û†Cú€:d'µåç]é]ÊPîDşÏ”)÷E=bœ~“ÃImØ‹de=¨…¨÷½ÿwy l1ç÷ïıÈ=Qï `
+œŸqoÍë‹zÉÔJÔé~:JâW¢[äış—~ø[Pi#À_ÿ(÷…â½öodlœ Äwõ°á`ü¦—Ñ\ıQëºP|sLÜÇÄ#=PÜu4§öhÎÏ:=sT[n?Xs,x§È)ÿEèì˜+Uø_Oñ¿ˆgrŠßË9øQö
+úvŠ8ãdx˜k(Ñ¸û‰÷/ëÅŒE1ŞŸqPºà‘ß]ò¿Ûáßóõ•ŸëÌ$¾ïJà½àÔ¥û¨«Å}t­Ø‡7 ¿ê ôŞ:äz4CŸÙ\×ì%sp}Šû—jÒ¹®–f"4_Ny¬€¬R?Øş°;ÑO©ÿ{¹”:Jça;°Øf+q?Ò™¬°‹0ÙCš<~æüé	Êâ:—¾¦Á@[y§à£™ôñ3ì=øgós%÷ÂF¥@¿â¾iã{:îcR¹Nø;8ÿ´/ñïÔ€½œÓgBñOû/êì7ğGÃr¬ç,ÁÓ[ˆ÷‡Š8i±°±Àw²Gµœú¸– Ãd”S0>Rï®tz2îÌÿwÉ4šë4xf|Şl€â Ä™^øA¬	~­Ì°‹¸Ï>æÿ™mÄÅÜ&^»,¦ÄÊİ›r+…°õ[Q¶ƒ®C¿yÀSèûwk9Ğï\õzD|w
+jøàŞ ‡€CÀ1àcà ÎáïãıúxsA¾»´däÀùsòøÏ[hBEì8•åàï!şŞÌ%ø9OÏ¡ßTœmŞ
+^ò=ê[bÜ_¬Ü¯püáw”:t4P†4—ÁÔãßgm7ê5¿Ô†çÕıjä4î[ø½	Úû'Êı×Ê|1Fùè@şS·Á¸§ñrû9 ş,î?ºı4ò¼Æ÷ƒœ¾#Ûh/Sæ³³Ár.·`k{É\uÎ®ìAû)¶Û\@J“h“t
+¾ñß´IOkù³ò05S¦Â6ï¥|õ5ä€5ˆ|™ŸCÀ9ñg´GÔ°™	ğ__ nº
+ç
+´Ón¤ÎêNØÑ~ôc@Î£O}ªGÑ3¼~o$Êx?à)ÈKè˜¼/£Ÿá¼ÏPˆyñ§ùøŸ—Nù÷æâş²¹`Á9ÔóŞ9¼_Ş×Q‹y{ÿdŞçyAˆ¾Áæ=ù&r(Obı¬@[kO¹t ïğéw!&˜G±úlœí·ÒBÓçäÖ›"†0¾#3Æ™l;ÅšP1‰fA>¿“økÍÌ×,|×~ÿ›–µeß™]§|@ì&µ÷uX‡u|İ‡´ıOà®°îã~í$hI`½Ö}hå@yİCÀR”_À¥ø`£>xSäóø‹ßÎ1¾'Vp»´î…ıqÿô-¾·æ÷ HÆP“‚ø~;"$ŸËó+#¿áwV„Œ“Ä¿kvñ;AØ{œ¸o?HC5Ä®Šêÿ•§•uĞQ{ş}ÿUñÎ&Ç'Ş•sÓ|şœ†Ñ8,Qsv1×~ê;è(ŞUÛMá§Fk#p&ø^P«±zx—goóµ(ØC¯È[(uzßçõâïŒŠw>—ÿ¯Éw‚Ç'É%úzv¸¯ˆŠÔ£´T]+ŞqyC3!¼ëöF7½õå4¨›É‹ïÚÈ^¡hÁë„¾?ò>CÛKï4\¹­lÆ>X•ÂŞçÉ:â@§ˆÛòsåó¶ vàF#mÖâx¾ÿ¼KV¾o›f‹;Î4<ó»‡üLykıƒM³ü¿«_¤şAë±gı‚¶¿¨?ûWfSÄuñÚOdÁŞñ–VEÃÕn ivŞÿ»öµU·Ñ[èk±š ¾] ´{²k±Î<³/ÅCçùjà]ÛíRÔ2š#oEüòüËƒëõ7wC|ú)úlàc¤jÄ•?Q…ù-Z¯.ñc2| ÿŞr½ò+å‚ûçqˆsÚ§tòb}EI;©‡´Ó÷©ñnü7åá¼¾Áà%™Ñ:ŠïöRÅ¹‚Q.ÿ.L^ï¿`¼×ÛÍ°}şNÈXØı§Æk–±ÆÏkÍmÔsë'!Óòû>ñ>‡ÓØ›Wêù¦õùÚK}{m`}óï|ğ¾é˜ïáì¡íä…àF`"‡i(9LF/bùÙ´gğ°Ïxz¦F¬P:ˆùßKã‚mEšc+¢¥Ç`çÁ~j"¶Øª¬BUˆ}¡aæªŠˆ¯gJkèi¹‚î5Şyıîğ5Ø`RÅPaJƒã¶bt¦ş|²óà¡ŠºHÛ©‚·Áy}‰òyı½—ø>?ø€ñ.Áb5Ï›è&­è8Jåwæ¦"œÅ£EœcnEqú›”arÁÿû¨ÖäßÚO¦(<?R÷lÒ¶ÓMğé"ÿ=ìü~¾|ügdÅ~­M¦(Ø}¤¶yG°Ÿ<‹zÛşü}¾å¬;	Ïé&øoèıâ X	{³6’ğ½¾:#¶Üğç>ş]Í[¶HI&Ş'ãït=ŒùEP¾¹†Zë›)WÿnĞ¢!Úl”ßG‘üİ5uÎÄÁûúk!›xº¾şy#Ê+(;ø®‡‰¿ƒvœjëù5ø—ÖQŒIü]¦EœyòfÑ5AŒeµÕèo%"nè!Şõh‡ØB™jêª&R¦"ÁFÊ ÷Xo¨«ùÊÑGPsh{êª‚üÁ j<‹ó_à~œÇï–{fñÌ÷gy°ˆ¡ù¹Ô¢c•©“á«û#ö?|Iş"ş?Fš6vp–bôh»Tø´@<üê¿ƒô-”¦$€ïß¨l¸[Ã{Zø³,œù³Œş,Á~•àã]ªEÌ×UNÀ³
+ú)¥6b?šYé”Êß#R\Tk§…Úç8_¾Ú´ä†s5lŠ÷å’'Ñ|ñNÿÃT!Ğ>z1ö~^ñÓ|q.5ê¨§ ç3T!î³ÿ#ŞgXÆe‚øg¡z|Üì÷%µÚ/˜o+œánáçøÈaT¤¼
+Ùt}ÔxÆ<¿Åğ#bo±pú!ç±ÎÙÕ¡ş3ü?ÿÎ…ŸµÔ—g{ğ-Îø­Ñß	Ø"××Wˆ«¤BñÅı°ãbœ1ÇQŠ:‹&pŸæs_Ì×¯ÅÄß5ôŸàß÷@¯³0şïê!q‡%~'Bî‚¶áØÓÃü‡õ1Ñ)ãœş$çà¶¢ßK@>×=÷	âğ_¨¿õ†î Ïé°­³!gõc°Õ4Xˆ}†ø{¢jEjo¿ù'©÷ø'’¿"bø)‡:²‡(†İ¹İJf}d}ûU{ğ±}ò»Î4\7#Ö°¦±®ı¾ ½xÜ8‹¼jPœwüïâEñ<KÄğ<àû¿òô ÿŠ~Í°­‡ıMµTØÆGş¦*ó7÷Ï"¶9LÙâ·vdñ{:á¤„áLÅÖò_ã!ì0A·1ËfsÙrv[Íe›˜—íf‡Ùìæ—œ’KÊ’:Jİ¥R±T"=%m–ŞŞ‘>•>—~”ü²YN“İò@¹T&Ï’çÊ5òRùùAùQù	Ù+?+¿, ÿª®D(•e¤RªÌQîRWR^PŞW(Ç•ï•sŠ_µª)j¶ú–zB=›´³É¢”I)“S^Ky7å\Š?unê‚Ô•©«SJõ;b)ŞkÃ%Q9g¯;>rrœvœuøœaÎ^ÎQÎÑÎ
+çÎ¹ÎåÎûœ;w:Ï¸—êŠrÅ»\®Ö®®®B×h×®û]ëÓ¤4-Íš•›–”æHk–•Ö7­<m¬[rÛÜ®tJ—ÒÃÓmé1é	éMÒ›¦·LoŸŞ5}Jú¼ô;Ó¥/M¿7ıÑô'Ó·¦?Ÿşbúëé»Ó?H?şmF×OFŒ²Œ1ã2&gLk9¥å¬–s[Çµoİã‰Õë\ë®[ºnÓºçÖù7=#QÏD^P.t¸ĞõÂÕº_èua ÏíËöùıu~¿0€rÒædmØ<VËîekØcl3ÛÂö°ÏÙQv^"h)Mj)u’zHĞÒpi“ä•Ş”Ş•>“H§e’-ĞRS¹@.“+å›å;¡¥åò½òCòãò:y‹¼MŞ%ï•S´	-RF)eÊmÊBe­²IyQù@9¨|§œP~UIµ©©êİê^õL’·É¼‚–¦¤¼ò^Ê…TJ—zWêÃ©kRv#ÁátôuZ*uÌsls¼éøÄñ¹ãgÇ¯Nr†;{CK¥ÎqÎjç<ç
+çıÎ5ĞAKš+Ú•àJse»®uq€–VÔkÉ-%¦¥Z*K«Zrş…–
+êµ´"}Mú†z-½-}-u©×ÒØŒIĞRYË©-ojuZJxÂ³.~]ÚºEë–­ó®ûmc›3Z²\`R.t‚–<z^È÷9}M¡¥‹ĞóŸócÿá¿ÇN?0;;Éö=›É°ƒşCìcuû«¸‡¶—mgÑì9µ{5±Ï³'•±w¹ı;$D€R”q³1ŞÇã
+àz õø{ÍÙ_&ík†ç6Ÿ½€.@Gß–ŠhT5ÉçääïN/:3èÄ…“‘'İ''º•è»^ÇF~‡Så×ı‰<şÙñO|üÃãûï=şÁñ÷ï>şŞñw¿}ü­ãoı;œ¦Oønñ‰şœ›İ¾+>Ñ=ÌøşğÑÅßãtû=¢Òï÷}YutÙñg¿X÷ÅıG8òè‘%DGşÃ[|w¤òÈh<µ9’w¤İ÷áŞ‡{¾êp§Ã¹‡ÛÎ>œyØu8épôa:ôÃ¡‡úúĞ—¼Õ¡7í<ôÒ¡mH½~hí¡M‡zê~ÈsÈ}ÈuÈy(åËÑ‡¢ÇMŸ_wğàç×- ªxx§âíŠÅå%¶—ìÇ£%Š|%rWäË‘;#_Š|Ñ¼9ò‘ˆ÷¿¹(~q$üoìè/~ä¦qr—Ûˆ”ÑFÆùX-O‘gŠ§Û€»€ñ{„=èRÛg‚Ÿò	ì$R WÁBq^ytÅ]É Zü!õÓºña µµ¾çì¤Jjõ+‡ò»ñtöŸÇ©o¹[y¿>ıî_ÖÚ’æïŸ|Ø°—+´A=ìSÑ´@ZBĞ7t-§%ô0­§ÇÉF5äÇúº—NÓZFÿ¢EPé!ú‘¡ÿÒÏôıBÒFz‹Ş 'ézC+¨‚Ş¡±ô&½M{è]zvÓ·4öÒûô=Eãéº›>¢}ô!M ïè-¦I4‘&ÓTšB7ĞjšF7R%M§*šAÕ4“fÑqÄğ7Ólº…æĞ­´ÖĞ\ºæÑ|úNÒvv?{€1&1™)t.°±ÙCìßt‘ê˜Ê4¦“­d³GØ*ì¶k˜‰™™……aß}ŒÎÑ¯ô}Ì³ö4{†=Ë¶±çX8‹€¿ØÁ"™•Ù˜¾ £,
+şãyö‹a±l	{‘½Äv²—Ù.ö
+‹cñ´‰6³–È^e¯±$–Ìš°ö:{ƒ~§?èKúŠ¥bÇw2{“½ÅŞfï°wÙ{Øñ÷°4æfMY:{Ÿ}Àö²}ìCø«,ƒ5c™¬9£¯ÙÇòdù6y.ı;:S$EVEU4E×?Óèõi?Aüü)}Fè }NŸĞaé€tPm&½¢fªÍÕj–ÚRzAÿQ?­ŸÑÒÖÑÏêçLwš˜î2-4-ÒÕÓ·$X-I–dõvõKKŠz§Ùiv™ÓpšK…oı‘f‡Øöû™µ@œr]`Y–¤Iºdb-Y+)ZŠa­Y¶T#9$¾o¶•\¬öH·ÔTJ—2¤fR¦ÔÜâĞÿĞÏ›fšf™n2-6Õ˜–˜–ªOª›¥;¥æRõ3õ€zP=¤V?W¨_HwIåar±zTıR.‘‡«_©ÇäòHy”<ZıZıFıV=8¨L.—¯—ÇÈòXyœú³ú‹zV='—'ÈåIf·fÖ,Z˜®Eh‘šU³A¢SLËLËµ,­¥¹©9İœanfÎ477·0g™[š[Yœ—%Íâ¶4µ¤›ËÌåæëÍcÂZ¦[ªÌ¹æ–jËs…e&ûŠ“»ÉWËy²Gî.÷°Ì²Üd™m¹Ùr‹åVéaéi•´Ú2Çr›iyi‹´HŞÀrèz–^e_ÓVzš^3§Û	Q±e®ee>m°Ün¹Ãr§´FzTZ+=&=nšN¯[°¥l™i‚å.ËBË"Ëbz‘^²Ô°ö–%ìËRË2ËrK­e=oñZ¶X¶Z–ÖIë¥ÿJ¤ÿHOX±<+-“–[¶IµÒ
+Ës–í––ç-/X^d¹úkúëút–}«¿©¿Å:èoëï˜?—Ş ôwõ÷ôİú~ıÓ¦M§Mg,[ö[>±|jùÌrÀrĞr(ü«µüh9--6Í ¥–ó––‹´ÊRgñYüaÆÂ¤0™7w4w
+K£‡è½‚¸÷v5Õ2›ÁV°»÷Î¤çØ-úûæqaî°¦aéæñæ	æ‰æ>æ¾æ~ækÌıÍÌ×š¯3ß`f®4ßhnh.0W™'™'›§˜§ÒNz9üåğ]’7ü}OŸÃKŠ‹
+‡T0ğºkô¿¦_ß>ù½{õìÑİ“wu·®WuéÜ©c‡Ü¶m²[·j™Ù,#½©;ÍåHˆ±Û¬‘a³I×TE–µtzYYo¯œî´ç—»{»Ëû¶jéì0¡W«–½İùe^g¹Ó¢d¸ûöYîr¯³ÌéÍ )É.ózPs\ƒš@MO}Mfsv¥®|·Ó»§—Û¹TŒô²^î§÷‘¾V¤•ñ—-Wœ[gooşÌ	5½ËÀ#Ûfééî9ÖÒª%m±„!†”7Ó]¹…e^ÍDBÊìİe‹D¦>,fÚ»¼Â[0¨¸w¯d—«¤UË~ŞHw/QD=E—^­§W]:'rÖi‰sKË]5K·Ûèú²¬ğ
+wEùÈb¯\¶5rïšš…^{–·¹»—·ùÍ_'`æc½-İ½z{³x¯ı×ÓÿÒÌ«¦#˜¬9G˜û‡S—ç”9Zºíñ¤Wêéeƒ‹]ü'9²®©Éw;ókÊjÊ·ûç]ïvÚÜ5[ÂÃk*{CÜTPŒ.¶ûŸ_’ìÍ_Zâµ•M`]JŒ©çîï4¢Ø+¥ç;'”#óÜ®NÉ.{}‚¿*&ˆÂ„\ŒÅ5ÎŞ5Kz¹’]½{¡Øå7¨˜‹gÉv']Ÿ¼•<ÙY%^©Œ—ì
+–Äñ’yÁ’@¦‚uCÇı‡×x•ô~îŞü’rï¼ëae“¸‚Ü6oä¯É.wM”İÙ9»DÔå\ô«˜èôªZ…6€ığ&56ñùk€üŒ2ìQÎÎntÃûéíî]fü9!8!ğ¾Yƒ(,özz!á)74×{K›l´(/ƒâ&öJõf»+½1îõZÂ™8¤X41šyczz©lŒÑÊ›İ[¬/ˆ¯¬W€Ş—{PñÊñİÒŞ™ütµ§’^¼r\OX[FïšâŠq^GYrÖß8gq²Ëë)¦KÜÅcK¸ùABÍ&#)6SXÜˆ»ÿ áÅF¼;%½wƒnÜÅÉn`ˆ^SºÉY,%Ë%¨hC†3	w®øôêé&À‹\nÀ=º:‹Y2kƒosgï±½Œzüù²NUnV=û{Óø#úéÙ7ÙUâ
+ü´j)¡ØiŒ&.Ô¾Á"¸+˜`§=ûŠ,.ËnüÎb÷Xw‰{‚Óë)(æsãâR6„!dnèªğ²§aALäBqğÓ›Ÿ•*\oñÌ—W*tÃX°®æ¡¨ÀËx…bÁ&Ã–J’/ÏGV §¿o›ìí÷ç¦ıƒò–5&wÿ!5œg·Á'A v ß$ˆbl·ìJ0YO¹Qà¬q÷«¨q)îš,d0¸xNòÍ|†QÔŸõ/ìÑªå‰õØâf‹mñ°EC†Ã“öØs…sQañV‰I=Ëz”liŠòâ8ixD®Äsy&pòŞÛ`<˜Dıä¢y¢TâyÌvF"ÏÌc4f»È³ÊyHB‰(ñk+È3òæ‰<ñ³…¸²ø,ø:L˜ %c[éí¬àrkÉ„š²¾È(âÁ_æeî«!.÷Õ[˜¤…{-î±=¼aî<?ççò5¯Ã4	£ùåºÃRt&½“\cû‹²Î¤ÆöM«îv2³k¨ëGE8ö#'àdDÚıp²ßÅúm5…åwoÊú¢VÔòà“Ñâ“ğéÚ 2™XoÔÉG<œËYñé ²m{=Û9ß³ÔÑLĞ­ÖØüîE,ëLEˆM´óPZvu€^E98ç±N (§µø<H¬Æl‹’¶h™ÚÏœ¶DÜîGËæÈoçLä7mf<gà94İxv³4Q?ÍxÎB9(àÜÂÀ?ÿÜÌOÛ[Ç^®c¶:6íó\`óÎ­8·æœüÓ™\Gö™Õg¤ÒÓ,ûtééi§WŸşâ´úí×NÇ7_ws|u´™ãË£İ_tû¼èH7¹ˆ>oó¹ô9“‹²»‡±TômÃ§ğ 2äêÉLl’Xö;è;¨tu|üaÇGf8Êö­Ø·kŸÌ‰‰£ûÔíş]OïKLÉ}fŸ%"ßºÅy¬ìåÏÍ»ç{^Hk–¿¹<Ûº9pP›¶mÎâ@àGÏ9Ÿó<Wö\ås*'+ÛûÜ™çÔíÌé‰è‹ªÏ–=+­yvï³zöD>™oİZºUÚ"wup¶¡èD(:ª­Å'ó‰ÌŒæùÍÙ›ó6¯Ş¬X73ÏæÈ¸|zªò©yOÉGŸ:ó”´qC®cCA†cÎgI[»r’¶1ë™u=Îsñ,šºB±Û
+º:V­læxx˜·’=˜ŸéXı¯Íÿ’ÈÏuXïsÜ'İ»"ÃqÏİk­£vZíÜÚÚZuùÒÇÀeÌº”y–†Yó­‹‹¥»X¥X‡Ûóo—fbì@5P4¯dÉ•L®dg+Ù'•ßVJ*YI%Ûî?ã™S	qN»¡¯ã†üv$–P”˜“P¤çÈEôR¶e¥í¥ £‡÷uŒÌoæ1ü&Çğü¶èvQE*´«´“‹¦ÉÌŠÃÉ@yš<WVK‡0ÏÌ–ù!©iøˆNÈŸ<ø–ÁKËƒ6q ‰›”JN(mgQVùé~ù‰¾ù.GLú÷|5é›\×.¶ÈÎ¬E¶vÖ"DÍEŒüíÌ¾5Ùbó´uXó¬¥Ö¹VÅjÍ¶´N³ÖZ¿°ú­zòN[åiÄ“çÍSqÆ^A…Yı·ë~„czÁ/[äMÂ?=ƒ†{µE^*>¢xcËK,[F)=ú{Û)Ş*—•¥ô(éï­àiG¤çñ´Í†tUuUõŒ,ã‡UUsBœT!QUÅ‹Ïª¯"²«ªª««)Ğ¤*«Š²ø'
+>©JTD^™÷eüeü“øpb&jVUóJ¢ñş)x.ïHü`„ªúáEÏõ)t5ºJ0[•À_ÈRw«»i:Ÿbi¶ø¼ü§üÕ,¿çúéæÿí¿aúçŸÀ¿UÆá·ÎÑÉ‚Wè#z'ÜBk³f¬9ÿGÇX}MgéÍ¿êı9Ø ‘ü‚öÑ8_¹Dÿeuôû<¸:‘—5
+ül@ŞZÆ.²ÙÌEk˜M”¶Eß‘L¹B_İ˜»ŒF÷ÑQºûÃQµJNDÁg8ı>,Ï—öĞ{àù:iòüô)ífm°ÃTáìş„è 
+ã-íQ&zŒ¤;.åª›|/ªóëÚİÿ+mÃ™K`.Õğ·ëŒŸ3ìGØ>I‰ÌÄ‚:İ,ÔûÊ“¤m’Tw/î¦ñ@9;€ÚËäî¦³Á7Í7©t/8øŠ¢Zô²É·Ã·–FÓfi?v’Ÿé	%VÃ®)I6é<Y}³ş_H¼Ù'¡°:«ÿ\ 3m¾2‹b•Ü†üoøæB®{ègH?KÔ³È¬mT÷ÿ¦´	±­kşGÜvì¾¬ßËc–ü®w0pö½	Ò¬>wü·^ªÿfHÚò¢ø÷ö(ë |9Q„ôèõ×ˆtş¦ØnàD Ö/Áö ‘}B|w	Q}‰¢€3D17Å65°(î¢øÀÛˆÿ¿Áÿ¹ÈF4¢hD#ÑˆF4¢hD#ÑˆF4¢hD#ÑˆF4¢hD#ÑˆF4¢hD#ÑˆF4¢hD#ÑˆÿGH´‡Hm§Î'™trx"4I•%ÙlReYy{²÷Ø£XçÎö{NÛ6Ñ.»+Úî²ïQÆ^X9@Ş£Î??WÍ½¯|Ïÿm¦©òílè)Á&K’¢JôßzÉâ}ğ˜[v±ë%1êúÑf‰ï5æemÉBi»¬XLŠ)<Ìd^9Â¤¬a¢ì¬¬áÓc4İİ¡C®ÛîbŞœÎ;®ºf>sõ¸iûÀ> ‰ùO)õ
+£dÊôÄÄ¨á¤RJ³­ªÄ¬Ë	U%r"˜¡„¼Ğ^™Mr;íí£:ä´‹bí32Üiš—Ó®CÅqîœ¯É¤7ÿÎ÷mFaAÑ°ôfEƒ
+†5“^ñ­ô­ö×1Ïƒ¾|÷¿öÙèÒO_{åÀè11«ùü÷è 	eyb“$……«ŠGÖ4#V]ÁƒÊIÈËIÚÓ. 0’“ë²«¹éqì|6Ê·‰•3ë¹O~å£Ï¿¹P°ıöA¿.Ì¯	uó8’(<BnAJjŠN¶ğp›Í\UbÓ)©*0„˜(†É¶GuÆ(ñbÂv1R‡!Èö˜«Ş3‹‰TtWlŸïıû¾Y;†—Fú¾I8÷Ñ×g¯»ùş¥UM¤å¯ÍşvÎM÷ß^^n{ıı½/Y³pfåôîÇ¹Ş³ıß+ÍÁU&İï)Óµä&±iáDié¶&šÖ¼Eºİf‡üŸ·³‡ìl‘åÛYW;K²3³…Ûí²Ãš\š,EÈÉÉ4äĞeLÂ©—é•ºWß¥«mt>O_¡ïÕU]çúËÉuã¥©•…Ùeøb)t®BÁ1Š;­i³t®ÑÜönw®‘“o*&¯é±qqJsßÅ3Ç|gãYjòî±•‹îº~äì›ËG›lòcÒŞÏÿXyÏc›ÙÂ7?Û÷Fâ{ãGW3rØ˜²â˜mï¿å½sC%z3¬Ğ-MÚ¢.&vU‹’$SYt)v¥ºÄ¤Úí,RÓ””—îsrød›ÌÁ6š+—¹ì9±¬}‡šÎ\ò“¾³us¥!¬Ë‹¾Nº”ÔË·ƒ=Ì¾/™ã#¹öâ´}Òª·EušÄÿ£iFyXÜ
+›P•§gTtB|LEëZB4´­))©ÑIIP5É‘Tš$»ä¤$9&&¾º$F“-U%yz­ş….ŸÖ™Ggõ¢ÊbÂ7¯—wTgñÁ¥Nî´H=(ö4İíŠuÉÜÚ”.¾ïùØŸÊã*‹&Î™9iÆ5¾ÛÊë¼ñãzç'¶ÿ¨ï·—Ÿ>ø®Û¦-!'îó=<ü<÷Vı1'nkñä¦k=ÍS£´ˆp¸±pMNo›\]k–ÍV,€)GD`Ù».-ûœ Ç‚÷œ¬¶…•Hî4²ÛìÅ«Ü8bÅÂP…¡À!`Jó‹GşğcÖ‹Oåû-ãÎç·Z3ö¥Ã¾o§•ªœQZ:‰íùnmÆf³9«H_òÕ·ıÎ|rÓÜY×ßòèB®•bXG"´A-<1UÓ(,Œ¬‘VU®©Ü&.Yg;0§Y¤XWû¨¨hW®KI,ıïmı|‡Fnú¦®—üŠòØ¾o}Ç|­÷²~¬ˆ8Ürj9%BN­¹¤škˆ¤è¦DÑqæMk“gve¸2f”¸\ü—œgÀoÈ-g„:H.$A®¼ra“¹ —ã²Š¤¢Û_Z{ßù_~òıöğÓ—;úÍ¹%3­ô½8rÔ¶í#G¸›:eÚÔñlÙ›‡¾±pGœ’è­zêí×©Ú¯Ä=Í~­õÊ»£}ôyõÔ[§O‡şû`^Íıñ´N‚=Ãœµ(èßêª.	·ZVÉ,[­±rlrUI¬p'tÉ€˜o½çf3¬ŒwÔ4¤sÛÃCD]fÍ|?^|ş£–ÌÔlÙÌ¹RÆSÏbìdİo¾O«JGMT:|–ô©o±oéê'ÓïıêHÿ¢ºÏœ÷=ºò•gÍXvf‘ƒ=÷nØ€NVI÷ø#…K&lÀ²¢©ØuÙf×Ã¥Ò’““ÀVu—UÛY…±³vÖŞÎÒí,ÎÎ$;ûÅÎ¾¶³íì;ÛfgÛÙ½vv§Í°³qvVhg½Eı¦vkgŠM8ggß<mg´ÆÎî-0ÂõvV`g=ì¬háŒ}%¼ng[íl­­°³ÛƒõÛY/;ë êÛDı³‚£O‚õ³³ûì3˜)f¨2ì,ÆÎ4Ï4;ëôs°É«vöŒ=!ø	Ô/›*GÙ#Ñ;úõÚÙÑo@,ÁNcDG¯‹^î½TŠ
+½Ì¡½iô¨ÒQÁŸ/ıL/ú3zTƒŸü„Ô-ı‡”×./§svTç˜_v¨Éa…w¶w†¿tÁ»˜‹1]Ól¦LSw|ï€$±‘ÕÖ,MV±û—d±	¾yÜ¥¬k:Ò×İ¿ˆÿÂøbXÔ$XT$V†ƒx…G›£““«ŞÑ¬È.gxLrLri‰5Æ#Å¨1qáıbbU.-}5)-Q¢Ö¸Ø
+›çb•.Væb.æq±6â¯ÓÅ.Íærô¨—9	cP\ØÂœ
+÷ç€Gî\‚ª“|GıT—'-`3/X´ñiß]³gù¼lğœû¾öÕ°ùËï`÷ìúPÿôæ›ş“³™í/-ğ=>Ìg~Ó7e<|i¡ÿ”Zo@ƒ=íâÌ6+"W«,'%†cZ6[¸B’M’HòHó¤]Ò^Iåa)<ni‰İ&‰¢KAÄğY—IéÎhUSÜN¾'¸Ú)Ø. JNfaâ{ù¨ïIß26şÎ:åù.º^¹ãíöÌÂËw¿Åæ³ál«~ë•>“æü~ú?ß½¸–n„–ÌˆÚ{R¬ªñiL´	†dÕ
+UDÍ‹amb˜3†Ëû
+±jŒ¤p!:‰KÓmçéÆ¾·Ş­{“ùX»Ë÷é©CûÎï<*½wĞ÷Â“ê|ßC¾-ÇN_ì#şñ1¾†ñÃ¨Úsj6#ÁÂ4‹¬“¡š`ê\uµ*[!U?ˆ¬ÆÅö³ª,FUa/ªJŒ)¥%L&si	Ey"X›æŒ «£şl\¦ò-v"²uX¬^üH:Sg“‡ªó¿ö­úÚ·ìë ‡ÊƒBB}=-˜ªj&	ÁHÖÊX˜Ì<mû2†PJÔe5ªMs†1Î@‹44)â(>">™WÚW—í; X•G|¾®»€‘1×bL•Ü8ƒà¡–L2ŸbÎŒ©J“àì³fÒYuş…1_s¹^;Ô`‡-`‡Ùá8q¤ÅaÇ5!¥eVxšœ˜è,-IIITdÌRwêmt™‡µ6¥èKmÎ_n·.gSH9Ge4k­`OÂ²éäG•øTYÕ|{|Ÿú~òínÉRRÖßÏrûÌnÕ­ùÍ˜ƒEñµ4Ã÷UÜÂÛ|g;Wn|oó¸ìíz-»rì‹]¯kŸŞªÛĞêş/¿·ö¥f#F®ï˜ß6=«_¹ˆWª|Ã¤»ÕİØ«2<1*ÉÉ&3SÎ•0Ó¹œ´ê­4^(ÚĞp•”ê;Åb|Ãô;Ï›^æ}%¢¯Á¾$]a:?i¢/¥Wì+—ÇÀ.{"‹ó@Ã^VßùûÔöŸòkÊ!|_¢'\RùüB	ç‘éYv&D§çºbc”‡Î_w_}];ÌS®£ì¿S=yM›5ÓõØHkKYF°Û^Ë\ßP91RjÉdk¤#R2+‘QQaƒJ¢l‰Ù”=°¤©‹â^Îes_íÚqü³Tì*Q )Ô‚•‡:v¬?tˆ˜ÉÎ£‰±‘28ÜZ´)Œ¹lñ#ŞC{¿¿¦ğº~fß¡ä“ïí9Ò¼3513³Uê¤±mfÉŠëgõ¹ªÇÔ«c6®\ï•”“Æ÷¹êñwŸ÷ÍÑ[{P³hÊ„±û%3Fß®×öï;·—<¦2ˆ#]íqÆË)SÌÑæ4w…',±†Û4ÇÀY‹£ØJ7»‘P„m†¬#`v!øs#B’ì¶(3ç4ÃÊˆ‰gHÉ†yÈ”0e„ÿ¥÷¼Uµ®6²D“ïØŒé7Şğù´›­³3_gÍ˜™E°ô²Ò­lÉgÅ"É½ù¥ç^ô­xœ€ÓVĞVbØiñ›=.,L–í99).lpIœËfïkc‘j\iZ4´g£ÈA%smÌÆÿRÜêd6-™•&³É,;™‰-JÃ!¦Á&«Á’Sƒ@”=Ö%”¤JzÃŒ¥kÎúÎ3ËÙï­»fÆ”û1*ßš1“e¶ÖtCvïXÎœ¾÷|Ÿ˜V=:?ŞwPŞRsëwpÉ×Âh×Còüe¨§ƒ¦(&³jUbÁj*03™yÍl™Í5³23s˜Ùi3Ûkf»Dş<3»U k%Ï¸>0VK,?5Ö²Dßq–¨Ô}ğÁYéráM¾ö.ŸïiÅÿ{,Š-P™Ge^•­QÙ\••©Ì¡²Ó*Û«²]"Ú`Ğ¼à]NN`$u÷ùö¼8m•2«ë^Ïèø"‡É‘jÓM©¦ÌfirŒ\Pb‹ÇùÒnu˜(öëLöq&»3“f²«2Ù¡LöB&[|ÌÎd’#“Q&;šÉöf2o&[Éæe²2QV]•†b|5æåÅ78I‹7V»[%XnŸÑÌ›Ã×`|±Åº]_[4Ùw\•Y¸lQÚ¯œò{®Öñß³V=áû~íà‰ªTÊR6ÕÔ½(÷6­eô·Vºí†Oß©ÄV/­ÛƒR9$Ğ@O6%ØtİdJHJ´Åpğécök’ØŠ$v&‰y“X ]™ÄN# ©—r»ĞC a•W¸—¼2nN=×ŸœõävÎĞæÅ¡œ~¼»nëê^¬«0Š¥6$»NÅÇ™­KÌ69k?®2•Å³¯ kÃˆ@œÜ‡9•{}‡}¾:ßQæd2–4ìş¶›ü4g&“á³ÿğíg-±©,Ë÷…ï§W6ùî~ö%ÎÉBß0¥V„ˆÕE]=ÎŠJ1›Ã(GHx¢¨X[¤Õ’,;"6Šø"á…¸Gªg©ş»P¡Èö†høm-xfSj¼9ı¿­4ÍwÜÄìª®”^xi¯ïĞ•³fİğ¥”†móÀ˜Q©úÊ••EMjÿ–ïsßY6åuïæ—Û–|Ği|fº	î†¬	ñQ%¦›j¥ØÕ	lnÛ›À6'°Ò–ÀöI—3Ë×LPuWK0¿Xá*íµ†æš{Š{tpõj?q†ÜµdVë¨çR§je=iİ°®îpÑ—ßn‚‹Lšîé­k®˜ä¤¢¤MiŞÂ/Ç§*y5™•%cïJv$K%99Ş&[•ÄèME°WĞ‚y[°6-‚«ì"¦Ÿ.úÛ‘RãíŠ‡şŒfƒ×9ÍZK£¼nÄÅ<
+Q>ÿ±/~hö[ìøy3§›ğãÃNzådÊá£ÇUT\;bî³ú°®<½ìşôk=]=í»Åfš?zåS,OêÑ=§kvÇ¨¤fñHÁÿ#¢N°Ñ«<)Ñáá–S„¢ÄÅG ÎXbÑL&ÍJö%P‰q³c¯_ù—®Ğø¾kwçætÌ‰Í‰uû­ÆÖŞz×â{÷ìéšçê6!jábé¶>ßÎº÷öÜ”†Ñçò]Ré‚Î±†#±‚)Î—P k8*.<÷5	lE;“À¼	,®L`§şa3;ßsÅNéâû§¸b°³w›Ã·Ç³áj§§°~•.uúm^,õº¸½fÂŠ>·T~´[ÚÌmq‰œÇ6‰9İ­èˆëuİ¦óër}Õ¿m7®ÛƒŠã—æâÎ|SÛ®Ûî˜ËÊÎÙ[×?øÇÌ¬ô<ÿŸe3ş¿Î@š‘O´D&š`¤eêB•FZ¡Ú`¤Uø»FZCş'FZ§|:a¤MÓ3ÒfjÂ†i‹ô›i¤Ãèj¥…‘§®JpÜée­‘¤özêIÓÀÉlšNi<ø«&'µ£6ÔpR”NCş‹§~t¡ÖHuGÎĞÁõ­ªÄÓXĞ±èk&>+P³»èw*úèLAŞµ 7 Õ³Òèu*•£—‰ÈçV¢ÿ`;g}Ë+å£U!Ÿ÷ê×­•¶©ÛêŠí'
+~Ëjä–£t¬àb:MFŞ4÷—sÿgşƒ5‡ ÎX!	'Z•ã©ZÈ‡·åeÊ87¢”Ëó!=']1œÛÓh[.ÒœÎÛLQk¢hÓùÓAÇ‰Ï*è*Èg•hU%Rc?ãpÁ¥3Aô”ØT”V‹ºcÏm€s8cN…4£^oHlÒ¼}P›¼¾‹Òû¹4.íq†"—ÿ?ÓrŠy¶BÙ1ƒ±‚/âZ+ÇhÑïD¡ÎÉ¡År¤ªYU	®ÆÔË©Â˜ç±Rä´¢Ş4CŒY)úå#ƒş\±Ç€¼ªCz«6SHîRß7n+DŞ´zÙòZSŒ‘3"ìlr½^Æáiº!¿
+Ñ[«¿ğ8!›jcÔi‚£
+ü	h:`SÓĞv†ĞÛ‚çJÑ{õŸ$W.ä;ÍhW‰>V€—©Èk-Vy5Jºpàÿi/­’ÖŸÙxæÊ6VÊ4¤®ÜzjƒÕt©®µàŸ¯ìBaµœ¯|cÆ|Up™V‹Õ3]Hc¢!M®ë±Â²ö3Ch) ¹ n†`•rí£ŞpYÏ.ë¯Ÿ+y™¶Âÿ/œU¶8]hp†°¦ }WpVÆáC† Íı\wÁëÁÇ0¤
+©/¸.åÏİásãó:<÷ƒsŒÏ ×Q/Ñ¢ŸHÊòÅê»J@û£„×á}5Vk@Ncé&±
+ƒv°ÈÀÚäxw>×±b†ÿw¹^²ó`Û*ÑfŒğC¼¦SØ _3„è"°n¦
+Y5º²§.'
+¯)ox”éx®´ÙÈ›!x˜ağX§ÕÿƒV®‡€šˆçj±ZªÄêj-æ8å\òş?hÕv
+endstream
+endobj
+90 0 obj
+<<
+/Type /Font
+/Subtype /Type0
+/BaseFont /Arimo
+/Encoding /Identity-H
+/DescendantFonts [ 92 0 R ]
+/ToUnicode 91 0 R
+>>
+endobj
+91 0 obj
+<<
+/Filter /FlateDecode
+/Length 331
+>>
+stream
+xœ]RËnƒ0¼ó>¦‡Û@šH)!Ä¡•öÀ^R¤b,Cü}íİ<¤Zkf=³ë¸¬•ég¸QÕ0³®7ÚÁ4^œÖÂ¹7‘L÷j¾"|«¡±QìÅõ2Í0T¦£<g,şôÕiv[íõØÂS¿;®7g¶ú.kë‹µ¿0€™Š‚iè¼ÓkcßšXŒ²u¥}½Ÿ—µ×<N|-˜D,(5L¶Qàs†(ç~,?ùUD`ô¿ú†Tm§~‡§šsÉ‹€d‰(İ!:'ÉEB(#„5±-%2 ÉÓ Kö{^İ··^h{´çÔE>£/A$‘$ÅGÜJ'N·¬H–9%’¬SA$y&ä’’g’¹Ã-Ãä<%yF6âú9ü¿0çûpÔÅ9?¼80ŠŞÀı¾ØÑUxş £W§7
+endstream
+endobj
+92 0 obj
+<<
+/Type /Font
+/FontDescriptor 93 0 R
+/BaseFont /Arimo
+/Subtype /CIDFontType2
+/CIDToGIDMap /Identity
+/CIDSystemInfo <<
+/Registry (Adobe)
+/Ordering (Identity)
+/Supplement 0
+>>
+/W [ 0 [ 750 0 0 277.83203 ] 10 [ 190.91797 333.00781 333.00781 0 583.98438 277.83203 333.00781 277.83203 ] 18 28 556.15234 29 [ 277.83203 ] 30 35 583.98438 36 37 666.99219 38 39 722.16797 40 [ 666.99219 610.83984 777.83203 0 277.83203 0 666.99219 556.15234 833.00781 722.16797 777.83203 666.99219 0 722.16797 666.99219 610.83984 722.16797 666.99219 ] 68 69 556.15234 70 [ 500 556.15234 556.15234 277.83203 556.15234 556.15234 222.16797 222.16797 500 222.16797 833.00781 ] 81 84 556.15234 85 [ 333.00781 500 277.83203 556.15234 500 722.16797 ] 91 175 500 176 [ 556.15234 ] 181 [ 222.16797 ] 396 [ 187.5 ] 516 [ 722.16797 ] ]
+/DW 0
+>>
+endobj
+93 0 obj
+<<
+/Type /FontDescriptor
+/FontName /Arimo
+/Flags 4
+/Ascent 905.27344
+/Descent -211.91406
+/StemV 45.898438
+/CapHeight 687.98828
+/ItalicAngle 0
+/FontBBox [ -543.94531 -389.16016 2796.875 1042.96875 ]
+/FontFile2 94 0 R
+>>
+endobj
+94 0 obj
+<<
+/Filter /FlateDecode
+/Length1 48232
+/Length 21093
+>>
+stream
+xœì½w|TE?|Î­»›M¶$›„´İÍ&¡HHè YZ	%€ ¡(‘ R!t]Eb¥ˆ°)"‚XQPAÄd÷=3÷nX"ú<¿·üó~ıæÌ>sÎœ2÷€ å Bféøá¥‹^]¿àÖw Ä?îzÏğ×#~Ø°c,€zí¡K­ãÅo 0–Z¹Æ6Txhÿd€;
+ ²'ŒºgÂÄøv>Cå­é¹tÔ¨áCëU$ º—	)ôXöÑS_SúBË‘c'è·3·ÀôÃ Y•#JGŞÓ2,Úà¢ñv{`‚«`m~@* aÅ°{†–öÏÈh¾&=ØÜ±÷mşF‘¥ıoo öó÷¯'ı Èì¹úüµ¯£‹4?0R}äè·ÚÁtŞvõù+“£‹õüšóI–c>‰} Ü	
+`…JpH@T °šB›ì>R	Ñj"t—ûC7œ£„0`Á-m‚ª»›İËÚRı<ÂjÂHÂ„BÂ(Âİ„BB±^7õ1œõÃiô38á)K"¬—ß†Q„õ,-}ë•60’=S»}ñŒç—QşF^—•eyœjíS»¦”^Ci£ºŒD›šP~Gêça}½Vñ50Ie/i-£©O¶öY4£ıÙ3ÕIÔÓ‹ñm˜oŞ£ò
+JWĞøó(^>‹Qå´¡vNzMiU~;PM4† ú
+› Yˆ‚]ŒÒúïÔ×-ñu÷YÍ_ŸÓßÏ£1çLB›À‡D”·PŸ[m,¨…
+1&KhK(@oévâé×°Xşœ$™¯ĞúºšH%Ğ‘ci·Ê;h|z&äpZğK«a¡xZSÙÊ
+8/4¬~‡8áGˆWRa,ÉV'ê»1a&õw‰ËB	dÓØUD[Kß‚Dé¾Àèà±}¡q‡OÙ:€jßƒx2ÍÆ6°ıf<Çşşbªk¥:„BÊOä Ş1ydmX{ê«U^§LîÓ~@T%Ù‚à2¦ƒÊ^§~h>ˆfı‚èj-¢	y¬EãZ¹¬’¼0¹ä²ArA}E0>qyÕÖÀä½B?3‹õ>â•MĞZGwªÃög$—C:+Á¾™\1y	R.c¨ı¯lLvj(ÉtÆ¦9èãRvæhÎƒòi>Œn‚
+Ş†d-HÙ¾ğù³3KçA§­CÖÚ”Ÿ¢"lir>;Hƒ{QCGiçA¹î—*iî ¿¸r¥‹DB¢œ	ù´/©îá<7TÁ’™§IÅYkSõ8>.Wa´ôÉÜqx’ËŞq!Y:²üBàwğSùaOÿÖ~¦•1ÊZöšÿ¿€âÇ‰äéã$WÇa
+;êy\CX¤”¿ĞÁ[cğ}5sÀÏ	½%/´“½Ğ^ª‚’ƒÎ&ÀÊ·Ê_ÂFqÌ—üXùÂqÈWĞUX‘Ô—"|÷0PzÑ²9ºAæjËRåµ6Õei±~˜NÛ­ÌØyägòN’I'³¤›Wò~I?shò:µF>Âs¡òYKN§×–ÏÚrY›r»Bº=xN™M®ŸéF¦ã˜~dzé™`ıÚ4¤ıTÒU\:Óy„[ƒ	Ëtr„( ³øMÙ¸$Úß+Y½Ê§ĞQ‘¤Ï¾ıU ·èv´cĞ†êù¦ ı”³a`ˆí\/]‚±Ü~Ò¼˜İT¶À2ù*·/*Ÿk¥~şÊ`4³‰R1Ù'`1³uâ\®—G×”i¼ˆ {À(ˆê6hÌOem³ÁAvb®’}iîGx^™VÆòh­ë•óĞTÊ§ùUq9˜­ƒÍ‡ñİp?Øªsœêl :ÒãUº÷êkbmÇ€…¥Õa@òÚ™×!ğ6^°ßàOTÁóA_„ïõ©8àîGœ§ü|¨T©OµœêçCS:ëùXUp7›µ+æ:óQ˜Hgk1é¥Å¤o¢¸ì¤}zšI) –ÓŞ¼ ar9=!°µçsÊ}q#x˜|(lï˜ñ(•¥Ãd…êRŞbˆOU<o±Äæ	DóÁ¦ëlÛÁ}†6Œ'tnşd~Œê…0¥œcâs`ş	õ)ş ëÅÛ`1Ó#†Gáy6ô¢:÷é>`¡!ù$¯ßRŸÿ!ÌÂhB7áq²s©¼2ğƒ˜.¡[à{€ÀÇá ÿí:íIÔ[­g«õ2FãeóSN¯rè,'<fSÖèt»Œ†jêãùÒBğ…æ3,R<<¥Ÿ»äözÁ>nh‚kÂ€«ç‰%ú<wÚ<z½¼úzEx—ÿ¢gŠ=ªGPzQÑ¶µû¥½÷7;}#mö_ÊÿzSı\‹6û§r:‹½i¤§á&cµul-šúåA~şZ[ùÿßhˆOU›JÚ:ÓÙ˜bşÕ)ñócG•ò:wQL×°óÎt?c:å6I;ëQLo)Ó/ìŒ3ıÂÎ8ÑÌ*2ÑíåPİ‡SlÅtÓDMìS¿ƒBlo„2™×é-±Xl÷)I÷H_Şâ¶Ö&ÕÌc›
+â]RĞ~Ò3›O„êb¾màó•¹v‰ö ñÁÈuY…î#ßEu{1»!†Agİ·‹
+úxÌv°}Ršj{MyˆfeñX®t'Ùİ;yÌ8PHº±©ø-¤°şÉö‰wÀvòÑÆ³øÔD:ÚH{g(ş†iZ(’mayêbzN×â± ?‰?ßÄ&ßèkèk®-‹|~wB’‡‡CÇ¶3är[¹^÷/nvFk‘ÀİvVD¯ÜÜ	ì×ı‘±ºlİ]#kµıç;Á+Nw¯ô<<+}Luæ@‘î;7«=—àX´/¯ÿÓ	J£.kSu[t¡§t= ÿ@öéèFh!‡CÉB±˜{ju&’Ü
+$ß šÍ1’¯XBá3è"æî=Ï‘™ÄÓù:ˆ—§ØŞJc5»¨ô%ä-ÁcíôÌÓÁâ#·ŸùÜ'!› 9
+¼At†pˆÇıN=>“B?îoğ8¢©Ä³½“úˆÿ„±|ßbjûHvÖÛ¯qÌ›Ò~ ØÖQÆmu;ê.èO¶¶¿!Œöv;4ÇAC²×N%ü¸ÛèY(şş
+êI­a˜hƒ¡˜Kzÿ<Œ$4 Dç Dü,pIXøßÇ|ôx÷~v7Âï„+Â»Ğœ­ÇŠ56b•¿MxTOwÖıÉoi/¶rûØO… ‘dò;¢¢°<p	;A‰°›üÙJØ8¢*kƒêŞ¥´ö' }v#zúè”!—Úæm¡£¡	¡å3šBHÕQŸAù,Hˆ!´Ô‘Iùõö·‡`åß~“yäéå¹Áºz½BBN”Ÿ£Ñ"d¼–”ß¢ÖXÁ~FÕî;¤ÿÚóèO@(Ôiªw'ÑÖ„V:Xº5å3z+¡k((ŸÑé:ÚèhKùŒ.«˜Gíuô¢zl/3CÖÌö;QßçAŞ¤è|é¦ó¯W§:sCxÎù¯óı†y~z‰ğùDÙúO’D¾”ŸùC­‰NÓÊ	…úóI½ŞªZDèEÈ!¡:sÉ—ë õ`>(ó?{PşAÍ¿d?Áq+	·éõöimıOöèóÓÇô?2×ƒúóSôü"QÖßwÔş­} Ñ§‰¦£:›èy;U"_×ÿ,å­&Jı^ÖÇ§ô­„”¦ùø×ê¸ ­«:šhßëğï%PÛÀ}ŸŞ!0»•#0ÛH'Ô¿“Îç_„û	)+#}h$[İFİ	ŒJSÈÎ!^….!¶j<é¶ì~–ôİ<)@º¯=d)áä¿<	ÃÈoxô÷,y8”pÛTB¶	È?é÷2HgÈ&¼	Ñò·Ôß½Ğ]Ü	Qâ­Ğ€Añó'°…'Î‡<îkTéwQ7™vĞü`¡:é,8Ô•Û¾Dv¸€l…jSØ//…9ÊS0I“÷À>å"Íõ8“½r)EÎ¸¾&åŠÇÍ ©áqª6†|ZGKé;H7Î…±Ê1îS´
+­ûZy’
+a_ı¯ĞŞ®Õpx|mŸ3Í—ü0‰|º(İÏ’Ã:©±X”Çƒ@"ßĞ$_ sÕ¨FZo,6Æ’_ó;ù_
+ùMéà©¹Çc÷gª#ÉÎÏ…4İgìª|C}ô£ø^§,Vú¡,––FÁ"ïò˜S÷Ck¨îwòX˜bÃÚ>MĞ‡ªñ't¿´ÆÏ®å8o²5k×éß|Š—YÌÊâkî‡×¦ú|x|]Å÷°€µS÷Ã U$ú<+s _îIñv$ä«o€]½Â˜o¦ª|¼‘Ì>Ë‘Ú<ÌÔñº®?ØYş¸–¯4ëoôº_½>è¯ı+ıßb*ÆGv/“x“»¯ÚtÑ±Ágò!_¢3òÏëw3Ü­M%íl¾F¹/Ïè‡:}‚ñšùZµi_ûô¿Äxıo²¡÷ÁA:A§ıjî«ÿ½?¾	5ü¯1{7¤Ç\œŞä^N‹Å®Ó`ürãıtr°3Åß÷0ÿ™ùhüÎú_Pónc4ª…v×v3(I¤û’À ¥3I¿û'(K¨İ0œKh¤SBà
+ƒö‹¿ëÚ®D…"‚…`–ÑX7 p…ãæïœú+OÒ¸OÒ¸Mh,‚zP÷¿ÿ´u3µ±SıÍìNğ_QDãQ›TŸaA‚ûÜGéú}¥U?'Úœƒãëış?åãÿ!_Bø‚áÿ­uÿÛÜCÁŞQ¬¥QşNËvÓyÏ€dB'åW¢¿’mĞÎs#$3+G		ï$<Mzë]v—/a@h›¿ÉÁ"Š?ôgınº‰òôPcÉ^Ñ9 vç4À¡›í:îT¤½¨O´2ø6_üHëˆĞß;Òu_=cÙEIãpİB¶¯!ë,é5¸‹ì:ó«‰^ã¯ãß†8şn8ß%Õ“'P|z(°AL1éÅÀ.yÔg`ït¼£c‘cÎò}fïÈ7ò˜®[&b(Íî'èşäIİœ ÁÏîXŸõƒïÅ?ÁAë­Çß»z)ÖdşÃİ0— ây˜Ël6“}q(ùùd3Ä–`å÷ÑõûhûŸ"ÿãéºSAû2@\kÎJº~çLà÷ÕŒOo‘ı?E1É[$û×ßƒ÷ec‰c¨ŸĞßM³û¯|íşZŞS™_"V®É½ˆö¦¸¡wà¤ø8d‰İ¨]7’•?)Æ»šb&Ì¢ñF@3áéf4ï#ŸhéëXH-ô\MÄÕ„ å×—®
+W p%ğ£(A;é0•É0ĞNøKÇBhMÈdåïv’ó(¦şózÇ)&%Ê¡À@|ædAb'Hgõ„‡¿Š.òåP,<Õi'Î†¶Â~¨¿á,®§úÅ¼ƒâdFĞ>X‡öø{öãæ3ówÜA*Pd 0yËçïùwÈ¾yA‹\ø»zM†¹ÿ¦vÙt>ú2¿1`~8¿ûøšÛµ[ù]ÇsMÍ#™éHr´_úÒ™«¹Sd”½Gá<+<,ñ÷Ì}ÊÆÀÛô¼°‚äwƒ¿¨lï»Œä+Œ|ú	ĞSé´³Bã—AÉI’´ÏGû~‚ü ’şú¤%ä‹Yü½9Ù16°ËŒöME3©¬æ{~'EòÕßG5‡ıÔ-t6™ï4›ù¤Ä×ÄC¯p²…kE¼®ÇICcÆsÑÅÄ'»ëĞaDD!›|ĞGh/¢%ğñ²HŒ Èk´vCv
+l!¹H¦²H1bv	Ñ¸Äká´'4%¤
+—‰ƒö´ç>í½@€İ%oà:à
+ÜBòØ’Ë»o¡4ÿ¦?ç==hO:ş7»Dkpœ°O§¯‡â¿Ù_]wı§úb%iØ=dCŠ½ŒºÎé¢¿“}Oş®&fdrUãG¿fï¥:p?I»3‡Ú~Å}Oƒ1íÏ[„Bè]ã‚zìôZ1µoGc×£şH>Ù÷qºÿšGò9¹Æ·úÊú½)¡‰´†bÛ‘T–	ùú=ÀöøİQT";õ÷¨D)ï0Õ+ úá˜gÕcï/tú)Åíıäs-o¿J>IùoQüy;Åá/ª™,P\X‚s5ĞÜV2P¾¯«SÛ]Ôïåã¾‚×k•¿¤İ;\³›Ú¤½‡èB1¥ï Œ¢zÇ	»õ÷e¯oÆòª×óïÔútÓî\£µòÀ]Z™?J/¢Õa?Õµşì|H¸¤=nÑq§Ÿ»NŠVö&p§4/Ëi_^¦E0-ÙBVÈş$yº‹l»‡µÃãBlV@¶Ü6ËmàYö,å’­È¦¸şÈ•ï¡üit®)_L„nrdKëÉ¸Fòÿ%,‘¤¿î$ì†)¬ü	õ5—ì¥úÑ!FÁ'Ò‡ğ‰rv°~Ø½/£~øœô¹„ÉûbıLƒ¼ÏPP› ş¾ÀËÂŠÀ!m-—oX­£fÁùßdî|¨_ŞêĞ8Ô>0†ƒõÇêR^¼oš­+Àî²î”¶ÒùG¶B¿§ŞHú7|j	Øå+FqüzÅ³ŒdÕò!ôwd†eËç@˜1†ê"ÃóÔ~ÑJØ mañpà-iLàCS;°P<%çÃ@©Ñ•¤'N3=QÍä.‘@4Ğ„èUB2å?©ß¯]!z/!_;Õ):eØ£ƒÎy 7¯Wõ¾šRş*JÏÑßå2ÙÎ"$éhDh¬x@çÇ_­İáq»ÊŞ·#d¦Ú³wÏºüGÜz~µûEÏ¦ŸvNÂõ>Zh÷ş*v'HòÍ¿Wdïù.À>ñ§ÀWÒ³P$5¡çTâ1ÙşÍ&ÃÁôŠäáwÿ{• ¦%Ğ
+ËÉO=N<N'úÙçÃüÛÎ~Ê ˆb‚$eDéß²o)­†•T.rì·’Ì¾¼t;QöÍ(ÿæÓEm)-¦QŸ›(^`}§º
+ì%c/HôCş}è^ù'hOurCçÆ 6½‘†‚æ“†= DçÀŞqt÷A!‹Õ	ı~.ä{†Äëß4üCÛ©ù‚˜Dkcş É=óÿØû¼È÷ˆAá~M0ÿÈÍÒòEhM´­ê€ty"ä†óï-›Ğ3‹sÙ=˜:òô1<øS>‚ü·MäK?¥I´g!F™¸L¶ãm¥ŒôÂ-DÛÀCÊ•ÀŸ¤[šÉ;ámù?d‹ba=ù‹Û	]Øı†l‚;ø}Å<’bÈnµÕßİJÊò‹á!qÙ½¡ò8õ5ô1ŞøSü„ú¬¥c„t˜¯ö>”Ï¾Ñã¶ôwhAóYÉí»	é”Û¤§Á.úÁ.¼
+„WıŸèc»hş9¯¹¿ÊüÓ“°N1ó¸Œ½ÿíO6üvö.L\Îı
+ö]oG]ö[ë¶Î°ÿ€æ·ºkçˆŸµvz=¯~~ØùlIˆÖÎ2¿‡?¨ßµS=ÿrı\¹õ¾˜ûU·w>í\úÉ¾ù¢õş®Mà2Qö½i7·‡`
+aƒ¡?ÿ†‚&Á`‘˜Jô
+ù“£ø9ì'<AòÿŒ¶åi†QØpğ4éö§ÉÕ©ĞGØ&…i³´véØKñjÖ/ùGÄx$øvİÍbD©ßÓ(¬´ô‡>ÑÛ •uâßÈ^¡uœ’¬óo¿)^ßrÿÅü¸¾Áû9vßÌün²1¥ö0[iD>K<ä±;su ó§¡ùqI†VĞTYGg`1ìSL¤ï)¢}è¯V’=pêwÏtÔù÷g`Ë—/Ãâàı<Ùƒ4:‡Êtò…sI7M'{r/Ù“Ÿ©}‡¿ß5›~„¡ê4zI“?pôûµ\Â*ÒKM¯s¹š¢ùş?ô÷,^í³É²	ß£9ô‹´¢¤et6ü•W¡™úT*a²R@ó*¡y‡¦r[Š‰u;¨´¥sr…Îcğ¹úx‰Û/ş­‡úÙ;×ÌWŸ¿P ŠQHıëØ{q0éIi´wĞ—U–Ñx[ÀI~ópş­G[È#ä‡éc¢”“ßŞÑ°$µ0. šhş’JgO}Îáû!tF©ÿ;h-u¾˜Bî™µç,Š§pù‘Ø·@Ê›§?¯ö€¡òèëû¯İ³~U†z¤«@U!Z¡SYã¯Ò¾1‘î$ñ44…‘ÒgüıÏ÷´Ò˜(%“ÔîíMÁ~¥fdûŠ¡Bô@gQ%û2ô²H(%[8ò;ï³¿Ø†‘ß0Òó¤X¢‡`!é@§4ò”Á<ÆêLş¿«&_-ŸAü•ßváñÊ3´~ÌÖ‘'Q¼ò"”0>Püoâvì7ªãƒyŠ•úsNJÚ÷×‹ùÚwÒ&ò>J¢µw¦³ÁhkÒ³Ò&p–ÖtZîøì÷ï´î_èù'¢ì®ˆ½³h@}ÖW&‘±oy¬˜¯¿Ãc|Œ¡tç×°ØDçŒ}Wù(Íñğˆ# U~¦3OuÆ2]ÌÎ°ñ$íweàššHûĞ¤~/ËŸAƒàŸ‰(Š ?(Æû-$NŸ'n‚LVØwú5˜¦é~GØ‰ê#ÕŸK{s
+@|²ˆïYì{«—A=›A¢HŠ}'JçÍÁéÓ´¶ÿFËIÑDÙ}J<„ÎÈ¾oìKskfÅG{=‰ÎTŒQ»R?,&>9¤Gås@»_ı¹½ö~ızŞôîk`> ³ÿÒ ÒÉ/óõûÙ­yùcòqR¤Ü@ŠHùCù²yüOíˆüÏé˜A
+#ŸŸeŒ¥œp˜ŠNÌÀi¸ÆµønFÆ“xÿÂ€àÜBºĞJè(ô
+„BáEa‹ğ¦pPøDøBøYˆF1Yôˆ½Ä"qœø 8M¬Š‹‹O‰Ï‹>ñ%q¿xT$‹%™¥p©—”'İ)IIs¤g¤¥½Ò{ÒgÒYéé7) [äD9C~[>'_{5a^âèÄ1‰o$¾›ø[b iZÒì¤UIk“~I
+8ÎDgWgOç g¡ss°ó!ççç‡ÎÎÎËN¿+ÌÕÅ5Ø5ÄUâºÏ5ÍµØµÜµÚõªë¢[rËn»;Æív7ußîîåîçâå~Ô½>YHV’-ÉödGr\²3¹arzr·ä¡ÉÃ=‚Çêq§BªjNµ¦F¥Æ¦&¤¦¤6NmÚ>uljyê¬Ôy©SI}*uSê¶Ô—S_I=z8õhêg©ß¥µOó¦uJ+N–6"mLÚ¸Æc?ØxZÓè¦1M;=¿v{İÜu×m^·k]à…á…‹òÅˆ«ÒÕ–WÛ_ípµãÕ.W{ù=ş PpT¢3±—à#X‰OãÜŠGğ<ƒW .%…ÖB'!¸4PØ,ø„·„w…O…SÂDq)EÌ‹ÅRq²8‹¸´X|D\)>#®·Š;Å*ñ˜ø‡„Ä¥âRoi°T,M•æJÏJ›¥W¤£ÒçÒ÷Ò9éwd«œ$/“Éã|	å‰@\›x ñPâÕ$H*Oš“´:©2é’œ±N—³›3OçR‘³Ü¹Óù–ócçÎKÎß]à2»º—Š\#\\å®¥®G]•Ä% .)îHw¬;ÙáîéîëD\ZZÃ%q©^r’Î¥âäÎ%×?p)¯†KKS+S7Öpé]âÒ§Ä¥¶5\6š¸TÜøÆ›œ!.Å>ï]³.yİ¼u‹ÖùÖıñBæE$.™®âÕÄ«­‰KŞ«¯æú]şâÒ5â~°?7“NYnü	mx%üÀÏğóÀ	üHŞ‰G)”c¸#q—Ü_¢šÛ›¤ŸIox{ŠÉNh7#ıtêı%ú=SÕcw'±Òß ‡øëÓsR„ˆäQb[B+ÿl¤È)ú“âoâOâ÷æ]ì}îêùˆóó£$›÷}—¯ïü¾À7= Î~~öÓ³Ÿıèìgß?{ììÑ³ï=|öĞÙwÏ¾söí³o=ğıİ çnÿ~ş¹l6çnù¾à\+êáşN™ÿÃ	€>%—úeÙ™Eg_:½îô£§VœzêÔ€SÏ±§£O•BO™§rNeòœìz²ËÉv'[Ÿlq2ëdÆÉ'İ'ãNF„?8wâì‰oN|ÉZxóÄ«'öØI©'=±ùD—OxOxN¸O¸N$~9ä$éÄS›¿¸ãóÏ¿è9œt[	Å¹%KŞ)™?´ĞºÏvÖş@ÄkUû#^ØñŠqKÄ“áïir‘¿1a_ı‘&¶„øSj=SD-fò”ŞFìD"àO1‹‘‹„¥„M!mw‹çÈ’Z®Ä¬²ëæ£KúèÅR£šcHıd.$Û¤¥¶Õ”‘]‘~$işÖêwéOıéò§¦åaé½šô»ÿXkgHºŠğAí^nÒ†ê‘zfÁla¬€oa,†°ÖÃ3`…
+Ğùz.ÀEXÁ<bé	ø„p	~_á)xŞ†7aÜÃ`)”ÀAoÁ;pŞ…Cp¾ƒpŞƒ£ğ"Œ„Ÿ`|ïÃ0
+¾‡s0FÃİ0î±p/¬…qp”Âx(ƒûa< ÂYòá'Ã$˜Á`'TÂ4˜
+å0~€ó°Åˆ( ˆ\«ø>+ñ	¸Õ(£‚*øq®Æ'qYÛJ4 MFv÷iø~‡?à#œ¸wàK¸w¡ÃI_ìÁ´ mpÎ ôÇË¸£ĞğÜ‡¯â~¬Â×0c`3lÁX¬‡¯ã‡ñ˜€‰x ß„?á/ø¾Â$²ø.tã[ø6¾ƒñ]<Dÿ&£S0ßÃ£xßÇH_íÁ4¬°!|ßàGâqª8#‹’ ‰’$É’"©ê§êgêçA‡SÒø>…Ïàsø>†“ÂgÂçr}á5¹ÜPn$§Ë…½êÏêõ¢ú‹zIıU½¬şf˜e˜m˜c˜k˜§ş®ş¡şiŠ5Õ3Å™âåòLS‚)QetİÆdH2%‘nı/à	¼ˆ¿à%lD~Ê¼Š×0]PU0`cl"D
+QØ3„
+Á)0»ÙLpcÙH"¤
+iB}¡ĞĞäTÿR¯0<h˜h˜o¨0,0,”7É[„YÂlc‘ü©ü™ü¹|B>)!Ÿ’Os„¹â ±@>#)Šå¯ä¯ÅAââ`qˆüü­ü|–ü bq¨x—8L,‡‹#äKò¯òeù7q¤8J¼[mô(FÅ¤„)f%\‰P,Š•vt¬a‘a±’®46¦SiÆúÆÆ†ÆFÆtccc“Ëä6%›<¦Sª±Ø8Ôx—q˜ùsÓxS™±…±¥i‚é~c‰éü
+¿o;ˆ9¢Wì(v2=hšhšdšlšbú°ZxRX#¬5=dšj>Ø*Ì7b6ì€—àuü¶ÁvxÃ0f@Ì5M3•›¦ÃFÓÓLÓ,¡RxJ H_xÆ0˜fãB\dešcškšgš¯À>S67-ÀoMM‹L‹MKLKáe“Ï´Õ´Í´]X'¬6…ç„çM;L/	‹„Å¦Âa©i—i·iéeÓ^Ó+ØB}C= ¾	—ñ;õ-õml©¾£4~!¼	{ÕwÕCêaõ¸ú±á'ÃÏ††‹¦LÇM›>1}júÌô¹é„ù.1ılº Ì7ÜMWLWM×`©Úä7Â Ã„0Ï[[‡%ÃJø^#¿÷aì KĞ‹÷ãR\F~ï°§¨ïG„yÂRÂR#£Œwo5v3v7Şfìa¼İØÓx‡ñ^ã8c©ñ>ãxc/c±Ì8Ú8Æ8Öx¼
+ûÍûÍU‚Ïü÷ÖAòûõíÓ;¯×=oïq[÷n·ævíÒ¹SGoN‡[Ú·kÛ¦u«–-šef4mÒ¸Aı´ÔO²Ûe³Z"ÂÃLFƒªÈ’HÑDc—‹»úÄT—-w¨§«gh·&]]cGuiÒ¸«'·Øçêò‘Ò<İºñ,ÏPŸ«ØåK#24$»Øç¥š#jÕôj5½55ÑêjíÙ—ïHk7ì]@éE]<….ßO<İ“§¥4şNn7µà³b³uuõå>0ª¢k1Í·†™:{:75i[Ma”£”¯§t+6è€<!4èÚv« †p6,­´ëĞ_^ï‚®]âİîÂ&»û"<]xtæ]ú”Î>•wéº›M¸¶6®ªX¸Û
+w§›K<%Cï,ğ‰C©m…Øµ¢b®Ï–îkèéâk8ù›XZùp_cO—®¾tÖk>5ãô¸>$úäTr&+~Zç§oÌªç(©Öß€%}Bgö)p³Ÿø\ÚëŠŠ\+·¢¸bèî@ù]—ÕS±Õl®(íJÛyÔÅîÀËâ}¹}ÖâQØ¶P_znŸ¾ÈŞƒ
+|Bj®kÔPÊ¡ÿs<îÖñn[M¼*ÚÚÚaÛÆ¼‚
+W×Š]Üñî®]¨Øí+ï]À¶gÁnÜ¿¼é…>¡˜•TKù¬¤<X¢ezic=Äã}*|Rj÷OWÚùC}åw‘”fòX}¿Ç»=v›«MF!¯ËfÑ½än—ON£Í¢V¡H~X“
++ˆø]#?ÅÓ i6»«‡ºaıtõt-Öÿ`T,uà¢ï–®	D¿Ÿ·%¼CuÎuİš™A-†ãîîÂ™êËğ”ú¢<j¸Ì7çî¾¼‰ŞÌÕÙÅÃôV¾Œ®ü|ÑöwÑ¦Àúòô.ØÙ3[›»â·gCs(ìÂ*Gw&iKëZQP2Âç,/¡ó7ÂUïöy‰Ó…‚á…Lüh‡‰çBRÈe¦_A¾½´Ö'¢°î¤Ô®µºñÄkİ ú©W/RE+e¸r)áéÔ~ûÔTÁJÎs™ wjï*ÀxÖ¦iøººï¢×cÏ7t*3±êÜ-Ø›Â©ŸÎİâİ…ní§IcŠ]úÀÔÂÀ6µ[°ˆÔHN;wãYl/c™ğ»
+<Ã=…Q.Ÿ7¯€­mße}3øë¼êwÃSÈfÑ6›Šƒl3}¹éñ¡›ë»•?³cãúyHXè\•SQY…AüÀÆ“,Æß˜OYZOÿŞ6Ş×ıïM»kƒ²–O¾lÎ}@b#tM[Ñ—d·øf$²Ş¡z«ÂÓ½¤ÂÓ· }<ßƒ>ÅOf+´CìÑ¯S“Æ[ì´Õƒózoõâ¼¾H“vÚCq…k^¿‚m
+‹;nM¡ò‚=ixy®ÀrY&{p±Ö[z0ğúñ{¼ å¼TâüyØngæ!Û-hyVm 4>*‘´o°¶Dy-¯œçñŸ­À˜ÅVÁÎaì(b2™•®®& ÿ)UQ\ÈDÓöĞÿèCOÚ.O‡­((fŸÉ3¼“/ÌÓ‰åç°ü-_aù*‰&yÂÔüFŞÑQtÅŒ¯°şÄ¶²”I…õÛ&m`ÄÛàìÎ¾· ß.‚— ’§İ"û*ì¾Í–Û1»Q­[©–—~#œæ¿~»™Ø•êäRŠËsXè·“§ô©u—í-ÚäzwuÖçt›Å‘Û±1fQÛfO@Ì šIÏŒæĞs¢tÚ	½E}v$ê$Ú²±-å·&Ú†ÏO¥qœü÷Z”¼±ª·T#!¦^WÑuËkà¼”ÛÀùKn#çÅÜtgÑ…iË…^Š.,¹°å‚öí7IÎ¯¿ÊuZ¾BïW¹ÑÎ/Ïä:9}æÂÑ{&»eî™ÜXçÏ?œ?á÷ù?v;Ÿ.òøşûü³İ ÿ;8¿¸åtşióOİ"æŸNËqçqÿò¾Ÿ{ôuÜWÕŞùZ^šó•W8{0owéîòİâî@•7°Û•ëÜ•³«×®q»¦íZ»kË.5v'–n«ÜæÛ&Z¶áÒ—Ğ÷Z^Bƒe{ÎöÛÅrßRŸàóUùùÄŒ-9[„Ê}/
+U/{QÈØ”³IXûVm<¶QèµaÉ!cÃ¸û76H«W¥8óVá¸¸®ÈMt>º<ÆiYî\>mù’ååræ2ï2¡|–.)'Ÿu	V-9¶Dèµ°há¸…âœÜ€sílœ5³™sBY³Œ2îŞöÎ{s[8ã06¿^vl¾š-æ+´ôb*+"Ü™ÛÌ9h`7ç@¢‘Yö|™¶GÊóÇŠhÛ‹·‹cÅÿˆò…ŞoIoÁÛ»Eë\oïÔ¹Gó°{®ËÙz¾•°%Oç^ÈÊs1:Ë‘oCK¾5Ë’O>c>:–K‘ešE²X2,½,ã,K,§-‹šCy,â8À^€by¹L!åRè—Şc· ïCÍäÃy¾Ô¾ì··÷@Ÿ2ÏùlE\\8{Ñ"HìÔÃ—Õ·`›X\œØ©°‡¯„¥½^.gi«•ÒeÊ&ÜŸÎ~PKÀ„ôô²2–Bö”®•ñ¦—Q1U£Fô0á~(K/›€ee lå—áJ—•Aå—!5!”¥ëı×ôD¡è×mˆ²2jWFı”AHÍt6Ö!K¥Çù°|’§ƒ&ñß7ŞF´¥ö @àGötı·Àÿ~Wò¿ühïÅbû`ûóg!?ó`*ıŞtCŞ~xCÿær,ú—n÷ÀF=µœ¢¹ÿXo4Ì¤~…!yÅ”;	§‘wÃ:ÒoÉ+¾côÒpğæ]á—x†õTóaØE¿WS„Kğ°Ğî>§S„9ŸÖ¸ï†%T¿ÅA0„rµŸ!0ÆÕê´–Âs0Ê¯gÉÓ¿Bøµí4óùÔÏ
+¸î#NZ®%.Asé;÷ûE'Í}3E¸ìgz°­ÚM-ì„êGèaŒ$ÅÏh‹Äÿ²›ÿ7~ÄaVm	ü¦=)Ó¥Q%±oÜ~|èŸFs?Az™vã¨šFåéåÀRfàšnûÁdäí¦Wqı´¢–„ßÓ|¨LüœäšÊe*“/Ñ¬(­²¿/îO’Ã×Œ:Æ>½&'¬€9š° <–0 â6?k°$P¹òl ØÇ~Öù@Ô6€húhªÿ;b“ç ê­ˆ£>ã; $¿“H4‘úN")rÒz\Ü
+@ò5 rà …æ‘JsM3î¨ß‡@ëi° å7¦õ4¡³’q Ù½uø»ÿ,©u¨Ãÿ'h_‡ÿ_£²u¨CêP‡:Ô¡u¨CêP‡:Ô¡u¨CêP‡:Ô¡u¨CêP‡:Ô¡u¨CêP‡:Ô¡u¨ƒ ÈYòtA§7\PdQY”(+çHÆ›Û´±eÛ²›eFºmîH›ÛvD~uÕíâyú•ir‹«1Òìï%¾….ŞS=o˜(’ì¢\õ2˜uÂz@˜¦EİTw/•NókäÃÉ^«
+a&Q2ÑÀ«)^ÈÉ¡v1|p>¼ÕŞ*[lV{Œ'M°M{é•Í{·¼¸oó¾Bºñğ¡cşÆşsşóş¦²¿×ÅIı›©ÿôëı‹R˜	$ëÄøÚı£UP=-í6«P?;ÚnÒi€W6oÙË°úOû›ú ßÇúïƒ÷û³ı_²U—ÀéVi„Agoš@ÅpóE‹P$fE I–^,4~¬b+u®*¨òvÈÉ<8;İÙÙECé›£MÁæ±¹[¸i>n‡°ö®×Åş~¸éaÜäï÷0s·ÿ
+N‡`¤UÙ$²ÁòúAXEÈHOaZª#J¡eµğ´Àéi¦)8±~ôâó¦`=ÂcB/¡”xæôÚh{d„½…kñ(
+ˆƒïÓº¢ÍoávÂËx¬²’Úí¥ÆSi"ÄxMÄ)š®4tÓÙ-²{ß8q‚ı
+y%¼‚ö(x£ìŠˆ­g´”UÑQV(ÖƒœtˆÍ	7qÃ“Ì˜íÎ²‹Átv–]òüõë¯—Bøë§]‹~~Ù#•k—¯ù×úâx†cp´ÿaÿJl†vÿ%ÿ!ÿGşs˜@3^M“´tš İ%!Ì,K’¨(œP±4âHlNvvF¶Î¶
+·Mn‘ÊØ±Gú_ÇÏã€•Rû¯7~{5v%ÛÁ‘Ô¯™Ö–¼®ˆ°‰HN—!!Ân++´«	ÃmbùPö67H_v‹r‹æidE­ß²evV4ñMQé·cdö#O¯-ï5oRÙ£á»£şxıø·=–¿_6/I8=íşíËşóŸyı'”?tŸmÃ;÷ôyúéCË]I3»ƒv½Í¬ó¶Q•øG² 9Õš (¥Ú¬6ë„B[läŒô{Zlh•m61ŞéŒ-+tª¢±¬PeŒÉÖ8Ã&›A›Î2yÎ®(Å“œV¿U´;«%[†§E¶–]êˆ–êıùİÇØ—SĞ2oÕÖu#îZşÌì™>b~‰öÑùÇ–®ñáì7>~mŸíÊœYeÓWOßÌÉã"^|ıMßÜI’mÉSíy+ÎK;´ôÆÙd» PÆÈ(lRY¡ÁfÃ0EAÚïšu?kºh§ËRÚ´Ç¨ªnñ¾Õ£„ÙûŞò/š‡ûkiÅK˜ãsŠ;¯İ¾X|PYıãmQ´·}hoi	0ÄÛÂ‘ªI;©H‰Iq$ÜqqbTTÌ„Â(…mæH£U,Sg’àû:xğ`]èI$øÉ©ÙP{ş‹m+hÛz}7=‘n‡[d;*%úÿ8ÿæ%×Î6?.{ö¹…İ§æø2DwõÌøû7ûÀ¦gïoY9ûÙ¦­„ßWú;¼L»7J—‹hH†<oz¢M1‡Å „)¢'ÅwaT”h4F”ZÌKÌ‚I6Ó!u]?¤LiÕÌ™ïkpÚ\´“
+Ù®H5%9ïU>uG[†TïÒñŸ¯¡B›ÛwS‹íOlh¶­ìow­˜3uÕSSg,Ç#§ı~¼ûà½8Ïÿ¥s“ÿKÿÅAE—?^ùü#ÓŸ9¶…vÿn~æ¦“>iä2H²F#˜ÃÁh2N(4)ãûu–³½Ì¢™™‡ÇjGR¯’ùÓm…¯|‹æê0ñé‚§¿Â¿üŒòqöJÒi…´Cq´Cõ …d-ßÛ4]q†ÇE¦DFÃ%³Y´1¹Arƒû-É©$'‹VkÂı…VUlr¨.ıÀ°ÔÍÏK‹æ-[µHcäú›»ƒ[©m›•Î”÷ç÷_ÖL)›ıË¡c¿Ì™0wÅ)ÿ•i³ç?4m¶gõ¢ùO`ÃG–âü7>ÿøÍŠW¢¤ø“zçÀºI;b¤è=Bø…‰Nšvõµ™³—<äÿbÓÉÅ´F;­1†ÖØÏÛ4ÉNÒKÂ«ØÅÔ4³Ûâ&î[œ!B´XD‡#¾¬ĞÁ5BMxk¯±Fj¬iäÚ#Z¬ÀWi…–’İÿÇoÏ½¾©åîU¥¯Oxõ›?¿8éÀê™3V¬(¿cNOáÿ£şÉVÅûĞ…aïAé“/ªıÏnÙxtëcOl¿u­„Û"©-÷`ê{#EU•@2’X¬$‘Ş„ÎŒPãIÖIäê7Ä1G^{ôèQ¦Í‡ÃR7i#™§öŞú¢B©9G™¦,QÈ-ÊJ…rı=U)G'­•’q‡zƒ³³Î¢ÿù°îÑè.~}íyq Ğî>ıY¥e+ÙÎ—`t«ø#Ÿo·*‚$ŒÌI°ÈN¹—\$•e“(£áÅÂ<<†‚E3Æ´çq±Ö÷4‘Òr;PB#%Š_‹Ë—ûaùrE"¿®¬0ÈÛ2œ|!ATdyÉ Šv›Y(*4›¹£g÷Ù1ÏíXeÇ¥v,¶c¦3ì8˜ÿÜwädåd·©QQYÄd{›6væ¸E·èÁlDUQ)™V_ZòTõÔ§ßr>ZV2Ök¶C°¼”€«ı%Ì_”~Iè;Ãßßï:€v`=äs4ËpÒFI0ÊÛ6,Ò/EH#$Ñé
+‹Œ‹Œ+*ŒL‰zZ"Qì‰Q«Iß^THˆ/*”ìµO]Ñà¢ûnb©t­*yÈ—uÙèÄEG#I$=±ãææT:çÿùrõğâÂòõ;ı?¯^îßW>ÖÛÿ´5–m©ÄE¯¼/O÷o|hcbÔ¼2ş.§²êÀ_~i÷„?Ê“¸şâm#Zc¢Fc´UŒ‹·Ä`¸	´"	Vƒ×gXj¨43œ1Ì"Á¬_"]ñ8X÷HØb®§nôX“ASµ1ŠäINZXÁ%Å¨iibì9ÿ5´œÅ®àóØqÿÁgp,vú›ŞúR³Ï¤+şıWüÕş71õ¯nÅî_boœê{±ı”LF‰/òpâ‹"¡±7Æ"›@†(‡QT¨ˆ²…vİîrğÖöÚ¢mkA¤¹ğİ´ËÃ7úß9\ı~€#pvÓçş_°íªóS…£Ÿû÷l¦\é	Œ¼º•ıå–´ƒL.ü\Ã÷ófÉ¤İM¢J:?\6.‘ñe'ÉóeÁ"£A$õ(¢Æ¢B°»ÂC&¦Ã`Í‘ÑgÉü9·õR“k‹Y×Ş“§¯ö·ÂïX­Ï`ß–ŞD”eÅ (¢)Œ„²ªU‘v!ŒöwÎ<Ö?y)Ú¯ı¼_üAú¶úòšê7iî9’”TrÏñ.o;U	‡ÈØXÅÁ<Çh­#cÅèèx1ŞZT)šŠ
+3U¯*,UÏÿ ŠR¹‹]èr±CJú˜¹êµ­Î±SP2<šÌd‘áa‘†&8#±{Ã”^;Ûøäe²¿öKnóòKı{_ıÂ_µAxàÄ5›[N¼×ÿ™ÿ²ÿ7ÿ¡~İü•ş¸ñù°[Ï>úõÿ-ôå1qÄî•1S¦¸N,‚Œm.Êè“±RÆR‹eÌ#5Ç(¿*X¤eZƒù[d\zc}ênğà rÒ~Æë?Cx®ÚimÀ¾ıLõh\•s¸\5÷ÆC˜<Š	&‰dË¤¢@ºQ&}LÊ$›<Ç˜ÚFÛ*q4ÛÆôÔ§úÈîıû…u_V¯è¿…ÕßÈÓ«;¯W¯¾öuP†3h,™b«¶äfŠ 2ÕÄS?6ÚI÷ïÈÓ¯ÆëÒ§Ô6ûx/ÄBœ5<"."!^4Åš,d7¢ÄûÒœ•€¥	X’€]°yº0*/'à±<€Ïò
+°8ûñ
+Ö”pä7¼xG.çÅy¼}
+/£Æñ¢Y!ıjj=.àM´î¨~+êëPH_ZGaÁö;êìèj~ì«<…R>¾7søü!Uƒ¤¿ÿ™½7)¸^R91ÄG®õƒÎ?ã¢­y+â…ë×‰aüÄèè˜–-[Q4 ÷76«ï_>Ç¿¤µ[”6^Å£RC¶K7­^º}ø5¯XµñŞqû®õ“§_Ëh77©Á3ñıÙrq[–çÍ “)\•$9\¶D„¡"€t…«,è³`¥Ë-XjÁbæYòk&N‚ÇgÔ¨A¹Ó'šÖ‚2¤¶Õ²¼ñ”pÅ¼Iò]w­€Ä¦Ûq5ÍC€¡¤W>!½qés,`€ø„0²•a’K¶2²œoöàÒß5–Ä®2'NÓ ²Áà“Ïüo>OömŸ`ûuoøÿºxÉÿ'†ıteáí/ü;¶ù°ç)rİzÁÿò)T±±ÿSÒøbÍªpkoùW.iÕ0rµì‘ÒªiÕ]«F"ıÏv#T³¶¹n÷¸ı&İš%©Vfe\d²¯ñßµ_èıJUşİşÙ8½âgïüX}B~ê0Úª?ÒíÚ(İßàÍ@³9ÒI* ÂááFIŒ‰5‘ä‘…:`/ÅÒXtÅjš6+çæÁµ1féScş<ŠAçBZH`÷ıÂc?£¸ë)\úçº'ıíğÈcÏ	İ«wÉÓ¿úäÇ	ÕO‰?N™^ıç"¦?“‡ş'ñ±	,ö:Í˜à‰Vd9:´JS³52º[ws¡ùn³h1£gwà¢·eåzú{FxÄpš%³G¬WÏUT8.±G")ŸD4Ê‰õ$‘ìd±‚}ì¢lF^Eµ©ÁzÈÂgúà,‰¾ûn—Ø*Z‹I›
+õ›Š-š§¸³¢5óÂ|ûè˜$YúÓÔ¾ººÏ×±í{æŒ_S¼îÅæıÙ¯87?±a[×¯wœşÀÈÛÓYÌ#R§=8mJ×ş­Ó¢So4¹×KÙê.^:®c~»t‹3½m¿ñ´/MÙßæÃ<[Ìô~F*›¢i£İ²1v¡}Š{±SŒxÕˆ‡Œ¸×ˆ«Œ¸ÀˆÓŒ(±—3h1âÈÓF<jDŸ—Q+ Ü‹FÔò·q-|^ä5¢Óˆxeã™9<ŒØŠ
+q©ËyY3xÁ1ŞËR>´–O¹Œh5bÀˆgŒ¸ßˆ•¼B1/Êá¥4	uÈßµÙ?+ÁûBŠ®—]ƒcÚ„\/:„c¯ú¤9Ò·Wã¥oWsodi†´«‘ĞİÛ8ÜªJV’ß2†äx@$9{Uô9°Òå,u`±óÈœÀëª‹KPˆ2‘“S¸Ââ±O(’pâE¿ñş{^ığÕeş?¢¦^|^œ~mÉkï}[,¹¶ì…?Ù?%@^È=i6èàMSäˆ‚ D“ÑeÊ3	™¦bÓRS•é¢IÎ0¡*P°¤™lšÍ}6»&¬šæd±I©v1â­ê×âœ~ıpÖAÒİ®¿şÏF@§¬Lº<Iç¬¿«aCUuDXšŠ¢Å'e5KŒí]˜í›Ú°w¡ªÚ '-ã"„01"ÂfË+$í˜’GşZUVfáÒ,,ÏÂÒ,,ÎÂ¼,Ìä™!)x™Æ}4š+ª´+Át	ß>~?Ğ*x‹f§#æà›ÙÊÁ/Û<ŠRŸ‚è-Ô®yæÙ/~ÿµtâ¤{Ã^iŠ³¿×¨]œ»Ë­%ƒ¥ë®Ã(|sÚÌÜ¢¨M+ÖïP¤v³Æ÷hÃ”½[ıMóz«¥Ö»Kÿ3rîÀ'ûJBfIï‚bÌâ÷\‡!†ög°·U’KÚ3%U¶	G|^¡Ã&‡àÎ+¢}©˜“ŠKS±4©HÅ3©X•Šš4¯­^×émB4:¿.p³iwÕLTÔlvsdCoıã§<“-„ÍÊIÊznò‘×öMœûø‚y+çM’«ß-æœfj¹AúÉ_Ø±`Ô@ÿş¯¾>pì«ã‡’L§Åw‰Óõ`„·+„GE*ªNQ™5&¯Ğ5-jIÔé()*Êju)¥J¹rL9£È X•bşXEªQT“IÌ+4E;oŒĞîc.ø>7òI·Šá—üò:¨!1rŞüâé–3›¾¾pñÌó'öDŒ¿{I¹üé±QcÍ«_F'F¢›‹8úUÆ‰ş4ûÄ	vk×ßÛ,"",1ŠEIñØ a:ºò
+eæŠÑKS°4)HÁ3)X•¢ó $."‘Ë¹‘©úD™&Ï®ÏxãIKk¡-CB±ßt\<åÙ,AØ¡lÕêÏ'Î]YQñØ¼I›GÄ(ŒZ¼k¾v5rCKë„FXúõNòÎAı¬ÅìÄƒ½¹‘6E­`6«61>NQ@¬y…áõÈ¾Ô«g´X¢ó
+-V#m¶1úX<VÅce<.Çòx,ÇâxÌ‹ÇÌx¼¯öÙºáÚ-6ãoÆKcŠàÖxâ²9ês¨õÄòûÕ[3Ô¿şâÕ«?à/[–Î¹RÁ?^~wH·&À$ŒC3&U¿[ñÂ“[Ø;û÷¤ÚËï‚–xG…GR+É!ÅD›,$$ ¢BóT,èpÆdÄôŠ)Š™³$fmŒj‰É¡ä–˜ı1§c.Ä¨íŠ(%he¢…ªnáùrŒ·I·oıÆİ\1™1Å1¢7†´IzúàûHÙ3ı­½µàşQ÷@²µëNRõÙüÎ-ÆÁÏ#Ûwïxüñsz4oâéÚáCq×µîâ®™“—Ï0Ï7äŞ9t&“3ÿ ñ‚Ô\dg×zKÜ1F£SØl¢SÌÌH°Ä˜¢"¢Ró
+£¬éy…Ñ ’P‘0L‚xo&º2ñh&ú2q)OC&æÎÄªLì•‰•™X‰™hÉÄ‹™xŒ'CtkUcÙø…Óıv<D^o`%¿ş`÷‹ÑÄÃĞC–MZ3[qØ¬¤<B.…”­$½dŸR‚áBö¶ßŞ{ğHÙ†¦‚AzAÙŞmfßŠ©,ÉŸÕÍ?`Ay\ŞØnó¨»Ñ€ñtmwMZ®¶ÜxíMkñ­Yû‡¿sæÔë%ìıåbâğÏt*c¡ØÛÎa³Ùª]­IÙvÕ!†ÓY´‹Ãª8ôÅáEş;‡gâ°&³2Kã°ÆjÉl{›œ}^í%
+±U_D™‹yKÛgò­{©Qqş´•;vË9}ô°-ïUg›Çkî{´z†|Ø?õ–&âî|2®·Ğ|Ùİã½Şn¢ªj—ÉĞ·AóJÈÉ©â~ÑZîÑ”ıœ‹!EšÛÒ‹®å Ô¨úW›üÊ•f<Ç²kÓ¦+g¤¶Wß!ğ€>'+üáİd%‰”›Ín±¨d]ÕxmbGí¸ßKìvwÁÇøCvÜbÇµüq¿ÇôòëK—OÛÑgÇJ~§Ù‹WÎàío¡6xñQ^ƒŠËíXjG§-¼G­h?ïZkL™gø¨U!•otÃÆÿ=½ÁA¢İL¥ºfo²´Í±±7õ[ÄpWiş‰{fuèÚZÛ«++Œ”n£¤ç˜wTA°H;‹¼#F4M„…©´sáfgxN¸À~…Â%K¸–œ.·	÷öíß­8¼<¼2¼*üX¸|:!\{– ÜîÕÏ„_7ªª&É`‘Ar‚#»Ó‡0!M§ßã5e“ecWÁ¿3ıÏÚ±O|èïïáÏ÷ø§É‡¯ÂıÕikÀœëx{‹ìß'G ÇEÏÈx:x´VÆr~óã”ÑÂï‚N‡\-•±—ŒŞäÏ¯©üOŒ©u/T±C>|¥9Íf€â!ËÔ§z±ÜF·Ën0ºŒéHÛ%XcmàpHÌß1[ÜFp”¤ctÌa/:ÓÑ’çÓñt:îMÇÒqA:NIÇqéØ—†¥ãh*>Ä‹·ğâié8({¥c|:^MÇ¼qM…åé¨Î+Héx9O»¦¶cÒ±9/¢Û\åeÔ²’·œÀ»îœZ@şY>/­4wz,…*Şri:³yÃ033ÒÒ5İ¼ùÛ•Kè¥Ë}!?7»“	Úè¬¬œ}~ıZF&~7TnÍëg'	1ÜŒÖ‰¦ıx¹ıKËælW6¢ 
+bÛc§,I[¯½ïÙG·õ/}`¦°ùÉ‰¾ÊêEbß}äÆmz•¼kÌ=ÅÛ1­øäÄ-OU/Ò¸.şL\ƒ¡Şöv£Ñq¦¸ø{4DËy…ÑÖp‹	Ç°*}	x‘ÿ$à~Ã¦eVò+¸Õwp…7¨owˆÚ]­¤M£;g¬Ø¡/¥Ã3“¶='ló@ómk®Ï¿tğÖÃÕš(%ÒœMä	vó6¶ñ”˜XCwş¢˜óW‹KcQ»µ(Å¼XÌŒÅÓ±5ZúŸ¿µp×ö·¯üüÓ%üöÏsûf?¹fÑ‚GŸ^ $ù¿ñŸC7Ú„Lÿÿ—g=ùñ'Çx¬à@3ëÉß(R¬N›Á`cZªMrZ¬`¶â…d+¤aN.MÃÒ4t¦a Ï¤aUÚ‹ôéº“ë{¢k¶Ò*„Ä
+WúËÒe3J²”¹fú;oí›<{Ì¤œy+çLaÁÂ+†§ı…²²®¥ÔlDdÉ`ÿeÿ_½>pÿÊãï¾©ûAiŸ™¿=ÇÛ/Æ`³YE«˜â±Æ›­†Hdò´e+¸XìçMAW
+MA_
+.åiH!¿‡{Ş½R°2ËS0#-)x1ñÄÍıñÏåç\÷o<¶Vä÷D†p¿y¯ŠœóÊ–äÕ¼¨î„–k>¨xlşÄIsVVDa4F-OzDn÷ãÕ–¸ëÙ1ƒ„>|úëŸƒv„y´æHğx­J$y1æ(‡E1Y%‹f ²C£ûl¶ùÑÚŞë¦m±²Ñ ¥—HIMi_ú€Øa|ÅîÔ#LÏ™^ÛQ}˜FhCQÌNò.A‰·½ª$;âÃâŠ”Ş8<YŒu’®µŠ&2üb´µ1²ë»1iŒU±¸1–7ÆœÆHù5[§Ÿ’ı//Ùë¯ªÒê×oª½…¾ñªJw=öî	÷Ú˜¥åó§Ü5}ÕÌÛ>|wû‡	O[fŞ;yBæÇ–LíŞ ÓW>?{‘s@ï~ı¼yqÉzŞ›·|ÕÔQİzŞÖ£iûF©)·Ü6”í¢3pQ 3QĞÕ›f±%)Ú!H«„YŒh^ƒE°³sP|[w„‚–šOU4Ï€ÀEkhÁ|ùVÙäÁ{´ ¡QáàOšÕbâ;ïdç¤t1Äş&|0óÒ¥™ÕùwäD°YÌ¦>/µ%İVämg7Â°^X½„x»ÌU[t¸Ã–ÿ›ª²otLiF5<1¦B}îŒ§µ°aÛ¿k6©mu®Û„²k/^×mÂû4g•ôñ_4gŞéıA1šDAPLb˜Ù(Xt¬2ã,3›±Ÿ»˜ÑeÆ(3Jf<cÆÌxÀŒ•f\~c­ÂH­X+-8Áóµ~ñüøóğü<?ÌŒ­¨àĞ9ÿÛDjêü½‚gÆ3ZÍfıâ¯è_Œê?¿¹ù+ìœZßè°;±Èè˜V­"³…áÇıVıŞÚSÿ÷ıÄoƒ7ï@x0PM.Ùaö¯àfo Á¦*fK„i4‹61Ê FQm0`˜Á!FDŠšm¢êx GDc¿hÌÆ–Ñ˜B
+'¥h¼ßEãhÜÏFãŠhœ¬Ùåÿªìêc£8®ø¼İ½//sælXoJ¥,Æ2RÏ;ĞTIs€ëâÄG9|gsŠí³îÖ@’J¥••¡ª$BH­¢ÈŠ
+‘’È"i”QUEJ"„”Dm­Èê•øÃ¢ªà®}ïíìymIdİî›™÷Şüæ}ŒwvætÌ¹Â‚°ù›|kÁ5®Zpù&,p™5¨1ìk¼ÀêN±º¼}¾:d˜µà:w‰<g-8nAÑ8À}61¨ŸÎqWÓ¬ã÷ó˜ë¹ñÜâ¦IR«Úç,È²öVYpƒ;ø›SÜı·>j¶ÜañÔŞ××·ßÓî[ÒÇ‹İ¹hO«²÷ïK´ï£·| £º»µF_ëÊÇõíõt1NñaS¬ù/ŸW¾xçİHSâÛ?LŞÿÙy­|®õ\y=:~µıæv}où¾‹'ôa&6Ğ/w¢÷MèMMÒ>i‘pHÓõP$f†ä²		‡%tÊ^™•úF	M,	†„›f%\—0-á‚„3Ä÷¼<-õ¬„°´d³ì’}24æ;µ\•×å¿dôOò+©!S©… Jj¾)õiRĞ,7¢ ±iP•¸>$é·S6>²¥û!	€–2ÚœZãÌH}JÂ1y—5º+á€„^	)		,ÚXgwOJĞHn§“ÄÆ•]‹†k…¶²ºÜ´?ÒğX±ØRÜğÏÏÄşitOu?Ö ­’h¡´ºò÷Ê7ŸÀo*/|
+qXö×Êğ<|PéÔÖiñÊ^xµ<Wş’fô>‘ÜFŸ`è¥şW­MÔÕÄbzma7Dëkë±Zs»Xõ¢¿µÁµ!kÃ.¶ØĞaC“u6h6ÌÙ0kÃ—6|bÃ”glò÷ø-æò®NßS ÈçmÀÇÑS6Lø£½6tò©cÃ
+nØ0cÃ5¦íïÅ¿iÆN=¥ø«ÌUÎ*[UgGÛéë6\ò”±²Í†å\Yİy!×õ/‘˜ÓrÑ,İgßSÂß4Q›ÔYº¾qíƒôŸ~&2®0‰!®}´ıæäk•ô¥ÙP¼Gïú÷ÅÊ­î*Oš¿ÿ§Åx°üz|í?äíí[Wß8—Æ¨Ic&ÿ£&S·µp.5Ìš°nè;÷µ¡7xbå5¦M˜2áŒ	§L˜0Á5!‹ùo.;LpLXaÎs&Ì˜€ü—îÂßÉüM&&Ìúj'™íØRl+˜sÓs{8Î°Æ,3Üeµ)Ø¥Çàõ„˜´ÏÔyîí¤	c&ìdàˆ:°¡Öÿ‹ÕÅ^½Ã§şañ{Àt†›—®„Õ+ÓÚ¾ò}yù­t\o>qüö×'ø·˜á²QÔz„.6¤…FçíßßS÷Ã£ğmx+À[ğOAª¹¥D[Ëü	üj6Špù8½Ä¿Ößƒn>Ÿ´&UÂÀG¼šhä¥½Qı~`Kğ{şw Ú¡›¿pÙ¸‘ÿcê÷¿ºBºvëÏÂ>¹³
+}­é¸ü	è›Á3“õíúîÔôËú³Z¤ü_8ñ@çDD7"F,*èMá±ØÉØdÌ0õÍ°Ëâ‰î¦vÓyZÔî—ÿæ(Á{æ	#Sd5fn9|bGˆZñ>â#&è—r„¢×¿û­‰¸8¤h]¬‡mxBÂgÔGD—¸¨è¨ø	Š‰CRÑ5ÚlW´)~®W½L<l<¬h©6*:.:"q±UÄ˜xFE^!>W8âD·?ø%¶°~Xä°´MŒŠ‘Dj3Öã}WUªÄ¥Şs¨ë0^³È¹™õ jã(•ÁºÇ±f?.ö<¦t`ËrâÕ­Ü‹/İÇZKX"9Ñ%E;âœçpğN2øq±6ƒıçXgQ<u1x×ñ|7Ÿ3<9ƒR,¹<f’b9‚m„&Ë­d£Q¶ˆ#bÎ=õ8J6Ã4! l‡™+Ï2ë°¾ˆ÷A¾–Ğş>ÎK•˜Ê1ÁE(È:‡X—o±lu™w ëÉ¯„p ûAkx½T;‚4Éû¾!şÕ¢QÅÄüøÉÚƒÊg×ÒïtT\8<ÎVlàäQäµö–G½yö!9Ä^Ì åªQ•Õ@ÕNY5.Â8Æ5­âmEîœ²å“èÿ%5zörÚÈÃŒ·Ğ=Êh³\W¨Ú–¸†UOŞˆ‡9Î®úeKEe¿,kk½‹…Ù6®êµÀˆ²øçyÚ‹©Ê³ßFókwï°\†í[Prcœ{®Â2‚uIÎ\[~&Úğïÿ%ñ|–$Î6,“…ÚT¦ZZzdQ6Ík ¯#~Êâ^ZÂÕ¥FLYA6u9{Šl¼²&ù:Ç‘íÅÏ8{Éóœï›4f)y÷	îutæ(–šQ6pÿdY‹Eöà8G“ß~7bf¤yI#íˆ-\¦Ò:ÉmØc7¢Şw*oÆ¹r^w`yFqšÇ´¯[ñ¾Ct²Ä6¦½¶.Î¾bŞÃâ!İ9•­râ(g¡G^Dz¹IöflkGøÃí:ç¾l‰ex"N‡cp”ÿd8¢Öqdæ8"óŒÌóH0³‡e#Ü´©¥ˆe?ÓÁºqÆ0®0yyê~¯.Îo~ÊcÙål)qv%yŒCØN–ïù?È€Ó8
+endstream
+endobj
+95 0 obj
+<<
+/ca 0.87058824
+/BM /Normal
+>>
+endobj
+96 0 obj
+<<
+/ca 1
+/BM /Normal
+>>
+endobj
+xref
+0 97
+0000000000 65535 f 
+0000000015 00000 n 
+0000000074 00000 n 
+0000000114 00000 n 
+0000000451 00000 n 
+0000000507 00000 n 
+0000000563 00000 n 
+0000000669 00000 n 
+0000000725 00000 n 
+0000000936 00000 n 
+0000000992 00000 n 
+0000001199 00000 n 
+0000001256 00000 n 
+0000001472 00000 n 
+0000001528 00000 n 
+0000002243 00000 n 
+0000002465 00000 n 
+0000083888 00000 n 
+0000102303 00000 n 
+0000102683 00000 n 
+0000102854 00000 n 
+0000102995 00000 n 
+0000103139 00000 n 
+0000103436 00000 n 
+0000105680 00000 n 
+0000106101 00000 n 
+0000106312 00000 n 
+0000106661 00000 n 
+0000106959 00000 n 
+0000107437 00000 n 
+0000107831 00000 n 
+0000108120 00000 n 
+0000108613 00000 n 
+0000109022 00000 n 
+0000109481 00000 n 
+0000109819 00000 n 
+0000110294 00000 n 
+0000110989 00000 n 
+0000111360 00000 n 
+0000111733 00000 n 
+0000111848 00000 n 
+0000111994 00000 n 
+0000112136 00000 n 
+0000112365 00000 n 
+0000112851 00000 n 
+0000113385 00000 n 
+0000113748 00000 n 
+0000114238 00000 n 
+0000114716 00000 n 
+0000115006 00000 n 
+0000115537 00000 n 
+0000115934 00000 n 
+0000116226 00000 n 
+0000116608 00000 n 
+0000116768 00000 n 
+0000117008 00000 n 
+0000117245 00000 n 
+0000117495 00000 n 
+0000117746 00000 n 
+0000117885 00000 n 
+0000118294 00000 n 
+0000118975 00000 n 
+0000119687 00000 n 
+0000120323 00000 n 
+0000120936 00000 n 
+0000121553 00000 n 
+0000122164 00000 n 
+0000122606 00000 n 
+0000123103 00000 n 
+0000123665 00000 n 
+0000124123 00000 n 
+0000124262 00000 n 
+0000124582 00000 n 
+0000125664 00000 n 
+0000125924 00000 n 
+0000126267 00000 n 
+0000126521 00000 n 
+0000126866 00000 n 
+0000126994 00000 n 
+0000127298 00000 n 
+0000127442 00000 n 
+0000127826 00000 n 
+0000128059 00000 n 
+0000128304 00000 n 
+0000142576 00000 n 
+0000143658 00000 n 
+0000143798 00000 n 
+0000144193 00000 n 
+0000144718 00000 n 
+0000144958 00000 n 
+0000162072 00000 n 
+0000162207 00000 n 
+0000162611 00000 n 
+0000163436 00000 n 
+0000163671 00000 n 
+0000184854 00000 n 
+0000184903 00000 n 
+trailer
+<<
+/Size 97
+/Root 15 0 R
+/Info 2 0 R
+>>
+startxref
+184943
+%%EOF
