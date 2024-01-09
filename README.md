@@ -66,3 +66,4 @@
 ## BioEngineering
 **[[spensermnews@gmail.com]]**
 - PCA & multivariate signal processing, applied to neural data
+https://www.udemy.com/course/learn-advanced-python-programming
