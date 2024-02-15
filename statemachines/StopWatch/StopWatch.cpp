@@ -66,7 +66,7 @@ int main() {
   std::this_thread::sleep_for(std::chrono::seconds(1));                                                                                                                         
   stopwatch.resume();                                                                                                                                                           
   std::this_thread::sleep_for(std::chrono::seconds(3));                                                                                                                         
-  stopwatch.stop();                                                                                                                                                             
   stopwatch.displayElapsedTime();                                                                                                                                               
+  stopwatch.stop();                                                                                                                                                             
    return 0;                                                                                                                                                                     
  }                   

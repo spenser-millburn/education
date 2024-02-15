@@ -1,0 +1,23 @@
+ @startuml                                                                                    
+                                                                                              
+ skinparam state {                                                                            
+     BorderColor black                                                                        
+     BackgroundColor White                                                                    
+ }                                                                                            
+                                                                                              
+ [*] --> Idle                                                                                 
+                                                                                              
+ state Idle {                                                                                 
+     [*] --> Green                                                                            
+     Green --> Yellow : Timer expires                                                         
+     Yellow --> Red : Timer expires                                                           
+     Red --> Green : Timer expires                                                            
+                                                                                              
+     state PedestrianCrossing {                                                               
+         [*] --> Walk                                                                         
+         DontWalk --> Walk : Timer expires                                                    
+         Walk --> DontWalk : Timer expires                                                    
+     }                                                                                        
+ }                                                                                            
+                                                                                              
+ @enduml                  

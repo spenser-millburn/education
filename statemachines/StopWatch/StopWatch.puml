@@ -1,0 +1,20 @@
+ @startuml                                                                                                                                                                         
+                                                                                                                                                                                   
+ skinparam state {                                                                                                                                                                 
+     BorderColor black                                                                                                                                                             
+     BackgroundColor white                                                                                                                                                         
+     FontSize 14                                                                                                                                                                   
+ }                                                                                                                                                                                 
+                                                                                                                                                                                   
+ [*] --> Stopped                                                                                                                                                                   
+                                                                                                                                                                                   
+ Stopped --> Running: start()                                                                                                                                                      
+ Stopped --> Stopped: stop()                                                                                                                                                       
+                                                                                                                                                                                   
+ Running --> Paused: pause()                                                                                                                                                       
+ Running --> Stopped: stop()                                                                                                                                                       
+                                                                                                                                                                                   
+ Paused --> Running: resume()                                                                                                                                                      
+ Paused --> Stopped: stop()                                                                                                                                                        
+                                                                                                                                                                                   
+ @enduml  
