@@ -1,0 +1,1 @@
+- The power of a signal x(t) is defined as the average of the square of the absolute value of the signal over one period. 
