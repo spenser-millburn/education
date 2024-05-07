@@ -1,0 +1,70 @@
+
+#  instuctor-only resources (as of 23).
+#  obtained from the instructor page of the book: https://bcs.wiley.com/he-bcs/Books?action=index&itemId=1119474221&bcsId=11356
+
+#  there are also a number of "student resources", at: https://bcs.wiley.com/he-bcs/Books?action=index&bcsId=11568&itemId=1119474221
+#  the student resources are freely available, and have been obtained for the sake of completeness.
+
+#  the student resources (as of 2023) can be obtained from the URLs below:
+
+## Resource: Appendices
+## NOTE: the appendices are bit-by-bit the same as the ones in the instructor supplements
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappB.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappC.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappD.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappE.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappF.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappG.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappH.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappI.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappJ.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappK.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappL.pdf
+higheredbcs.wiley.com/legacy/college/nise/1119474221/appx/bappM.pdf
+
+## Resource: Cyber Exploration Laboratory Experiments
+## NOTE: this one is also bit-by-bit the same as the one available in the instructor supplements
+higheredbcs.wiley.com/legacy/college/nise/1119474221/clel/Cyber_Exploration_Laboratory_Experiments.pdf
+
+## RESOURCE: Control System Toolbox
+## NOTE: this one too is bit-by-bit the same is the resource with the same name in the instructor area
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/AppC.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/AppD.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/AppE.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/AppF.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch02.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch03.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch04.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch05.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch06.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch07.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch08.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch09.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch10.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch11.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch12.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/cst/ch13.zip
+
+## Resource: List of all problems in the book
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ecp/Nise_c01_13_problems.pdf
+
+## Resource: Virtual Experiments Installation Guide
+## NOTE: this one, too, is bit-by-bit equal to the "Virtual Experiments" pdf in the instructor area
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ecp/NISE_Virtual_Experiments_Installation_Guide.pdf
+
+## Resource: Solution to Skill Assessment Exercises
+## NOTE: this is also a bit-by-bit equivalent to the resource of the same name available in the instructor area
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ssae/Oct2022_Corrections_Solution_to_Skill_Assessment_Exercises.pdf
+
+## Resource: Virtual Experiments
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Exp01.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Exp02.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Exp03.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Exp04.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Exp05.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Exp06.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Exp07.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Exp08.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Exp09.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Exp10.zip
+higheredbcs.wiley.com/legacy/college/nise/1119474221/ve/Quanser_LabVIEW_Demonstration.zip
