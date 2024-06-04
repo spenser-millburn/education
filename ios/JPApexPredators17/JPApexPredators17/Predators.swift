@@ -2,7 +2,7 @@
 //  Predators.swift
 //  JPApexPredators17
 //
-//  Created by Apple on 14/04/24.
+//  Created by Roman Potapov on 3/9/24.
 //
 
 import Foundation
@@ -12,47 +12,50 @@ class Predators {
     var apexPredators: [ApexPredator] = []
     
     init() {
-        self.decodeApexPredatorData()
+        decodeApexPredatorData()
     }
     
     func decodeApexPredatorData() {
-        guard let url = Bundle.main.url(forResource: "jpapexpredators",
-                                     withExtension: "json") else {
-            return
-        }
         
-        do {
-            let data = try Data(contentsOf: url)
-            
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            self.allApexPredators = try decoder.decode([ApexPredator].self, from: data)
-            self.apexPredators = self.allApexPredators
-        } catch {
-            print("Error decoding JSON data: \(error)")
+        if let url = Bundle.main.url(forResource: "jpapexpredators", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                allApexPredators = try decoder.decode([ApexPredator].self, from: data)
+                apexPredators = allApexPredators
+            } catch {
+                print("Error decoding json: \(error)")
+            }
         }
     }
-    
-    func search(for searchTerm: String) -> [ApexPredator] {
-        guard !searchTerm.isEmpty else {
+    func search(for searchTerm: String) -> [ApexPredator]  {
+        if searchTerm.isEmpty {
             return apexPredators
-        }
-        
-        return apexPredators.filter { predator in
-            predator.name.localizedCaseInsensitiveContains(searchTerm)
+        } else {
+            return apexPredators.filter {
+                predator in
+                predator.name.localizedCaseInsensitiveContains(searchTerm)
+            }
         }
     }
     
-    func sort(by alphabatical: Bool) {
-        apexPredators.sort { alphabatical ? $0.name < $1.name: $0.id < $1.id }
+    func sort(by alphabetical: Bool) {
+        apexPredators.sort { predator1, predator2 in
+            if alphabetical {
+                predator1.name < predator2.name
+            } else {
+                predator1.id < predator2.id
+            }
+        }
     }
-    
     func filter(by type: PredatorType) {
-        if case type = .all {
+        if type == .all {
             apexPredators = allApexPredators
         } else {
-            apexPredators = allApexPredators.filter { $0.type == type }
+            apexPredators = allApexPredators.filter{ predator in
+                predator.type == type
+            }
         }
     }
 }
