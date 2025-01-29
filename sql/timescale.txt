@@ -1,0 +1,237 @@
+
+tsdbadmin@mj349dc7x6:tsdb> CREATE TABLE profile();
+CREATE TABLE
+Time: 0.041s
+tsdbadmin@mj349dc7x6:tsdb> CREATE TABLE profile();                                            
+tsdbadmin@mj349dc7x6:tsdb> DELETE TABLE profile
+syntax error at or near "TABLE"
+LINE 1: DELETE TABLE profile
+               ^
+Time: 0.036s
+tsdbadmin@mj349dc7x6:tsdb> DELETE TABLE profile();
+syntax error at or near "TABLE"
+LINE 1: DELETE TABLE profile()
+               ^
+Time: 0.034s
+tsdbadmin@mj349dc7x6:tsdb> SELECT table_name
+ FROM information_schema.tables
+ WHERE table_schema = 'public';
+ 
++-------------------------+
+| table_name              |
+|-------------------------|
+| pg_stat_statements_info |
+| pg_stat_statements      |
+| sensor_data             |
+| fake_data               |
+| profile                 |
+| pg_buffercache          |
++-------------------------+
+SELECT 6
+Time: 0.051s
+tsdbadmin@mj349dc7x6:tsdb> SELECT                                                             
+tsdbadmin@mj349dc7x6:tsdb> DROP TABLE profile;
+DROP TABLE
+Time: 0.042s
+tsdbadmin@mj349dc7x6:tsdb> SELECT table_name
+ FROM information_schema.tables
+ WHERE table_schema = 'public';
+ 
++-------------------------+
+| table_name              |
+|-------------------------|
+| pg_stat_statements_info |
+| pg_stat_statements      |
+| sensor_data             |
+| fake_data               |
+| pg_buffercache          |
++-------------------------+
+SELECT 5
+Time: 0.042s
+tsdbadmin@mj349dc7x6:tsdb> CREATE TABLE profile(
+syntax error at end of input
+LINE 1: CREATE TABLE profile(
+                             ^
+Time: 0.033s
+tsdbadmin@mj349dc7x6:tsdb> CREATE TABLE profile(
+syntax error at end of input
+LINE 1: CREATE TABLE profile(
+                             ^
+Time: 0.034s
+tsdbadmin@mj349dc7x6:tsdb> CREATE TABLE profile(
+syntax error at end of input
+LINE 1: CREATE TABLE profile(
+                             ^
+Time: 0.033s
+tsdbadmin@mj349dc7x6:tsdb> CREATE TABLE profile( id  SERIAL PRIMARY KEY, name VARCHAR(255), em
+ ail VARCHAR(255), password TEXT, age INT);
+CREATE TABLE
+Time: 0.042s
+tsdbadmin@mj349dc7x6:tsdb> SELECT ALL FROM profile
+SELECT 0
+Time: 0.036s
+tsdbadmin@mj349dc7x6:tsdb> SELECT * FROM profile 
++----+------+-------+----------+-----+
+| id | name | email | password | age |
+|----+------+-------+----------+-----|
++----+------+-------+----------+-----+
+SELECT 0
+Time: 0.043s
+tsdbadmin@mj349dc7x6:tsdb> INSERT INTO profile (email, name, age, password) VALUES 'christ@ano
+ ther.exa'. 'Troy', 26, 'asldflbnonbonaniewr'
+syntax error at or near "'christ@another.exa'"
+LINE 1: ... INTO profile (email, name, age, password) VALUES 'christ@an...
+                                                             ^
+Time: 0.035s
+tsdbadmin@mj349dc7x6:tsdb> INSERT INTO profile (email, name, age, password) VALUES 'christ@ano
+ ther.exa'. 'Troy', 26, 'asldflbnonbonaniewr');
+syntax error at or near "'christ@another.exa'"
+LINE 1: ... INTO profile (email, name, age, password) VALUES 'christ@an...
+                                                             ^
+Time: 0.036s
+tsdbadmin@mj349dc7x6:tsdb> INSERT INTO profile (email, name, age, password) VALUES ('chris@ano
+ ther.exa'. 'Troy', 26, 'asldflbnonbonaniewr');
+syntax error at or near "."
+LINE 1: ..., name, age, password) VALUES ('chris@another.exa'. 'Troy', ...
+                                                             ^
+Time: 0.035s
+tsdbadmin@mj349dc7x6:tsdb> INSERT INTO profile (email, name, age, password) VALUES ('chris@ano
+ ther.exa', 'Troy', 26, 'asldflbnonbonaniewr');
+INSERT 0 1
+Time: 0.034s
+tsdbadmin@mj349dc7x6:tsdb> SELECT * FROM profile 
++----+------+-------------------+---------------------+-----+
+| id | name | email             | password            | age |
+|----+------+-------------------+---------------------+-----|
+| 1  | Troy | chris@another.exa | asldflbnonbonaniewr | 26  |
++----+------+-------------------+---------------------+-----+
+SELECT 1
+Time: 0.039s
+tsdbadmin@mj349dc7x6:tsdb> INSERT INTO profile (email, name, age, password) VALUES ('chris@ano
+ ther.exa', 'Troy', 27, 'asldflbnonbonaniewr');
+INSERT 0 1
+Time: 0.033s
+tsdbadmin@mj349dc7x6:tsdb> SELECT * FROM profile 
++----+------+-------------------+---------------------+-----+
+| id | name | email             | password            | age |
+|----+------+-------------------+---------------------+-----|
+| 1  | Troy | chris@another.exa | asldflbnonbonaniewr | 26  |
+| 2  | Troy | chris@another.exa | asldflbnonbonaniewr | 27  |
++----+------+-------------------+---------------------+-----+
+SELECT 2
+Time: 0.042s
+tsdbadmin@mj349dc7x6:tsdb> SELECT * FROM profile WHERE id ==1;
+operator does not exist: integer == integer
+LINE 1: SELECT * FROM profile WHERE id ==1
+                                       ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit >
+...skipping...
+operator does not exist: integer == integer
+LINE 1: SELECT * FROM profile WHERE id ==1
+                                       ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit >
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+Time: 0.035s
+tsdbadmin@mj349dc7x6:tsdb> SELECT * FROM profile WHERE id = 1
++----+------+-------------------+---------------------+-----+
+| id | name | email             | password            | age |
+|----+------+-------------------+---------------------+-----|
+| 1  | Troy | chris@another.exa | asldflbnonbonaniewr | 26  |
++----+------+-------------------+---------------------+-----+
+SELECT 1
+Time: 0.042s
+tsdbadmin@mj349dc7x6:tsdb> SELECT * FROM profile WHERE id = 2
++----+------+-------------------+---------------------+-----+
+| id | name | email             | password            | age |
+|----+------+-------------------+---------------------+-----|
+| 2  | Troy | chris@another.exa | asldflbnonbonaniewr | 27  |
++----+------+-------------------+---------------------+-----+
+SELECT 1
+Time: 0.045s
+tsdbadmin@mj349dc7x6:tsdb> UPDATE profile SET age=30; WHERE id=1;
+UPDATE 2
+syntax error at or near "WHERE"
+LINE 1: WHERE id=1
+        ^
+Time: 0.066s
+tsdbadmin@mj349dc7x6:tsdb> UPDATE profile SET age=30; WHERE id=1
+UPDATE 2
+syntax error at or near "WHERE"
+LINE 1: WHERE id=1
+        ^
+Time: 0.065s
+tsdbadmin@mj349dc7x6:tsdb> UPDATE profile SET age=30 WHERE id=1
+UPDATE 1
+Time: 0.033s
+tsdbadmin@mj349dc7x6:tsdb> SELECT * FROM profile 
++----+------+-------------------+---------------------+-----+
+| id | name | email             | password            | age |
+|----+------+-------------------+---------------------+-----|
+| 2  | Troy | chris@another.exa | asldflbnonbonaniewr | 30  |
+| 1  | Troy | chris@another.exa | asldflbnonbonaniewr | 30  |
++----+------+-------------------+---------------------+-----+
+SELECT 2
+Time: 0.042s
+tsdbadmin@mj349dc7x6:tsdb> UPDATE profile SET age=25; WHERE id=1
+UPDATE 2
+syntax error at or near "WHERE"
+LINE 1: WHERE id=1
+        ^
+Time: 0.066s
+tsdbadmin@mj349dc7x6:tsdb> UPDATE profile SET age=25 WHERE id=1
+UPDATE 1
+Time: 0.033s
+tsdbadmin@mj349dc7x6:tsdb> SELECT * FROM profile 
++----+------+-------------------+---------------------+-----+
+| id | name | email             | password            | age |
+|----+------+-------------------+---------------------+-----|
+| 2  | Troy | chris@another.exa | asldflbnonbonaniewr | 25  |
+| 1  | Troy | chris@another.exa | asldflbnonbonaniewr | 25  |
++----+------+-------------------+---------------------+-----+
+SELECT 2
+Time: 0.041s
+tsdbadmin@mj349dc7x6:tsdb> UPDATE profile SET age=25 WHERE id = 1
+UPDATE 1
+Time: 0.033s
+tsdbadmin@mj349dc7x6:tsdb> UPDATE profile SET age=28 WHERE id = 1
+UPDATE 1
+Time: 0.034s
+tsdbadmin@mj349dc7x6:tsdb> SELECT * FROM profile 
++----+------+-------------------+---------------------+-----+
+| id | name | email             | password            | age |
+|----+------+-------------------+---------------------+-----|
+| 2  | Troy | chris@another.exa | asldflbnonbonaniewr | 25  |
+| 1  | Troy | chris@another.exa | asldflbnonbonaniewr | 28  |
++----+------+-------------------+---------------------+-----+
+SELECT 2
+Time: 0.067s
+tsdbadmin@mj349dc7x6:tsdb> DELETE FROM profile WHERE id = 2;
+DELETE 1
+Time: 0.035s
+tsdbadmin@mj349dc7x6:tsdb> SELECT * FROM profile 
++----+------+-------------------+---------------------+-----+
+| id | name | email             | password            | age |
+|----+------+-------------------+---------------------+-----|
+| 1  | Troy | chris@another.exa | asldflbnonbonaniewr | 28  |
++----+------+-------------------+---------------------+-----+
+SELECT 1
+Time: 0.041s
+tsdbadmin@mj349dc7x6:tsdb>
