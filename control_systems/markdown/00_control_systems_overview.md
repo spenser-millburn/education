@@ -14,21 +14,177 @@
 
 | Concept | Category | Primary Use Case | When to Apply | Key Benefit |
 |---------|----------|------------------|---------------|-------------|
-| **Introduction to Control Systems** | Foundation | Understanding open/closed loop systems | Beginning of any control problem | Fundamental system classification |
-| **Transfer Functions** | Modeling | SISO system representation | Linear systems analysis | Converts differential equations to algebra |
-| **Block Diagrams** | Modeling | System visualization and reduction | Any system structure analysis | Clear visual representation |
-| **Signal Flow Graphs** | Modeling | Complex multi-loop systems | When block diagrams become unwieldy | Direct transfer function calculation |
-| **Mathematical Models** | Modeling | First-principles system description | Physical system understanding | Most fundamental representation |
-| **Time Response Analysis** | Analysis | Performance evaluation | Understanding system speed/overshoot | Direct insight into behavior |
-| **Frequency Response Analysis** | Analysis | System bandwidth and filtering | Noise analysis and compensation design | Reveals frequency-dependent characteristics |
-| **Routh Stability** | Analysis | Quick stability verification | Parameter bounds and stability check | No root calculation required |
-| **Root Locus** | Analysis | Parameter sensitivity analysis | Gain selection and pole placement | Visual representation of pole movement |
-| **PID Controllers** | Design | Industrial control applications | 95% of control problems | Best overall performance |
-| **Bode Plots** | Analysis | Frequency response design | Compensator design and stability margins | Standard engineering tool |
-| **Nyquist Plots** | Analysis | Advanced stability analysis | Complex systems with delays | Definitive stability information |
-| **Polar Plots** | Analysis | Simple frequency visualization | Educational and basic frequency analysis | Clear magnitude/phase representation |
-| **State Space Analysis** | Advanced | MIMO and modern control | Complex systems and optimal control | Complete system description |
-| **Compensators** | Design | Advanced performance requirements | When PID is insufficient | Sophisticated frequency shaping |
+| **Introduction to Control Systems** | Foundation | Understanding open/closed loop systems | At the start of any control problem to determine system architecture and control strategy | Fundamental system classification |
+| **Transfer Functions** | Modeling | SISO system representation | For linear time-invariant systems when frequency domain analysis is needed and initial conditions are zero | Converts differential equations to algebra |
+| **Block Diagrams** | Modeling | System visualization and reduction | When you need to visualize complex system structure, teach concepts, or reduce multiple interconnected subsystems | Clear visual representation |
+| **Signal Flow Graphs** | Modeling | Complex multi-loop systems | When systems have more than 3 feedback loops and block diagram reduction becomes algebraically messy | Direct transfer function calculation |
+| **Mathematical Models** | Modeling | First-principles system description | When designing new systems from physical principles or when nonlinear effects and deep physical understanding are required | Most fundamental representation |
+| **Time Response Analysis** | Analysis | Performance evaluation | When you need to meet specific time-domain specifications like rise time, overshoot, or settling time | Direct insight into behavior |
+| **Frequency Response Analysis** | Analysis | System bandwidth and filtering | When noise rejection, filter design, bandwidth requirements, or AC steady-state performance are critical | Reveals frequency-dependent characteristics |
+| **Routh Stability** | Analysis | Quick stability verification | For hand calculations, finding parameter bounds, or when you need a quick stability check without computer tools | No root calculation required |
+| **Root Locus** | Analysis | Parameter sensitivity analysis | When selecting controller gains, visualizing parameter effects, or understanding how pole locations change with system parameters | Visual representation of pole movement |
+| **PID Controllers** | Design | Industrial control applications | For 95% of industrial control problems where proven, reliable performance is needed with standard tuning methods | Best overall performance |
+| **Bode Plots** | Analysis | Frequency response design | When designing compensators, assessing stability margins, or performing industry-standard frequency domain analysis | Standard engineering tool |
+| **Nyquist Plots** | Analysis | Advanced stability analysis | For complex systems with time delays, when experimental data is available, or when definitive stability analysis is required | Definitive stability information |
+| **Polar Plots** | Analysis | Simple frequency visualization | For educational purposes, basic frequency analysis, or when you need simple visualization of magnitude and phase relationships | Clear magnitude/phase representation |
+| **State Space Analysis** | Advanced | MIMO and modern control | When dealing with multiple inputs/outputs, internal states are important, or modern/optimal control techniques are required | Complete system description |
+| **Compensators** | Design | Advanced performance requirements | When PID controllers are insufficient and you need sophisticated frequency shaping to meet demanding performance specifications | Sophisticated frequency shaping |
+
+---
+
+## Understanding Poles: The Foundation of Control Theory
+
+### What Are Poles?
+
+**Mathematical Definition:** Poles are the values of the complex variable 's' that make the denominator of a transfer function equal to zero.
+
+For a transfer function: **G(s) = N(s)/D(s)**
+- **N(s)** = numerator polynomial
+- **D(s)** = denominator polynomial  
+- Poles occur when **D(s) = 0**
+- These are the roots of the characteristic equation
+
+### Why Poles Matter in Control Theory
+
+```mermaid
+graph LR
+    A[Pole Locations] --> B[System Stability]
+    A --> C[Natural Response]
+    A --> D[Transient Behavior]
+    
+    B --> E[Stable: Left Half Plane]
+    B --> F[Unstable: Right Half Plane]
+    B --> G[Marginal: Imaginary Axis]
+    
+    style E fill:#90EE90
+    style F fill:#FFB6C1
+    style G fill:#FFFFE0
+```
+
+### The S-Plane and Pole Locations
+
+<div align="center">
+<img src="../images/splane_stability.png" alt="S-Plane Stability Regions" width="700"/>
+<br><i>The s-plane showing stability regions and example pole locations</i>
+</div>
+
+| Pole Location | Mathematical Form | Physical Meaning | System Response |
+|---------------|-------------------|------------------|-----------------|
+| **Real, Negative** | s = -a (a > 0) | Exponential decay | Stable, non-oscillatory |
+| **Real, Positive** | s = +a (a > 0) | Exponential growth | Unstable, non-oscillatory |
+| **Complex Conjugate** | s = -σ ± jωd | Damped oscillation | Stable oscillatory (if σ > 0) |
+| **Imaginary Axis** | s = ±jω | Sustained oscillation | Marginally stable |
+| **Multiple Poles** | s = -a (repeated) | Higher-order dynamics | Slower response |
+
+### Fundamental Stability Rule
+
+> **Golden Rule of Control Systems:** A system is stable if and only if ALL poles are located in the left half of the s-plane (negative real parts).
+
+**Why This Works:**
+- Poles determine the form of the natural response
+- Left half-plane poles → responses decay over time
+- Right half-plane poles → responses grow over time
+- Systems must have bounded responses to be useful
+
+### Pole-Zero Impact on System Behavior
+
+<table>
+<tr><th>Pole Configuration</th><th>Time Response</th><th>Control Implications</th></tr>
+<tr>
+<td><b>Far Left Poles</b><br/>(s = -10, -20, etc.)</td>
+<td>Very fast decay<br/>Quick settling</td>
+<td>Fast system response<br/>High bandwidth<br/>More noise sensitive</td>
+</tr>
+<tr>
+<td><b>Near Origin Poles</b><br/>(s = -0.1, -0.5, etc.)</td>
+<td>Slow decay<br/>Long settling time</td>
+<td>Slow system response<br/>Low bandwidth<br/>Less noise sensitive</td>
+</tr>
+<tr>
+<td><b>Complex Poles</b><br/>(s = -σ ± jω)</td>
+<td>Oscillatory decay<br/>Overshoot possible</td>
+<td>Determines damping<br/>Controls overshoot<br/>Affects settling time</td>
+</tr>
+<tr>
+<td><b>Dominant Poles</b><br/>(closest to imaginary axis)</td>
+<td>Controls overall response</td>
+<td>Primary design target<br/>Most important for performance</td>
+</tr>
+</table>
+
+### Connection to Performance Specifications
+
+**Second-Order System Example:**
+```
+G(s) = ωₙ²/(s² + 2ζωₙs + ωₙ²)
+```
+
+**Poles:** s = -ζωₙ ± jωₙ√(1-ζ²)
+
+| Parameter | Physical Meaning | Control Design Impact |
+|-----------|------------------|----------------------|
+| **ωₙ (Natural Frequency)** | Distance from origin | Controls speed of response |
+| **ζ (Damping Ratio)** | Real part relative to magnitude | Controls overshoot and oscillation |
+| **Pole Angle** | tan⁻¹(ωd/σ) | Related to damping and settling time |
+
+### Why Controllers Move Poles
+
+**Open-Loop System:** Fixed pole locations determined by plant physics
+**Closed-Loop System:** Controller moves poles to desired locations
+
+```mermaid
+graph LR
+    A[Plant Poles<br/>Fixed by Physics] --> B[Add Controller]
+    B --> C[New Pole Locations<br/>Improved Performance]
+    
+    D[Root Locus] --> E[Shows Pole Movement<br/>with Gain Changes]
+    F[Pole Placement] --> G[Put Poles Exactly<br/>Where You Want Them]
+    
+    style A fill:#FFB6C1
+    style C fill:#90EE90
+```
+
+### Practical Pole Design Guidelines
+
+1. **Stability First:** Ensure all poles have negative real parts
+2. **Dominant Poles:** Focus on the poles closest to the imaginary axis
+3. **Speed vs Stability Trade-off:** 
+   - Faster response → poles further left → higher bandwidth → more noise
+   - Slower response → poles near origin → lower bandwidth → less noise
+4. **Complex Poles:** Control damping ratio (ζ) to manage overshoot
+5. **Separation Principle:** Non-dominant poles should be 5-10× faster than dominant poles
+
+### Real-World Examples
+
+**Aircraft Control:**
+- **Phugoid Mode:** Very slow poles (period ~minutes) - long-term speed/altitude coupling
+- **Short Period Mode:** Fast poles (period ~seconds) - pitch response
+- **Control Design:** Separate time scales, focus on dominant modes
+
+**Electronic Circuits:**
+- **RC Low-Pass Filter:** Single pole at s = -1/(RC) determines bandwidth
+- **Op-Amp Circuits:** Parasitic poles can cause instability if not considered
+
+**Process Control:**
+- **Temperature Control:** Slow thermal poles require integral action
+- **Flow Control:** Fast flow dynamics allow aggressive control
+
+### Key Takeaways
+
+**🎯 Poles are fundamental** because they determine:
+- System stability (most critical)
+- Speed of response
+- Type of response (oscillatory vs exponential)
+- Control system performance limitations
+
+**🔧 Control design** is essentially about:
+- Moving poles to better locations
+- Accepting trade-offs between competing requirements
+- Understanding what's possible given plant constraints
+
+**📊 Analysis tools** like Root Locus, Bode plots, and state space all ultimately deal with pole locations and their effects on system behavior.
+
+> **Bottom Line:** Master poles and you master control systems. Every other concept in this course relates back to understanding and manipulating pole locations to achieve desired system performance.
 
 ---
 
@@ -104,18 +260,18 @@ graph LR
 ```mermaid
 graph TB
     subgraph "Control System Components"
-        R[Reference<br/>Input] --> E[Error<br/>Calculator]
-        E --> GC[Controller<br/>Gc(s)]
-        GC --> U[Control<br/>Signal]
-        U --> G[Plant<br/>G(s)]
-        G --> Y[Output<br/>Y(s)]
-        Y --> H[Sensor<br/>H(s)]
+        R["Reference Input"] --> E["Error Calculator"]
+        E --> GC["Controller Gc(s)"]
+        GC --> U["Control Signal"]
+        U --> G["Plant G(s)"]
+        G --> Y["Output Y(s)"]
+        Y --> H["Sensor H(s)"]
         H --> E
     end
     
     subgraph "Feedback Loop"
         direction TB
-        E2[Error = Reference - Feedback]
+        E2["Error = Reference - Feedback"]
     end
     
     style GC fill:#90EE90
@@ -227,6 +383,11 @@ graph LR
 </td>
 </tr>
 </table>
+
+<div align="center">
+<img src="../images/block_diagram_reduction.png" alt="Block Diagram Reduction Example" width="700"/>
+<br><i>Example of complex multi-loop system reduction to single equivalent block</i>
+</div>
 
 ### Signal Flow Graphs
 
@@ -432,6 +593,11 @@ graph LR
 </tr>
 </table>
 
+<div align="center">
+<img src="../images/time_response_analysis.png" alt="Time Response Analysis" width="700"/>
+<br><i>Second-order system step responses showing the effect of different damping ratios</i>
+</div>
+
 ### Frequency Response Analysis
 
 <table>
@@ -482,6 +648,11 @@ System analysis using sinusoidal inputs at different frequencies to understand f
 </td>
 </tr>
 </table>
+
+<div align="center">
+<img src="../images/frequency_response_analysis.png" alt="Frequency Response Analysis" width="700"/>
+<br><i>Bode plot showing magnitude and phase response of a second-order system</i>
+</div>
 
 ### Stability Analysis
 
@@ -589,6 +760,11 @@ graph LR
 </tr>
 </table>
 
+<div align="center">
+<img src="../images/root_locus_analysis.png" alt="Root Locus Analysis" width="700"/>
+<br><i>Root locus plot showing pole movement with increasing gain K, including stability boundaries</i>
+</div>
+
 #### Frequency Domain Stability
 
 <table>
@@ -634,6 +810,11 @@ Stability analysis using frequency response plots (Bode, Nyquist) to determine s
 </td>
 </tr>
 </table>
+
+<div align="center">
+<img src="../images/nyquist_plot_analysis.png" alt="Nyquist Plot Analysis" width="700"/>
+<br><i>Nyquist plot showing frequency response in complex plane with critical point and stability analysis</i>
+</div>
 
 ---
 
@@ -835,6 +1016,11 @@ Combination of proportional, integral, and derivative actions.
 </td>
 </tr>
 </table>
+
+<div align="center">
+<img src="../images/pid_controller_comparison.png" alt="PID Controller Comparison" width="700"/>
+<br><i>Comparison of P, PI, PD, and PID controller step responses showing performance differences</i>
+</div>
 
 ### Advanced Controllers
 
@@ -1057,6 +1243,11 @@ graph LR
 - **Adding integral action:** Zero steady-state error but potential instability
 - **Adding derivative action:** Better stability but noise amplification
 - **Higher bandwidth:** Faster response but more noise sensitivity
+
+<div align="center">
+<img src="../images/performance_tradeoffs.png" alt="Performance Trade-offs" width="700"/>
+<br><i>Fundamental trade-offs in control system design: speed vs stability vs accuracy</i>
+</div>
 
 ---
 

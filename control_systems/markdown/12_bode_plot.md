@@ -17,8 +17,8 @@ Bode Plot is **only applicable to Minimum Phase Transfer Functions (MPTF)**.
 
 ```mermaid
 graph TD
-    A[Input: R(t) = A sin ωt] --> B[System G(S)]
-    B --> C[Output: C(t) = A' sin(ωt + Φ)]
+    A["Input: R(t) = A sin ωt"] --> B["System G(S)"]
+    B --> C["Output: C(t) = A' sin(ωt + Φ)"]
     
     subgraph "S-Plane"
         D[Left Half Plane<br/>All poles/zeros here]

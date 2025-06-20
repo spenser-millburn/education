@@ -74,9 +74,9 @@ x(t) = 0, t < 0
 
 ```mermaid
 flowchart LR
-    A[Impulse δ(t)] -->|Integration| B[Step u(t)]
-    B -->|Integration| C[Ramp r(t)]
-    C -->|Integration| D[Parabolic x(t)]
+    A[Impulse] -->|Integration| B[Step]
+    B -->|Integration| C[Ramp]
+    C -->|Integration| D[Parabolic]
     
     D -->|Differentiation| C
     C -->|Differentiation| B
@@ -105,9 +105,9 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A[Input R(s)] --> B[+] --> C[G(s)] --> D[Output C(s)]
-    D --> E[H(s)] --> F[-] --> B
-    B --> G[Error Signal E(s)]
+    A[Input Rs] --> B[Sum] --> C[Gs] --> D[Output Cs]
+    D --> E[Hs] --> F[Feedback] --> B
+    B --> G[Error Signal Es]
 ```
 
 ### Derivation of Steady State Error
@@ -292,7 +292,7 @@ Where θ = tan⁻¹(√(1-ζ²)/ζ)
 
 ```mermaid
 graph LR
-    A[Input R(S)] --> B[ωₙ²/(S² + 2ζωₙS + ωₙ²)] --> C[Output C(S)]
+    A[Input RS] --> B[Transfer Function] --> C[Output CS]
 ```
 
 ### Rise Time in 2nd Order System
@@ -478,7 +478,7 @@ graph TD
 
 ```mermaid
 graph LR
-    A[Input<br/>R(t) = A sin ωt] --> B[LTI System<br/>G(S)] --> C[Output<br/>C(t) = A' sin(ωt + Φ)]
+    A[Sinusoidal Input] --> B[LTI System] --> C[Sinusoidal Output]
 ```
 
 **Parameters Analyzed:**

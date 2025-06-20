@@ -32,10 +32,10 @@ flowchart TD
     B --> C[Step 3: Large Radius Contour]
     C --> D[Step 4: Small Radius Contour]
     
-    A1[Put S = jω<br/>Plot G(jω)] --> A
-    B1[Put S = -jω<br/>Plot G(-jω)<br/>Mirror image w.r.t Real Axis] --> B
-    C1[Put S = lim R→∞ Re^jθ<br/>θ: 90° to -90°] --> C
-    D1[Put S = lim r→0 re^jθ<br/>θ: -90° to 90°<br/>Only if pole at origin] --> D
+    A1["Put S = jω<br/>Plot G(jω)"] --> A
+    B1["Put S = -jω<br/>Plot G(-jω)<br/>Mirror image w.r.t Real Axis"] --> B
+    C1["Put S = lim R→∞ Re^jθ<br/>θ: 90° to -90°"] --> C
+    D1["Put S = lim r→0 re^jθ<br/>θ: -90° to 90°<br/>Only if pole at origin"] --> D
 ```
 
 ### Detailed Steps:

@@ -1,0 +1,308 @@
+{
+  "performance_metrics": {
+    "runtime_seconds": 2.0520334243774414,
+    "total_tasks": 0,
+    "completed_tasks": 0,
+    "failed_tasks": 0,
+    "success_rate": 0.0,
+    "total_picks": 0,
+    "total_places": 0,
+    "picks_per_hour": 0.0,
+    "total_distance_traveled": 0.0,
+    "average_task_time": 0.0,
+    "current_payload_weight": 0.0,
+    "control_performance": {
+      "max_cycle_time": 0.0,
+      "control_overruns": 0,
+      "emergency_stops": false
+    },
+    "fault_injection": {
+      "enabled": true,
+      "total_faults_injected": 0
+    }
+  },
+  "bin_layout": {
+    "BIN_001": {
+      "x": 0.0,
+      "y": 0.5,
+      "z": 0.0,
+      "occupied": false,
+      "weight": 4.259287148592038
+    },
+    "BIN_002": {
+      "x": 0.5,
+      "y": 0.5,
+      "z": 0.0,
+      "occupied": true,
+      "weight": 2.0200237856445984
+    },
+    "BIN_003": {
+      "x": 1.0,
+      "y": 0.5,
+      "z": 0.0,
+      "occupied": true,
+      "weight": 0.9083283852353417
+    },
+    "BIN_004": {
+      "x": 1.5,
+      "y": 0.5,
+      "z": 0.0,
+      "occupied": true,
+      "weight": 1.028160353707011
+    },
+    "BIN_005": {
+      "x": 2.0,
+      "y": 0.5,
+      "z": 0.0,
+      "occupied": true,
+      "weight": 4.364036646976084
+    },
+    "BIN_006": {
+      "x": 0.0,
+      "y": 0.5,
+      "z": 0.4,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_007": {
+      "x": 0.5,
+      "y": 0.5,
+      "z": 0.4,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_008": {
+      "x": 1.0,
+      "y": 0.5,
+      "z": 0.4,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_009": {
+      "x": 1.5,
+      "y": 0.5,
+      "z": 0.4,
+      "occupied": true,
+      "weight": 3.6126723664537495
+    },
+    "BIN_010": {
+      "x": 2.0,
+      "y": 0.5,
+      "z": 0.4,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_011": {
+      "x": 0.0,
+      "y": 0.5,
+      "z": 0.8,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_012": {
+      "x": 0.5,
+      "y": 0.5,
+      "z": 0.8,
+      "occupied": false,
+      "weight": 1.23263090007505
+    },
+    "BIN_013": {
+      "x": 1.0,
+      "y": 0.5,
+      "z": 0.8,
+      "occupied": false,
+      "weight": 2.944772914976441
+    },
+    "BIN_014": {
+      "x": 1.5,
+      "y": 0.5,
+      "z": 0.8,
+      "occupied": true,
+      "weight": 4.216933561955887
+    },
+    "BIN_015": {
+      "x": 2.0,
+      "y": 0.5,
+      "z": 0.8,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_016": {
+      "x": 0.0,
+      "y": 0.5,
+      "z": 1.2000000000000002,
+      "occupied": false,
+      "weight": 0.0
+    },
+    "BIN_017": {
+      "x": 0.5,
+      "y": 0.5,
+      "z": 1.2000000000000002,
+      "occupied": false,
+      "weight": 0.7363510163973774
+    },
+    "BIN_018": {
+      "x": 1.0,
+      "y": 0.5,
+      "z": 1.2000000000000002,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_019": {
+      "x": 1.5,
+      "y": 0.5,
+      "z": 1.2000000000000002,
+      "occupied": false,
+      "weight": 2.2637242505961286
+    },
+    "BIN_020": {
+      "x": 2.0,
+      "y": 0.5,
+      "z": 1.2000000000000002,
+      "occupied": true,
+      "weight": 4.600197640616063
+    },
+    "BIN_021": {
+      "x": 0.0,
+      "y": 1.5,
+      "z": 0.0,
+      "occupied": true,
+      "weight": 2.2841324041872144
+    },
+    "BIN_022": {
+      "x": 0.5,
+      "y": 1.5,
+      "z": 0.0,
+      "occupied": true,
+      "weight": 3.836444222345204
+    },
+    "BIN_023": {
+      "x": 1.0,
+      "y": 1.5,
+      "z": 0.0,
+      "occupied": true,
+      "weight": 4.259623192821552
+    },
+    "BIN_024": {
+      "x": 1.5,
+      "y": 1.5,
+      "z": 0.0,
+      "occupied": true,
+      "weight": 1.1051570575149021
+    },
+    "BIN_025": {
+      "x": 2.0,
+      "y": 1.5,
+      "z": 0.0,
+      "occupied": true,
+      "weight": 3.789686917974107
+    },
+    "BIN_026": {
+      "x": 0.0,
+      "y": 1.5,
+      "z": 0.4,
+      "occupied": true,
+      "weight": 4.087112619943707
+    },
+    "BIN_027": {
+      "x": 0.5,
+      "y": 1.5,
+      "z": 0.4,
+      "occupied": false,
+      "weight": 2.638448559008623
+    },
+    "BIN_028": {
+      "x": 1.0,
+      "y": 1.5,
+      "z": 0.4,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_029": {
+      "x": 1.5,
+      "y": 1.5,
+      "z": 0.4,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_030": {
+      "x": 2.0,
+      "y": 1.5,
+      "z": 0.4,
+      "occupied": true,
+      "weight": 4.505744708012444
+    },
+    "BIN_031": {
+      "x": 0.0,
+      "y": 1.5,
+      "z": 0.8,
+      "occupied": true,
+      "weight": 4.5117017994006945
+    },
+    "BIN_032": {
+      "x": 0.5,
+      "y": 1.5,
+      "z": 0.8,
+      "occupied": true,
+      "weight": 3.075691401211494
+    },
+    "BIN_033": {
+      "x": 1.0,
+      "y": 1.5,
+      "z": 0.8,
+      "occupied": false,
+      "weight": 0.0
+    },
+    "BIN_034": {
+      "x": 1.5,
+      "y": 1.5,
+      "z": 0.8,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_035": {
+      "x": 2.0,
+      "y": 1.5,
+      "z": 0.8,
+      "occupied": true,
+      "weight": 0.5223246706245684
+    },
+    "BIN_036": {
+      "x": 0.0,
+      "y": 1.5,
+      "z": 1.2000000000000002,
+      "occupied": true,
+      "weight": 0.939153186875862
+    },
+    "BIN_037": {
+      "x": 0.5,
+      "y": 1.5,
+      "z": 1.2000000000000002,
+      "occupied": true,
+      "weight": 0.0
+    },
+    "BIN_038": {
+      "x": 1.0,
+      "y": 1.5,
+      "z": 1.2000000000000002,
+      "occupied": false,
+      "weight": 1.7373541166454536
+    },
+    "BIN_039": {
+      "x": 1.5,
+      "y": 1.5,
+      "z": 1.2000000000000002,
+      "occupied": false,
+      "weight": 1.2950078719218348
+    },
+    "BIN_040": {
+      "x": 2.0,
+      "y": 1.5,
+      "z": 1.2000000000000002,
+      "occupied": true,
+      "weight": 3.9388441171238857
+    }
+  },
+  "completed_tasks": [],
+  "failed_tasks": []
+}
