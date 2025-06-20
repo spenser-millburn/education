@@ -195,23 +195,40 @@ graph LR
 
 For high-frequency sensor data, optimize PDO configuration:
 
-```c
+```cpp
+#include <cstdint>
+
 // Example: 1 kHz force sensor data
-typedef struct {
-    uint32_t pdo_id;           // 0x180 + node_id
-    uint8_t  transmission_type; // 254 (asynchronous)
-    uint16_t inhibit_time;     // 10 (1ms minimum)
-    uint16_t event_timer;      // 10 (1ms periodic)
-} force_sensor_pdo_t;
+class ForceSensorPDO {
+private:
+    std::uint32_t pdo_id;           // 0x180 + node_id
+    std::uint8_t  transmission_type; // 254 (asynchronous)
+    std::uint16_t inhibit_time;     // 10 (1ms minimum)
+    std::uint16_t event_timer;      // 10 (1ms periodic)
+
+public:
+    ForceSensorPDO(std::uint8_t node_id) : 
+        pdo_id(0x180 + node_id),
+        transmission_type(254),
+        inhibit_time(10),
+        event_timer(10) {}
+    
+    std::uint32_t getPDOID() const { return pdo_id; }
+    std::uint8_t getTransmissionType() const { return transmission_type; }
+};
 
 // Sensor data mapping
-typedef struct {
-    int16_t force_x;    // 2 bytes
-    int16_t force_y;    // 2 bytes  
-    int16_t force_z;    // 2 bytes
-    int16_t torque_x;   // 2 bytes
+struct ForceData {
+    std::int16_t force_x;    // 2 bytes
+    std::int16_t force_y;    // 2 bytes  
+    std::int16_t force_z;    // 2 bytes
+    std::int16_t torque_x;   // 2 bytes
     // Total: 8 bytes (full PDO)
-} force_data_t;
+    
+    ForceData() : force_x(0), force_y(0), force_z(0), torque_x(0) {}
+    ForceData(std::int16_t fx, std::int16_t fy, std::int16_t fz, std::int16_t tx) :
+        force_x(fx), force_y(fy), force_z(fz), torque_x(tx) {}
+};
 ```
 
 ## Safety Systems
@@ -273,9 +290,12 @@ graph TD
 
 ### Differential Drive Control
 
-```c
+```cpp
+#include <cstdint>
+
 // Example: Differential drive mobile robot
-typedef struct {
+class DifferentialDriveController {
+private:
     // Motion commands
     float linear_velocity;     // m/s
     float angular_velocity;    // rad/s
@@ -291,15 +311,39 @@ typedef struct {
     // Robot parameters
     float wheel_base;          // m
     float wheel_radius;        // m
-} differential_drive_t;
+
+public:
+    DifferentialDriveController(float base, float radius) : 
+        wheel_base(base), wheel_radius(radius),
+        linear_velocity(0.0f), angular_velocity(0.0f),
+        left_wheel_speed(0.0f), right_wheel_speed(0.0f),
+        actual_linear_vel(0.0f), actual_angular_vel(0.0f) {}
+    
+    void setVelocityCommand(float linear, float angular) {
+        linear_velocity = linear;
+        angular_velocity = angular;
+        calculateWheelSpeeds();
+    }
+    
+    void calculateWheelSpeeds() {
+        left_wheel_speed = (linear_velocity - angular_velocity * wheel_base / 2.0f) / wheel_radius;
+        right_wheel_speed = (linear_velocity + angular_velocity * wheel_base / 2.0f) / wheel_radius;
+    }
+    
+    float getLeftWheelSpeed() const { return left_wheel_speed; }
+    float getRightWheelSpeed() const { return right_wheel_speed; }
+};
 
 // CANopen PDO mapping for drive control
-typedef struct {
-    int16_t left_speed_cmd;    // Left wheel speed command
-    int16_t right_speed_cmd;   // Right wheel speed command
-    uint16_t control_word;     // Drive control word
-    uint16_t status_word;      // Drive status word
-} drive_pdo_t;
+struct DrivePDO {
+    std::int16_t left_speed_cmd;    // Left wheel speed command
+    std::int16_t right_speed_cmd;   // Right wheel speed command
+    std::uint16_t control_word;     // Drive control word
+    std::uint16_t status_word;      // Drive status word
+    
+    DrivePDO() : left_speed_cmd(0), right_speed_cmd(0), 
+                 control_word(0), status_word(0) {}
+};
 ```
 
 ## Collaborative Robotics (Cobots)
@@ -333,32 +377,72 @@ graph TD
 
 ### Real-time Force Control
 
-```c
+```cpp
+#include <cstdint>
+#include <array>
+
 // Example: Impedance control for collaborative robot
-typedef struct {
+class ImpedanceController {
+private:
     // Force/torque feedback
-    float force_x, force_y, force_z;        // N
-    float torque_x, torque_y, torque_z;     // Nm
+    std::array<float, 3> force;      // N (x, y, z)
+    std::array<float, 3> torque;     // Nm (x, y, z)
     
     // Impedance parameters
-    float stiffness[6];                     // N/m, Nm/rad
-    float damping[6];                       // Ns/m, Nms/rad
-    float mass[6];                          // kg, kg*m²
+    std::array<float, 6> stiffness;  // N/m, Nm/rad
+    std::array<float, 6> damping;    // Ns/m, Nms/rad
+    std::array<float, 6> mass;       // kg, kg*m²
     
     // Control output
-    float position_correction[6];           // m, rad
-    float velocity_correction[6];           // m/s, rad/s
-} impedance_control_t;
+    std::array<float, 6> position_correction;  // m, rad
+    std::array<float, 6> velocity_correction;  // m/s, rad/s
+
+public:
+    ImpedanceController() {
+        force.fill(0.0f);
+        torque.fill(0.0f);
+        stiffness.fill(1000.0f);  // Default stiffness
+        damping.fill(50.0f);      // Default damping
+        mass.fill(1.0f);          // Default mass
+        position_correction.fill(0.0f);
+        velocity_correction.fill(0.0f);
+    }
+    
+    void setForce(float fx, float fy, float fz) {
+        force[0] = fx; force[1] = fy; force[2] = fz;
+    }
+    
+    void setTorque(float tx, float ty, float tz) {
+        torque[0] = tx; torque[1] = ty; torque[2] = tz;
+    }
+    
+    void setImpedanceParameters(const std::array<float, 6>& k, 
+                               const std::array<float, 6>& d,
+                               const std::array<float, 6>& m) {
+        stiffness = k; damping = d; mass = m;
+    }
+    
+    void calculateCorrection();
+    
+    const std::array<float, 6>& getPositionCorrection() const { 
+        return position_correction; 
+    }
+};
 
 // High-speed CAN-FD PDO for force control
 // 1 kHz update rate, 32 bytes payload
-typedef struct {
-    float force_xyz[3];        // 12 bytes
-    float torque_xyz[3];       // 12 bytes
-    uint32_t timestamp;        // 4 bytes
-    uint16_t status;           // 2 bytes
-    uint16_t reserved;         // 2 bytes
-} force_control_pdo_t;
+struct ForceControlPDO {
+    std::array<float, 3> force_xyz;  // 12 bytes
+    std::array<float, 3> torque_xyz; // 12 bytes
+    std::uint32_t timestamp;         // 4 bytes
+    std::uint16_t status;            // 2 bytes
+    std::uint16_t reserved;          // 2 bytes
+    
+    ForceControlPDO() : timestamp(0), status(0), reserved(0) {
+        force_xyz.fill(0.0f);
+        torque_xyz.fill(0.0f);
+    }
+};
 ```
 
 ## Industrial Robot Integration

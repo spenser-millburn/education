@@ -44,33 +44,50 @@ graph TD
 
 ### Secure CAN Implementation
 
-```c
+```cpp
+#include <cstdint>
+#include <array>
+
 // Example: Message authentication implementation
-typedef struct {
-    uint32_t message_id;        // CAN ID
-    uint8_t  sequence_number;   // Prevents replay attacks
-    uint8_t  data[6];          // Actual payload (reduced for MAC)
-    uint8_t  mac;              // Message authentication code
-} secure_can_message_t;
+class SecureCANMessage {
+private:
+    std::uint32_t message_id;        // CAN ID
+    std::uint8_t  sequence_number;   // Prevents replay attacks
+    std::array<std::uint8_t, 6> data; // Actual payload (reduced for MAC)
+    std::uint8_t  mac;              // Message authentication code
 
-// Calculate message authentication code
-uint8_t calculate_mac(uint32_t id, uint8_t seq, uint8_t* data, 
-                     uint8_t len, uint32_t key) {
-    // Simplified MAC calculation (use proper crypto in production)
-    uint32_t hash = key ^ id ^ seq;
-    for (int i = 0; i < len; i++) {
-        hash = (hash << 1) ^ data[i];
+public:
+    SecureCANMessage(std::uint32_t id, std::uint8_t seq, 
+                    const std::array<std::uint8_t, 6>& payload) :
+        message_id(id), sequence_number(seq), data(payload), mac(0) {}
+    
+    // Calculate message authentication code
+    std::uint8_t calculateMAC(std::uint32_t key) const {
+        // Simplified MAC calculation (use proper crypto in production)
+        std::uint32_t hash = key ^ message_id ^ sequence_number;
+        for (const auto& byte : data) {
+            hash = (hash << 1) ^ byte;
+        }
+        return static_cast<std::uint8_t>(hash & 0xFF);
     }
-    return (uint8_t)(hash & 0xFF);
-}
-
-// Validate received message
-bool validate_message(secure_can_message_t* msg, uint32_t key) {
-    uint8_t expected_mac = calculate_mac(msg->message_id, 
-                                        msg->sequence_number,
-                                        msg->data, 6, key);
-    return (msg->mac == expected_mac);
-}
+    
+    // Set MAC after calculation
+    void setMAC(std::uint32_t key) {
+        mac = calculateMAC(key);
+    }
+    
+    // Validate received message
+    bool validateMessage(std::uint32_t key) const {
+        std::uint8_t expected_mac = calculateMAC(key);
+        return (mac == expected_mac);
+    }
+    
+    // Getters
+    std::uint32_t getMessageID() const { return message_id; }
+    std::uint8_t getSequenceNumber() const { return sequence_number; }
+    const std::array<std::uint8_t, 6>& getData() const { return data; }
+    std::uint8_t getMAC() const { return mac; }
+};
 ```
 
 ## Advanced CAN Protocols
@@ -208,46 +225,86 @@ graph TD
 
 ### Network Health Monitoring
 
-```c
+```cpp
+#include <cstdint>
+#include <iostream>
+#include <iomanip>
+
 // Example: Network health monitoring system
-typedef struct {
+class NetworkHealthMonitor {
+private:
     // Error counters
-    uint32_t total_frames;
-    uint32_t error_frames;
-    uint32_t bus_off_events;
-    uint32_t overrun_errors;
+    std::uint32_t total_frames;
+    std::uint32_t error_frames;
+    std::uint32_t bus_off_events;
+    std::uint32_t overrun_errors;
     
     // Performance metrics
     float    bus_utilization;
-    uint16_t max_response_time;
-    uint16_t avg_response_time;
+    std::uint16_t max_response_time;
+    std::uint16_t avg_response_time;
     
     // Node status
-    uint8_t  active_nodes;
-    uint8_t  error_passive_nodes;
-    uint8_t  bus_off_nodes;
+    std::uint8_t  active_nodes;
+    std::uint8_t  error_passive_nodes;
+    std::uint8_t  bus_off_nodes;
     
     // Timestamp
-    uint32_t last_update;
-} network_health_t;
+    std::uint32_t last_update;
 
-void update_network_health(network_health_t* health) {
-    // Calculate error rate
-    float error_rate = (float)health->error_frames / health->total_frames;
+    // Thresholds
+    static constexpr float ERROR_RATE_THRESHOLD = 0.01f;
+    static constexpr float BUS_UTILIZATION_THRESHOLD = 70.0f;
+
+public:
+    NetworkHealthMonitor() : 
+        total_frames(0), error_frames(0), bus_off_events(0), overrun_errors(0),
+        bus_utilization(0.0f), max_response_time(0), avg_response_time(0),
+        active_nodes(0), error_passive_nodes(0), bus_off_nodes(0), 
+        last_update(0) {}
     
-    // Check thresholds
-    if (error_rate > 0.01) {
-        log_warning("High error rate: %.2f%%", error_rate * 100);
+    void updateNetworkHealth() {
+        // Calculate error rate
+        float error_rate = (total_frames > 0) ? 
+            static_cast<float>(error_frames) / total_frames : 0.0f;
+        
+        // Check thresholds
+        if (error_rate > ERROR_RATE_THRESHOLD) {
+            logWarning("High error rate: " + std::to_string(error_rate * 100.0f) + "%");
+        }
+        
+        if (bus_utilization > BUS_UTILIZATION_THRESHOLD) {
+            logWarning("High bus utilization: " + std::to_string(bus_utilization) + "%");
+        }
+        
+        if (bus_off_nodes > 0) {
+            logError(std::to_string(bus_off_nodes) + " nodes in bus-off state");
+        }
     }
     
-    if (health->bus_utilization > 70.0) {
-        log_warning("High bus utilization: %.1f%%", health->bus_utilization);
+    // Setters
+    void setTotalFrames(std::uint32_t frames) { total_frames = frames; }
+    void setErrorFrames(std::uint32_t errors) { error_frames = errors; }
+    void setBusUtilization(float utilization) { bus_utilization = utilization; }
+    void setBusOffNodes(std::uint8_t nodes) { bus_off_nodes = nodes; }
+    
+    // Getters
+    float getErrorRate() const { 
+        return (total_frames > 0) ? 
+            static_cast<float>(error_frames) / total_frames : 0.0f; 
+    }
+    float getBusUtilization() const { return bus_utilization; }
+    std::uint8_t getActiveNodes() const { return active_nodes; }
+    
+private:
+    void logWarning(const std::string& message) {
+        std::cout << "WARNING: " << message << std::endl;
     }
     
-    if (health->bus_off_nodes > 0) {
-        log_error("%d nodes in bus-off state", health->bus_off_nodes);
+    void logError(const std::string& message) {
+        std::cout << "ERROR: " << message << std::endl;
     }
-}
+};
 ```
 
 ## Troubleshooting Methodology
@@ -390,61 +447,110 @@ graph LR
 
 ### Performance Monitoring Metrics
 
-```c
-// Example: Performance monitoring implementation
-typedef struct {
-    uint32_t timestamp;
-    uint16_t message_id;
-    uint8_t  dlc;
-    uint16_t response_time_us;
-    uint8_t  error_flags;
-} performance_record_t;
+```cpp
+#include <cstdint>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <iostream>
 
-typedef struct {
+// Example: Performance monitoring implementation
+struct PerformanceRecord {
+    std::uint32_t timestamp;
+    std::uint16_t message_id;
+    std::uint8_t  dlc;
+    std::uint16_t response_time_us;
+    std::uint8_t  error_flags;
+    
+    PerformanceRecord(std::uint32_t ts, std::uint16_t id, std::uint8_t len,
+                     std::uint16_t response_time, std::uint8_t errors) :
+        timestamp(ts), message_id(id), dlc(len), 
+        response_time_us(response_time), error_flags(errors) {}
+};
+
+class PerformanceMonitor {
+private:
     // Rolling statistics
-    uint32_t total_messages;
-    uint32_t total_errors;
-    float    avg_response_time;
-    uint16_t max_response_time;
-    float    bus_utilization;
+    std::uint32_t total_messages;
+    std::uint32_t total_errors;
+    float avg_response_time;
+    std::uint16_t max_response_time;
+    float bus_utilization;
     
     // Alert thresholds
-    uint16_t max_response_threshold;
-    float    max_utilization_threshold;
-    float    max_error_rate_threshold;
-} performance_monitor_t;
+    std::uint16_t max_response_threshold;
+    float max_utilization_threshold;
+    float max_error_rate_threshold;
 
-void analyze_performance(performance_monitor_t* monitor,
-                        performance_record_t* records,
-                        uint32_t count) {
-    // Calculate statistics
-    uint32_t total_response_time = 0;
-    uint16_t max_time = 0;
-    uint32_t error_count = 0;
+public:
+    PerformanceMonitor() : 
+        total_messages(0), total_errors(0), avg_response_time(0.0f),
+        max_response_time(0), bus_utilization(0.0f),
+        max_response_threshold(5000), // 5ms default
+        max_utilization_threshold(80.0f), // 80% default
+        max_error_rate_threshold(0.01f) {} // 1% default
     
-    for (uint32_t i = 0; i < count; i++) {
-        total_response_time += records[i].response_time_us;
-        if (records[i].response_time_us > max_time) {
-            max_time = records[i].response_time_us;
+    void analyzePerformance(const std::vector<PerformanceRecord>& records) {
+        if (records.empty()) return;
+        
+        // Calculate statistics
+        std::uint32_t total_response_time = 0;
+        std::uint16_t max_time = 0;
+        std::uint32_t error_count = 0;
+        
+        for (const auto& record : records) {
+            total_response_time += record.response_time_us;
+            max_time = std::max(max_time, record.response_time_us);
+            if (record.error_flags) {
+                error_count++;
+            }
         }
-        if (records[i].error_flags) {
-            error_count++;
+        
+        avg_response_time = static_cast<float>(total_response_time) / records.size();
+        max_response_time = max_time;
+        float error_rate = static_cast<float>(error_count) / records.size();
+        
+        total_messages += records.size();
+        total_errors += error_count;
+        
+        // Check thresholds and generate alerts
+        if (max_time > max_response_threshold) {
+            generateAlert("Response time exceeded threshold: " + 
+                         std::to_string(max_time) + "μs");
+        }
+        
+        if (error_rate > max_error_rate_threshold) {
+            generateAlert("Error rate exceeded threshold: " + 
+                         std::to_string(error_rate * 100.0f) + "%");
+        }
+        
+        if (bus_utilization > max_utilization_threshold) {
+            generateAlert("Bus utilization exceeded threshold: " + 
+                         std::to_string(bus_utilization) + "%");
         }
     }
     
-    monitor->avg_response_time = (float)total_response_time / count;
-    monitor->max_response_time = max_time;
-    float error_rate = (float)error_count / count;
-    
-    // Check thresholds and generate alerts
-    if (max_time > monitor->max_response_threshold) {
-        generate_alert("Response time exceeded threshold");
+    // Setters for thresholds
+    void setResponseThreshold(std::uint16_t threshold) { 
+        max_response_threshold = threshold; 
+    }
+    void setUtilizationThreshold(float threshold) { 
+        max_utilization_threshold = threshold; 
+    }
+    void setErrorRateThreshold(float threshold) { 
+        max_error_rate_threshold = threshold; 
     }
     
-    if (error_rate > monitor->max_error_rate_threshold) {
-        generate_alert("Error rate exceeded threshold");
+    // Getters
+    float getAverageResponseTime() const { return avg_response_time; }
+    std::uint16_t getMaxResponseTime() const { return max_response_time; }
+    float getBusUtilization() const { return bus_utilization; }
+
+private:
+    void generateAlert(const std::string& message) {
+        std::cout << "ALERT: " << message << std::endl;
     }
-}
+};
 ```
 
 ## Future CAN Technologies

@@ -414,50 +414,64 @@ graph LR
 
 Example: 4-channel digital input device
 
-```c
+```cpp
+#include <cstdint>
+#include <string>
+#include <cstring>
+
 // Object Dictionary entries
-typedef struct {
+class CANopenObjectDictionary {
+private:
     // Communication Area
-    uint32_t device_type;           // 0x1000
-    uint8_t  error_register;        // 0x1001
-    char     device_name[32];       // 0x1008
+    std::uint32_t device_type;           // 0x1000
+    std::uint8_t  error_register;        // 0x1001
+    std::string   device_name;           // 0x1008
     
     // SDO Server parameters
-    uint32_t sdo_server_rx_id;      // 0x1200.1
-    uint32_t sdo_server_tx_id;      // 0x1200.2
+    std::uint32_t sdo_server_rx_id;      // 0x1200.1
+    std::uint32_t sdo_server_tx_id;      // 0x1200.2
     
     // TPDO1 parameters  
-    uint32_t tpdo1_id;              // 0x1800.1
-    uint8_t  tpdo1_transmission;    // 0x1800.2
-    uint16_t tpdo1_inhibit;         // 0x1800.3
+    std::uint32_t tpdo1_id;              // 0x1800.1
+    std::uint8_t  tpdo1_transmission;    // 0x1800.2
+    std::uint16_t tpdo1_inhibit;         // 0x1800.3
     
     // TPDO1 mapping
-    uint8_t  tpdo1_map_count;       // 0x1A00.0
-    uint32_t tpdo1_map1;            // 0x1A00.1
+    std::uint8_t  tpdo1_map_count;       // 0x1A00.0
+    std::uint32_t tpdo1_map1;            // 0x1A00.1
     
     // Process Data
-    uint8_t  digital_inputs;        // 0x6000
-    
-} canopen_od_t;
+    std::uint8_t  digital_inputs;        // 0x6000
 
-// Initialize Object Dictionary
-void init_object_dictionary(uint8_t node_id) {
-    od.device_type = 0x00000000;    // Generic I/O device
-    strcpy(od.device_name, "4CH Digital Input");
+public:
+    // Initialize Object Dictionary
+    void initializeObjectDictionary(std::uint8_t node_id) {
+        device_type = 0x00000000;    // Generic I/O device
+        device_name = "4CH Digital Input";
+        
+        // Configure SDO
+        sdo_server_rx_id = 0x600 + node_id;
+        sdo_server_tx_id = 0x580 + node_id;
+        
+        // Configure TPDO1
+        tpdo1_id = 0x180 + node_id;
+        tpdo1_transmission = 254;    // Asynchronous
+        tpdo1_inhibit = 100;         // 10ms minimum
+        
+        // Map digital inputs to TPDO1
+        tpdo1_map_count = 1;
+        tpdo1_map1 = (0x6000 << 16) | (0x00 << 8) | 8; // 8 bits
+    }
     
-    // Configure SDO
-    od.sdo_server_rx_id = 0x600 + node_id;
-    od.sdo_server_tx_id = 0x580 + node_id;
+    // Getters
+    std::uint8_t getDigitalInputs() const { return digital_inputs; }
+    std::uint32_t getTPDO1ID() const { return tpdo1_id; }
+    std::string getDeviceName() const { return device_name; }
     
-    // Configure TPDO1
-    od.tpdo1_id = 0x180 + node_id;
-    od.tpdo1_transmission = 254;    // Asynchronous
-    od.tpdo1_inhibit = 100;         // 10ms minimum
-    
-    // Map digital inputs to TPDO1
-    od.tpdo1_map_count = 1;
-    od.tpdo1_map1 = (0x6000 << 16) | (0x00 << 8) | 8; // 8 bits
-}
+    // Setters
+    void setDigitalInputs(std::uint8_t inputs) { digital_inputs = inputs; }
+    void setErrorRegister(std::uint8_t error) { error_register = error; }
+};
 ```
 
 ## Learning Objectives Achieved

@@ -90,30 +90,45 @@ graph TD
 
 ### Message Design Example
 
-```c
+```cpp
+#include <cstdint>
+
 // Emergency stop message (highest priority)
-typedef struct {
-    uint8_t stop_reason;      // Cause of emergency stop
-    uint8_t stop_zone;        // Geographic zone identifier
-    uint8_t timestamp[2];     // Time of occurrence
-    uint8_t reserved[4];      // Future expansion
-} emergency_stop_msg_t;
+struct EmergencyStopMessage {
+    std::uint8_t stop_reason;      // Cause of emergency stop
+    std::uint8_t stop_zone;        // Geographic zone identifier
+    std::uint16_t timestamp;       // Time of occurrence
+    std::uint32_t reserved;        // Future expansion
+    
+    EmergencyStopMessage() : stop_reason(0), stop_zone(0), 
+                            timestamp(0), reserved(0) {}
+    
+    EmergencyStopMessage(std::uint8_t reason, std::uint8_t zone, 
+                        std::uint16_t time) :
+        stop_reason(reason), stop_zone(zone), timestamp(time), reserved(0) {}
+};
 
 // Motion control message
-typedef struct {
-    uint16_t position_cmd;    // Position setpoint
-    uint16_t velocity_cmd;    // Velocity setpoint
-    uint16_t control_word;    // Control flags
-    uint16_t reserved;        // Future use
-} motion_control_msg_t;
+struct MotionControlMessage {
+    std::uint16_t position_cmd;    // Position setpoint
+    std::uint16_t velocity_cmd;    // Velocity setpoint
+    std::uint16_t control_word;    // Control flags
+    std::uint16_t reserved;        // Future use
+    
+    MotionControlMessage() : position_cmd(0), velocity_cmd(0), 
+                            control_word(0), reserved(0) {}
+};
 
 // Sensor feedback message
-typedef struct {
-    uint16_t position_actual; // Current position
-    uint16_t velocity_actual; // Current velocity
-    uint16_t torque_actual;   // Current torque
-    uint16_t status_word;     // Status flags
-} sensor_feedback_msg_t;
+struct SensorFeedbackMessage {
+    std::uint16_t position_actual; // Current position
+    std::uint16_t velocity_actual; // Current velocity
+    std::uint16_t torque_actual;   // Current torque
+    std::uint16_t status_word;     // Status flags
+    
+    SensorFeedbackMessage() : position_actual(0), velocity_actual(0), 
+                             torque_actual(0), status_word(0) {}
+};
 ```
 
 ## Timing Analysis
@@ -147,34 +162,53 @@ graph LR
 
 ### Timing Example Calculation
 
-```c
-// Example: Calculate bus utilization
-typedef struct {
-    uint16_t can_id;
-    uint8_t  dlc;
-    uint16_t period_ms;     // Transmission period
-    uint16_t frame_bits;    // Total frame size in bits
-} message_spec_t;
+```cpp
+#include <cstdint>
+#include <vector>
 
-// Sample message set
-message_spec_t messages[] = {
-    {0x080, 8, 10,  128},   // SYNC: 8 bytes, 10ms period
-    {0x181, 8, 20,  128},   // Motion cmd: 8 bytes, 20ms
-    {0x281, 8, 50,  128},   // Sensor data: 8 bytes, 50ms
-    {0x701, 1, 1000, 64},   // Heartbeat: 1 byte, 1s
+// Example: Calculate bus utilization
+struct MessageSpec {
+    std::uint16_t can_id;
+    std::uint8_t  dlc;
+    std::uint16_t period_ms;     // Transmission period
+    std::uint16_t frame_bits;    // Total frame size in bits
+    
+    MessageSpec(std::uint16_t id, std::uint8_t data_len, 
+               std::uint16_t period, std::uint16_t bits) :
+        can_id(id), dlc(data_len), period_ms(period), frame_bits(bits) {}
 };
 
-float calculate_bus_utilization(message_spec_t msgs[], int count, 
-                               uint32_t bitrate) {
-    float total_bits_per_second = 0;
+class BusUtilizationCalculator {
+private:
+    std::vector<MessageSpec> messages;
     
-    for (int i = 0; i < count; i++) {
-        float msgs_per_second = 1000.0 / msgs[i].period_ms;
-        total_bits_per_second += msgs_per_second * msgs[i].frame_bits;
+public:
+    void addMessage(const MessageSpec& msg) {
+        messages.push_back(msg);
     }
     
-    return (total_bits_per_second / bitrate) * 100; // Percentage
-}
+    void initializeStandardMessages() {
+        messages = {
+            {0x080, 8, 10,  128},   // SYNC: 8 bytes, 10ms period
+            {0x181, 8, 20,  128},   // Motion cmd: 8 bytes, 20ms
+            {0x281, 8, 50,  128},   // Sensor data: 8 bytes, 50ms
+            {0x701, 1, 1000, 64}    // Heartbeat: 1 byte, 1s
+        };
+    }
+    
+    float calculateBusUtilization(std::uint32_t bitrate) const {
+        float total_bits_per_second = 0.0f;
+        
+        for (const auto& msg : messages) {
+            float msgs_per_second = 1000.0f / msg.period_ms;
+            total_bits_per_second += msgs_per_second * msg.frame_bits;
+        }
+        
+        return (total_bits_per_second / bitrate) * 100.0f; // Percentage
+    }
+    
+    std::size_t getMessageCount() const { return messages.size(); }
+};
 ```
 
 ## Physical Network Design
@@ -376,28 +410,67 @@ graph TD
 
 ### Version Control Strategy
 
-```c
+```cpp
+#include <cstdint>
+#include <string>
+#include <vector>
+
 // Example: Network configuration structure
-typedef struct {
-    uint8_t  network_version;       // Configuration version
-    uint8_t  node_count;           // Number of nodes
-    uint16_t bitrate;              // Network bit rate
+class NetworkConfiguration {
+public:
+    struct NodeInfo {
+        std::uint8_t  node_id;          // Node identifier
+        std::uint16_t device_type;      // CANopen device type
+        std::string   description;      // Human-readable name
+        std::uint8_t  firmware_version; // Firmware revision
+        
+        NodeInfo(std::uint8_t id, std::uint16_t type, 
+                const std::string& desc, std::uint8_t fw) :
+            node_id(id), device_type(type), description(desc), 
+            firmware_version(fw) {}
+    };
     
-    struct {
-        uint8_t  node_id;          // Node identifier
-        uint16_t device_type;      // CANopen device type
-        char     description[32];   // Human-readable name
-        uint8_t  firmware_version; // Firmware revision
-    } nodes[127];
+    struct MessageInfo {
+        std::uint16_t message_id;       // CAN identifier
+        std::uint8_t  dlc;             // Data length
+        std::uint16_t period_ms;       // Transmission period
+        std::string   description;      // Message description
+        
+        MessageInfo(std::uint16_t id, std::uint8_t len, 
+                   std::uint16_t period, const std::string& desc) :
+            message_id(id), dlc(len), period_ms(period), description(desc) {}
+    };
+
+private:
+    std::uint8_t  network_version;       // Configuration version
+    std::uint16_t bitrate;              // Network bit rate
+    std::vector<NodeInfo> nodes;
+    std::vector<MessageInfo> messages;
+
+public:
+    NetworkConfiguration(std::uint8_t version, std::uint16_t rate) :
+        network_version(version), bitrate(rate) {}
     
-    struct {
-        uint16_t message_id;       // CAN identifier
-        uint8_t  dlc;             // Data length
-        uint16_t period_ms;       // Transmission period
-        char     description[32];  // Message description
-    } messages[1000];
+    void addNode(const NodeInfo& node) {
+        nodes.push_back(node);
+    }
     
-} network_config_t;
+    void addMessage(const MessageInfo& message) {
+        messages.push_back(message);
+    }
+    
+    std::uint8_t getNodeCount() const { 
+        return static_cast<std::uint8_t>(nodes.size()); 
+    }
+    
+    std::uint16_t getBitrate() const { return bitrate; }
+    
+    const std::vector<NodeInfo>& getNodes() const { return nodes; }
+    const std::vector<MessageInfo>& getMessages() const { return messages; }
+    
+    void setBitrate(std::uint16_t rate) { bitrate = rate; }
+    void setNetworkVersion(std::uint8_t version) { network_version = version; }
+};
 ```
 
 ## Performance Optimization
